@@ -11,6 +11,6 @@ public class HelloController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
 		model.addAttribute("message", "你好，世界!");
-		return "hello";
+		return "hello.ftl";
 	}
 }
