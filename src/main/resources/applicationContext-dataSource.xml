@@ -10,18 +10,10 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-    <!--<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">-->
-   		<!--<property name="driverClass" value="com.mysql.jdbc.Driver" />-->
-		<!--<property name="jdbcUrl" value="jdbc:mysql://${main_db_ip}:${main_db_port}/${main_db_name}?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8" />-->
-		<!--<property name="username" value="${main_db_username}" />-->
-		<!--<property name="password" value="${main_db_password}" />-->
-		<!--<property name="idleConnectionTestPeriodInMinutes" value="${main_db_idleConnectionTestPeriodInMinutes}" />-->
-		<!--<property name="idleMaxAgeInMinutes" value="${main_db_idleMaxAgeInMinutes}" />-->
-		<!--<property name="maxConnectionsPerPartition" value="${main_db_maxConnectionPerPartition}" />-->
-		<!--<property name="minConnectionsPerPartition" value="${main_db_minConnectionPerPartition}" />-->
-		<!--<property name="partitionCount" value="${main_db_partitionCount}" />-->
-		<!--<property name="acquireIncrement" value="${main_db_acquireIncrement}" />-->
-		<!--<property name="statementsCacheSize" value="${main_db_statementsCacheSize}" />-->
-		<!--<property name="releaseHelperThreads" value="${main_db_releaseHelperThreads}" />-->
-	<!--</bean>-->
+    <bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
+   		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://${main_db_ip}:${main_db_port}/${main_db_name}?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8" />
+		<property name="username" value="${main_db_username}" />
+		<property name="password" value="${main_db_password}" />
+	</bean>
 </beans>
