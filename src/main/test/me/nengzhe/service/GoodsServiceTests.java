@@ -1,10 +1,12 @@
 package me.nengzhe.service;
 
-import junit.framework.TestCase;
 import me.nengzhe.goods.model.Goods;
 import me.nengzhe.goods.service.GoodsService;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
 /**
@@ -12,7 +14,9 @@ import org.springframework.util.Assert;
  * Date: 13-8-17
  * Time: 下午5:23
  */
-public class GoodsServiceTests extends TestCase {
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:/applicationContext.xml")
+public class GoodsServiceTests {
     @Autowired
     private GoodsService goodsService;
 
