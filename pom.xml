@@ -20,15 +20,11 @@
         <aspectj.version>1.7.0</aspectj.version>
         <cglib.version>2.2.2</cglib.version>
         <commons-configuration.version>1.9</commons-configuration.version>
-        <dom4j.version>1.6.1</dom4j.version>
         <httpcomponents.version>4.2.2</httpcomponents.version>
         <commons-fileupload.version>1.2.2</commons-fileupload.version>
         <freemarker.version>2.3.19</freemarker.version>
-        <ehcache-core.version>2.6.5</ehcache-core.version>
-        <ehcache-web.version>2.0.4</ehcache-web.version>
         <commons-beanutils.version>1.8.3</commons-beanutils.version>
         <commons-collections.version>3.2.1</commons-collections.version>
-        <jackson.version>1.9.10</jackson.version>
     </properties>
     <dependencies>
         <dependency>
@@ -135,11 +131,6 @@
             <version>${log4j.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.5.10</version>
-        </dependency>
-        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>${javax.servlet.version}</version>
@@ -181,11 +172,6 @@
             <version>${httpcomponents.version}</version>
         </dependency>
         <dependency>
-            <groupId>dom4j</groupId>
-            <artifactId>dom4j</artifactId>
-            <version>${dom4j.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpmime</artifactId>
             <version>${httpcomponents.version}</version>
@@ -201,16 +187,6 @@
             <version>${freemarker.version}</version>
         </dependency>
         <dependency>
-            <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache-core</artifactId>
-            <version>${ehcache-core.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache-web</artifactId>
-            <version>${ehcache-web.version}</version>
-        </dependency>
-        <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
             <version>${commons-beanutils.version}</version>
@@ -219,12 +195,6 @@
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
             <version>${commons-collections.version}</version>
-        </dependency>
-        <!-- Jackson JSON Mapper -->
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>javax.mail</groupId>
