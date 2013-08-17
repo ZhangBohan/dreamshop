@@ -1,11 +1,14 @@
 package me.nengzhe.goods.dao;
 
-import me.nengzhe.goods.dao.base.AbstractSpringJDBCDao;
 import me.nengzhe.goods.dao.base.BaseDao;
 import me.nengzhe.goods.model.Goods;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -15,12 +18,17 @@ import java.sql.SQLException;
  * Time: 下午2:55
  */
 @Repository
-public class GoodsDao extends AbstractSpringJDBCDao implements BaseDao<Goods> {
+public class GoodsDao extends JdbcDaoSupport implements BaseDao<Goods> {
+    @Autowired
+    public GoodsDao(DataSource dataSource) {
+        super.setDataSource(dataSource);
+    }
+
     @Override
     public void insert(Goods entity) {
         String sql = "INSERT INTO goods(bar_code, price, cost, specification, unit, status, " +
                 "modified_at, create_at) VALUE (?,?,?,?,?,?,?,?);";
-        super.jdbcTemplate.update(sql, entity.getBarCode(), entity.getPrice(), entity.getCost(),
+        super.getJdbcTemplate().update(sql, entity.getBarCode(), entity.getPrice(), entity.getCost(),
                 entity.getSpecification(), entity.getUnit(), entity.getStatus(),
                 entity.getModifiedAt(), entity.getCreateAt());
     }
@@ -29,7 +37,7 @@ public class GoodsDao extends AbstractSpringJDBCDao implements BaseDao<Goods> {
     public void update(Goods entity) {
         String sql = "UPDATE goods SET bar_code=?, price=?, cost=?, specification=?, unit=?, status=?, modified_at=?, create_at=? WHERE id=?;";
 
-        super.jdbcTemplate.update(sql, entity.getBarCode(), entity.getPrice(), entity.getCost(),
+        super.getJdbcTemplate().update(sql, entity.getBarCode(), entity.getPrice(), entity.getCost(),
                 entity.getSpecification(), entity.getUnit(), entity.getStatus(),
                 entity.getModifiedAt(), entity.getCreateAt(), entity.getId());
     }
@@ -37,13 +45,18 @@ public class GoodsDao extends AbstractSpringJDBCDao implements BaseDao<Goods> {
     @Override
     public void delete(Integer id) {
         String sql = "DELETE FROM goods WHERE id=?";
-        super.jdbcTemplate.update(sql, id);
+        super.getJdbcTemplate().update(sql, id);
     }
 
     @Override
     public Goods get(Integer id) {
         String sql = "SELECT * FROM goods WHERE id=?";
-        return super.jdbcTemplate.queryForObject(sql, new Object[]{id}, new GoodsMapper());
+        try {
+            return super.getJdbcTemplate().queryForObject(sql, new Object[]{id}, new GoodsMapper());
+        } catch (DataAccessException e) {
+            // return null or many object will raise exception.
+            return null;
+        }
     }
 
     class GoodsMapper implements RowMapper<Goods> {

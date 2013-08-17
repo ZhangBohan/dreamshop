@@ -48,4 +48,11 @@
         <property name="suffix" value=".jsp"/>
         <property name="contentType" value="text/html;charset=UTF-8" />
     </bean>
+
+    <bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
+        <property name="driverClass" value="com.mysql.jdbc.Driver" />
+        <property name="jdbcUrl" value="jdbc:mysql://${main_db_ip}:${main_db_port}/${main_db_name}?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8" />
+        <property name="username" value="${main_db_username}" />
+        <property name="password" value="${main_db_password}" />
+    </bean>
 </beans>
