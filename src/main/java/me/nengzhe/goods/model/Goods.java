@@ -22,6 +22,13 @@ public class Goods {
     private Date modifiedAt; // 修改时间
     private Date createAt; // 创建时间
 
+    public void init() {
+        this.status = false;
+        this.modifiedAt = new Date();
+        this.createAt = new Date();
+        this.cost = new BigDecimal(0);
+    }
+
     public Integer getId() {
         return id;
     }

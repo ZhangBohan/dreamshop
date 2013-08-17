@@ -1,7 +1,9 @@
 package me.nengzhe.goods.dao;
 
-import me.nengzhe.goods.dao.base.BaseDao;
+import me.nengzhe.goods.dao.base.PaginationDao;
 import me.nengzhe.goods.model.Goods;
+import me.nengzhe.utils.Pager;
+import me.nengzhe.utils.SearchAble;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.RowMapper;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * User: Bohan
@@ -18,10 +21,20 @@ import java.sql.SQLException;
  * Time: 下午2:55
  */
 @Repository
-public class GoodsDao extends JdbcDaoSupport implements BaseDao<Goods> {
+public class GoodsDao extends JdbcDaoSupport implements PaginationDao<Goods> {
     @Autowired
     public GoodsDao(DataSource dataSource) {
         super.setDataSource(dataSource);
+    }
+
+    public Goods get(String barCode) {
+        String sql = "SELECT * FROM goods WHERE bar_code=?";
+        try {
+            return super.getJdbcTemplate().queryForObject(sql, new Object[]{barCode}, new GoodsMapper());
+        } catch (DataAccessException e) {
+            // return null or many object will raise exception.
+            return null;
+        }
     }
 
     @Override
@@ -57,6 +70,40 @@ public class GoodsDao extends JdbcDaoSupport implements BaseDao<Goods> {
             // return null or many object will raise exception.
             return null;
         }
+    }
+
+    @Override
+    public List<Goods> getList(Pager pager) {
+        String sql = "SELECT * FROM goods";
+        return super.getJdbcTemplate().query(sql,
+                new GoodsMapper());
+    }
+
+    @Override
+    public Integer getCount() {
+        String sql = "SELECT COUNT(id) FROM goods";
+        return super.getJdbcTemplate().queryForInt(sql);
+    }
+
+    @Override
+    public List<Goods> getList(SearchAble search) {
+        String sql = "SELECT * FROM goods";
+        return super.getJdbcTemplate().query(sql,
+                new GoodsMapper());
+    }
+
+    @Override
+    public List<Goods> getList(SearchAble search, Pager pager) {
+        String sql = "SELECT * FROM goods LIMIT ?,?";
+        return super.getJdbcTemplate().query(sql,
+                new Object[]{pager.getOffset(), pager.getSize()},
+                new GoodsMapper());
+    }
+
+    @Override
+    public Integer getCount(SearchAble search) {
+        String sql = "SELECT COUNT(id) FROM goods";
+        return super.getJdbcTemplate().queryForInt(sql);
     }
 
     class GoodsMapper implements RowMapper<Goods> {
