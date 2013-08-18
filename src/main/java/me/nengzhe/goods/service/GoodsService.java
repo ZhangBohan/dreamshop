@@ -1,11 +1,14 @@
 package me.nengzhe.goods.service;
 
 import me.nengzhe.goods.dao.GoodsDao;
+import me.nengzhe.goods.dto.GoodsSearch;
 import me.nengzhe.goods.model.Goods;
+import me.nengzhe.utils.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * User: Bohan
@@ -16,6 +19,14 @@ import java.util.Date;
 public class GoodsService {
     @Autowired
     private GoodsDao goodsDao;
+
+    public List<Goods> getGoodsList(GoodsSearch search, Pager pager) {
+        List<Goods> list = this.goodsDao.getList(search, pager);
+        Integer count = this.goodsDao.getCount(search);
+        pager.setTotal(count);
+
+        return list;
+    }
 
     public Goods getGoods(String barCode) {
         Goods goods = this.goodsDao.get(barCode);

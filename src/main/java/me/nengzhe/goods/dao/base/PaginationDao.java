@@ -12,21 +12,6 @@ import java.util.List;
  */
 public interface PaginationDao<T> extends BaseDao<T> {
     /**
-     * 分页取得列表
-     *
-     * @param pager 分页
-     * @return 列表
-     */
-    List<T> getList(Pager pager);
-
-    /**
-     * 取得列表总个数
-     *
-     * @return 总个数
-     */
-
-    Integer getCount();
-    /**
      * 取得列表
      *
      * @param search 搜索条件

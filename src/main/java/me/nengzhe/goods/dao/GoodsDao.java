@@ -73,19 +73,6 @@ public class GoodsDao extends JdbcDaoSupport implements PaginationDao<Goods> {
     }
 
     @Override
-    public List<Goods> getList(Pager pager) {
-        String sql = "SELECT * FROM goods";
-        return super.getJdbcTemplate().query(sql,
-                new GoodsMapper());
-    }
-
-    @Override
-    public Integer getCount() {
-        String sql = "SELECT COUNT(id) FROM goods";
-        return super.getJdbcTemplate().queryForInt(sql);
-    }
-
-    @Override
     public List<Goods> getList(SearchAble search) {
         String sql = "SELECT * FROM goods";
         return super.getJdbcTemplate().query(sql,
