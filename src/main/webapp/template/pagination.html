@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/img/ico/favicon.png">
+
+    <title>Static Top Navbar Example for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <div class="navbar navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">梦之店</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+          <p class="navbar-text pull-right">Signed in as <a href="#">Mark Otto</a></p>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+
+    <div class="container">
+        <div class="alert-div">
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
+            </div>
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
+            </div>
+            <div class="alert alert-info">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong>Heads up!</strong> This <a href="#" class="alert-link">alert needs your attention</a>, but it's not super important.
+            </div>
+            <div class="alert fade in">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
+            </div>
+        </div>
+        <div class="search-form">
+            <form class="well form-inline" role="form">
+                <div class="form-group">
+                    <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="exampleInputPassword2">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Remember me
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-default">Sign in</button>
+            </form>
+        </div>
+        <div class="operate-from">
+            <form class="well form-inline" role="form">
+                <!-- Standard gray button with gradient -->
+                <button type="button" class="btn btn-default">Default</button>
+
+                <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                <button type="button" class="btn btn-primary">Primary</button>
+
+                <!-- Indicates a successful or positive action -->
+                <button type="button" class="btn btn-success">Success</button>
+
+                <!-- Contextual button for informational alert messages -->
+                <button type="button" class="btn btn-info">Info</button>
+
+                <!-- Indicates caution should be taken with this action -->
+                <button type="button" class="btn btn-warning">Warning</button>
+
+                <!-- Indicates a dangerous or potentially negative action -->
+                <button type="button" class="btn btn-danger">Danger</button>
+            </form>
+        </div>
+        <div class="content-table">
+            <table class="table table-hover table-bordered">
+                <tr>
+                    <th>表头1</th>
+                    <th>表头2</th>
+                    <th>表头3</th>
+                    <th>表头4</th>
+                    <th>操作</th>
+                </tr>
+                <tr>
+                    <td><a href="#">1000000000</a></td>
+                    <td>内容</td>
+                    <td>5.0</td>
+                    <td>很精彩的东东哦</td>
+                    <td>
+                        <a href="#" class="btn btn-info">编辑</a>
+                        <a href="#" class="btn btn-danger">删除</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="#">1000000000</a></td>
+                    <td>内容</td>
+                    <td>5.0</td>
+                    <td>很精彩的东东哦</td>
+                    <td>
+                        <a href="#" class="btn btn-info">编辑</a>
+                        <a href="#" class="btn btn-danger">删除</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="#">1000000000</a></td>
+                    <td>内容</td>
+                    <td>5.0</td>
+                    <td>很精彩的东东哦</td>
+                    <td>
+                        <a href="#" class="btn btn-info">编辑</a>
+                        <a href="#" class="btn btn-danger">删除</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="#">1000000000</a></td>
+                    <td>内容</td>
+                    <td>5.0</td>
+                    <td>很精彩的东东哦</td>
+                    <td>
+                        <a href="#" class="btn btn-info">编辑</a>
+                        <a href="#" class="btn btn-danger">删除</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="content-pagination">
+            <ul class="pagination">
+                <li class="disabled"><a href="#">«</a></li>
+                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">»</a></li>
+            </ul>
+        </div>
+    </div> <!-- /container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+  </body>
+</html>
