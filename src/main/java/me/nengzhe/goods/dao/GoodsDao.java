@@ -39,18 +39,19 @@ public class GoodsDao extends JdbcDaoSupport implements PaginationDao<Goods> {
 
     @Override
     public void insert(Goods entity) {
-        String sql = "INSERT INTO goods(bar_code, price, cost, specification, unit, status, " +
-                "modified_at, create_at) VALUE (?,?,?,?,?,?,?,?);";
-        super.getJdbcTemplate().update(sql, entity.getBarCode(), entity.getPrice(), entity.getCost(),
-                entity.getSpecification(), entity.getUnit(), entity.getStatus(),
+        String sql = "INSERT INTO goods(bar_code, name, price, cost, specification, unit, status, " +
+                "modified_at, create_at) VALUE (?,?,?,?,?,?,?,?,?);";
+        super.getJdbcTemplate().update(sql, entity.getBarCode(), entity.getName(), entity.getPrice(),
+                entity.getCost(), entity.getSpecification(), entity.getUnit(), entity.getStatus(),
                 entity.getModifiedAt(), entity.getCreateAt());
     }
 
     @Override
     public void update(Goods entity) {
-        String sql = "UPDATE goods SET bar_code=?, price=?, cost=?, specification=?, unit=?, status=?, modified_at=?, create_at=? WHERE id=?;";
+        String sql = "UPDATE goods SET bar_code=?, name=?, price=?, cost=?, specification=?, " +
+                "unit=?, status=?, modified_at=?, create_at=? WHERE id=?;";
 
-        super.getJdbcTemplate().update(sql, entity.getBarCode(), entity.getPrice(), entity.getCost(),
+        super.getJdbcTemplate().update(sql, entity.getBarCode(), entity.getName(), entity.getPrice(), entity.getCost(),
                 entity.getSpecification(), entity.getUnit(), entity.getStatus(),
                 entity.getModifiedAt(), entity.getCreateAt(), entity.getId());
     }
@@ -98,6 +99,7 @@ public class GoodsDao extends JdbcDaoSupport implements PaginationDao<Goods> {
         public Goods mapRow(ResultSet rs, int rowNum) throws SQLException {
             Goods goods = new Goods();
             goods.setBarCode(rs.getString("bar_code"));
+            goods.setName(rs.getString("name"));
             goods.setCost(rs.getBigDecimal("cost"));
             goods.setPrice(rs.getBigDecimal("price"));
             goods.setId(rs.getInt("id"));

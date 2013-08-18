@@ -13,6 +13,7 @@ import java.util.Date;
 public class Goods {
     private Integer id;
     private String barCode;  // 条码
+    private String name;    // 名称
     private BigDecimal price;   // 价格
     private BigDecimal cost;    // 成本
     private String specification;   // 规格
@@ -21,6 +22,10 @@ public class Goods {
     private Boolean status; // 是否被删除
     private Date modifiedAt; // 修改时间
     private Date createAt; // 创建时间
+
+    public Goods() {
+        init();
+    }
 
     public void init() {
         this.status = false;
@@ -99,5 +104,13 @@ public class Goods {
 
     public void setCreateAt(Date createAt) {
         this.createAt = createAt;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
