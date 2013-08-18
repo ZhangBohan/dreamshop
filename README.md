@@ -4,8 +4,8 @@ This is a project for shop ERP online
 
 # TO DO
 
-* 进货
 * Test config
-* Project style structure
+* 进货
+* 用户系统
 * Goods CRUD
 * HTML5 Database
