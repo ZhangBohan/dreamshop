@@ -3,6 +3,8 @@
 This is a project for shop ERP online
 
 # TO DO
+
+* 进货
 * Test config
 * Project style structure
 * Goods CRUD

@@ -53,15 +53,25 @@ class Message {
 }
 
 enum MessageLevel {
-    success("success"),
-    information("info"),
-    warning("warning"),
-    error("error");
+    success("success", "恭喜！"),
+    information("info", "信息！"),
+    warning("warning", "注意！"),
+    error("error", "错误！");
 
     private String level;
+    private String title;
 
-    MessageLevel(String level) {
+    MessageLevel(String level, String tilte) {
         this.level = level;
+        this.title = tilte;
+    }
+
+    String getTitle() {
+        return title;
+    }
+
+    void setTitle(String title) {
+        this.title = title;
     }
 
     public String getLevel() {
