@@ -50,6 +50,7 @@
     </bean>
 
     <context:component-scan base-package="me.nengzhe.web.controller"/>
+    <mvc:annotation-driven/>
 
     <mvc:resources mapping="/css/**" location="/css/"/>
     <mvc:resources mapping="/img/**" location="/img/"/>
