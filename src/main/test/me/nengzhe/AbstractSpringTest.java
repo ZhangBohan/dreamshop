@@ -1,4 +1,4 @@
-package me.nengzhe.utils;
+package me.nengzhe;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

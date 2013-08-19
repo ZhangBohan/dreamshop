@@ -1,7 +1,7 @@
 package me.nengzhe.service;
 
+import me.nengzhe.AbstractSpringTest;
 import me.nengzhe.goods.service.GoodsService;
-import me.nengzhe.utils.AbstractSpringTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
