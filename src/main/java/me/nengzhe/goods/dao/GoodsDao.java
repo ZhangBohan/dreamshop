@@ -39,20 +39,20 @@ public class GoodsDao extends JdbcDaoSupport implements PaginationDao<Goods> {
 
     @Override
     public void insert(Goods entity) {
-        String sql = "INSERT INTO goods(bar_code, name, price, cost, specification, unit, deleted, " +
-                "modified_at, create_at) VALUE (?,?,?,?,?,?,?,?,?);";
+        String sql = "INSERT INTO goods(bar_code, name, price, cost, specification, unit, company_id, deleted, " +
+                "modified_at, create_at) VALUE (?,?,?,?,?,?,?,?,?,?);";
         super.getJdbcTemplate().update(sql, entity.getBarCode(), entity.getName(), entity.getPrice(),
-                entity.getCost(), entity.getSpecification(), entity.getUnit(), entity.getDeleted(),
+                entity.getCost(), entity.getSpecification(), entity.getUnit(), entity.getCompanyId(), entity.getDeleted(),
                 entity.getModifiedAt(), entity.getCreateAt());
     }
 
     @Override
     public void update(Goods entity) {
         String sql = "UPDATE goods SET bar_code=?, name=?, price=?, cost=?, specification=?, " +
-                "unit=?, deleted=?, modified_at=?, create_at=? WHERE id=?;";
+                "unit=?, company_id=?, deleted=?, modified_at=?, create_at=? WHERE id=?;";
 
         super.getJdbcTemplate().update(sql, entity.getBarCode(), entity.getName(), entity.getPrice(), entity.getCost(),
-                entity.getSpecification(), entity.getUnit(), entity.getDeleted(),
+                entity.getSpecification(), entity.getUnit(), entity.getCompanyId(), entity.getDeleted(),
                 entity.getModifiedAt(), entity.getCreateAt(), entity.getId());
     }
 
@@ -108,6 +108,7 @@ public class GoodsDao extends JdbcDaoSupport implements PaginationDao<Goods> {
             goods.setUnit(rs.getString("unit"));
             goods.setModifiedAt(rs.getDate("modified_at"));
             goods.setCreateAt(rs.getDate("create_at"));
+            goods.setCompanyId(rs.getInt("company_id"));
             return goods;
         }
     }

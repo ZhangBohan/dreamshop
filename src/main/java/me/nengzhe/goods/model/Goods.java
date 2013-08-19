@@ -18,6 +18,7 @@ public class Goods {
     private BigDecimal cost;    // 成本
     private String specification;   // 规格
     private String unit;    // 单位
+    private Integer companyId;  // 商户ID
 
     private Boolean deleted; // 是否被删除
     private Date modifiedAt; // 修改时间
@@ -128,5 +129,13 @@ public class Goods {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Integer companyId) {
+        this.companyId = companyId;
     }
 }
