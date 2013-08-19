@@ -19,7 +19,7 @@ public class Goods {
     private String specification;   // 规格
     private String unit;    // 单位
 
-    private Boolean status; // 是否被删除
+    private Boolean deleted; // 是否被删除
     private Date modifiedAt; // 修改时间
     private Date createAt; // 创建时间
 
@@ -28,10 +28,26 @@ public class Goods {
     }
 
     public void init() {
-        this.status = false;
+        this.deleted = false;
         this.modifiedAt = new Date();
         this.createAt = new Date();
         this.cost = new BigDecimal(0);
+    }
+
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "id=" + id +
+                ", barCode='" + barCode + '\'' +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", cost=" + cost +
+                ", specification='" + specification + '\'' +
+                ", unit='" + unit + '\'' +
+                ", deleted=" + deleted +
+                ", modifiedAt=" + modifiedAt +
+                ", createAt=" + createAt +
+                '}';
     }
 
     public Integer getId() {
@@ -82,12 +98,12 @@ public class Goods {
         this.unit = unit;
     }
 
-    public Boolean getStatus() {
-        return status;
+    public Boolean getDeleted() {
+        return deleted;
     }
 
-    public void setStatus(Boolean status) {
-        this.status = status;
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     public Date getModifiedAt() {

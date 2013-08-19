@@ -1,4 +1,4 @@
-package me.nengzhe.controller;
+package me.nengzhe.web.controller;
 
 import me.nengzhe.goods.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;

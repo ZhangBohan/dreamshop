@@ -8,7 +8,7 @@ CREATE TABLE goods(
   cost DECIMAL NULL DEFAULT 0.0,
   specification VARCHAR(100) NULL,
   unit VARCHAR(50) NULL,
-  status BOOLEAN DEFAULT FALSE,
+  deleted BOOLEAN DEFAULT FALSE,
   modified_at DATETIME,
   create_at DATETIME
 );

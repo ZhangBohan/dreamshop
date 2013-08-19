@@ -8,6 +8,7 @@
     <debug/>
     <http auto-config="true">
         <intercept-url pattern="/goods/**" access="ROLE_USER" />
+        <remember-me />
     </http>
 
     <authentication-manager>

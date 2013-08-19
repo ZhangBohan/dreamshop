@@ -1,6 +1,6 @@
 package me.nengzhe.goods.dao;
 
-import me.nengzhe.goods.dao.base.PaginationDao;
+import me.nengzhe.base.dao.PaginationDao;
 import me.nengzhe.goods.model.Goods;
 import me.nengzhe.utils.Pager;
 import me.nengzhe.utils.SearchAble;
@@ -39,20 +39,20 @@ public class GoodsDao extends JdbcDaoSupport implements PaginationDao<Goods> {
 
     @Override
     public void insert(Goods entity) {
-        String sql = "INSERT INTO goods(bar_code, name, price, cost, specification, unit, status, " +
+        String sql = "INSERT INTO goods(bar_code, name, price, cost, specification, unit, deleted, " +
                 "modified_at, create_at) VALUE (?,?,?,?,?,?,?,?,?);";
         super.getJdbcTemplate().update(sql, entity.getBarCode(), entity.getName(), entity.getPrice(),
-                entity.getCost(), entity.getSpecification(), entity.getUnit(), entity.getStatus(),
+                entity.getCost(), entity.getSpecification(), entity.getUnit(), entity.getDeleted(),
                 entity.getModifiedAt(), entity.getCreateAt());
     }
 
     @Override
     public void update(Goods entity) {
         String sql = "UPDATE goods SET bar_code=?, name=?, price=?, cost=?, specification=?, " +
-                "unit=?, status=?, modified_at=?, create_at=? WHERE id=?;";
+                "unit=?, deleted=?, modified_at=?, create_at=? WHERE id=?;";
 
         super.getJdbcTemplate().update(sql, entity.getBarCode(), entity.getName(), entity.getPrice(), entity.getCost(),
-                entity.getSpecification(), entity.getUnit(), entity.getStatus(),
+                entity.getSpecification(), entity.getUnit(), entity.getDeleted(),
                 entity.getModifiedAt(), entity.getCreateAt(), entity.getId());
     }
 
@@ -104,7 +104,7 @@ public class GoodsDao extends JdbcDaoSupport implements PaginationDao<Goods> {
             goods.setPrice(rs.getBigDecimal("price"));
             goods.setId(rs.getInt("id"));
             goods.setSpecification(rs.getString("specification"));
-            goods.setStatus(rs.getBoolean("status"));
+            goods.setDeleted(rs.getBoolean("deleted"));
             goods.setUnit(rs.getString("unit"));
             goods.setModifiedAt(rs.getDate("modified_at"));
             goods.setCreateAt(rs.getDate("create_at"));

@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS company;
+
+CREATE TABLE company(
+  id  INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  deleted BOOLEAN DEFAULT FALSE,
+  modified_at DATETIME,
+  create_at DATETIME
+);

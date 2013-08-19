@@ -1,4 +1,4 @@
-package me.nengzhe.utils;
+package me.nengzhe.utils.config;
 
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 

@@ -1,7 +1,7 @@
 package nengzhe.service;
 
 import me.nengzhe.goods.service.GoodsService;
-import nengzhe.AbstractSpringTest;
+import nengzhe.AbstractSpringTests;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Date: 13-8-17
  * Time: 下午5:23
  */
-public class GoodsServiceTests extends AbstractSpringTest {
+public class GoodsServiceTests extends AbstractSpringTests {
     @Autowired
     private GoodsService goodsService;
 

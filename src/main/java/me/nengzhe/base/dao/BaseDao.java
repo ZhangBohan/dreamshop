@@ -1,4 +1,4 @@
-package me.nengzhe.goods.dao.base;
+package me.nengzhe.base.dao;
 
 /**
  * User: Bohan

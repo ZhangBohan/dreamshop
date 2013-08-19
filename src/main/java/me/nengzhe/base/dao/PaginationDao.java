@@ -1,4 +1,4 @@
-package me.nengzhe.goods.dao.base;
+package me.nengzhe.base.dao;
 
 import me.nengzhe.utils.Pager;
 import me.nengzhe.utils.SearchAble;
