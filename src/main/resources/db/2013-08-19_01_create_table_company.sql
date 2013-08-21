@@ -7,3 +7,6 @@ CREATE TABLE dream_shop.company(
   modified_at DATETIME,
   create_at DATETIME
 );
+
+INSERT INTO dream_shop.company(id, name,deleted,modified_at,create_at)
+  VALUES(1, "梦之店", false, NOW(), NOW());
