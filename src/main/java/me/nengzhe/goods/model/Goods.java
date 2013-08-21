@@ -1,5 +1,7 @@
 package me.nengzhe.goods.model;
 
+import me.nengzhe.base.model.BaseModel;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -10,8 +12,7 @@ import java.util.Date;
  * Date: 13-8-11
  * Time: 下午10:01
  */
-public class Goods {
-    private Integer id;
+public class Goods extends BaseModel {
     private String barCode;  // 条码
     private String name;    // 名称
     private BigDecimal price;   // 价格
@@ -21,8 +22,6 @@ public class Goods {
     private Integer companyId;  // 商户ID
 
     private Boolean deleted; // 是否被删除
-    private Date modifiedAt; // 修改时间
-    private Date createAt; // 创建时间
 
     public Goods() {
         init();

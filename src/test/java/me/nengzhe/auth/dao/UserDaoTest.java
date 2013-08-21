@@ -26,6 +26,7 @@ public class UserDaoTest extends AbstractSpringTests {
         user.setUsername("bohan");
         user.setPassword("123456");
         user.setCompanyId(1);
+        user.setId(1);
     }
 
     @Test
@@ -39,14 +40,13 @@ public class UserDaoTest extends AbstractSpringTests {
 
     @Test
     public void testUpdate() throws Exception {
-        user.setId(1);
         user.setModifiedAt(new Date());
         this.userDao.update(user);
     }
 
     @Test
     public void testDelete() throws Exception {
-        this.userDao.delete(1);
+        this.userDao.delete(user.getId());
     }
 
     @Test

@@ -1,0 +1,35 @@
+package me.nengzhe.auth.model;
+
+import me.nengzhe.base.model.BaseModel;
+import org.springframework.security.core.GrantedAuthority;
+
+/**
+ * User: bohan
+ * Date: 8/22/13
+ * Time: 1:47 AM
+ */
+public class Authority extends BaseModel implements GrantedAuthority {
+    private String name;
+    private String description;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String getAuthority() {
+        return this.name;
+    }
+}

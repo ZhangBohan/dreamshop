@@ -1,5 +1,7 @@
 package me.nengzhe.auth.model;
 
+import me.nengzhe.base.model.BaseModel;
+
 import java.util.Date;
 
 /**
@@ -7,13 +9,11 @@ import java.util.Date;
  * Date: 8/19/13
  * Time: 3:34 PM
  */
-public class Company {
-    private Integer id;
+public class Company extends BaseModel {
     private String name;
+    private String description;
 
     private Boolean deleted; // 是否被删除
-    private Date modifiedAt; // 修改时间
-    private Date createAt; // 创建时间
 
     public Company() {
         this.deleted = false;
@@ -26,6 +26,7 @@ public class Company {
         return "Company{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
                 ", deleted=" + deleted +
                 ", modifiedAt=" + modifiedAt +
                 ", createAt=" + createAt +
@@ -70,5 +71,13 @@ public class Company {
 
     public void setCreateAt(Date createAt) {
         this.createAt = createAt;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS dream_shop.user;
+
 CREATE TABLE dream_shop.user(
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   username VARCHAR(100) NOT NULL UNIQUE,
@@ -13,7 +15,7 @@ CREATE TABLE dream_shop.user(
 );
 CREATE INDEX user_username_index ON dream_shop.user(username(50));
 
-INSERT INTO dream_shop.user (username, password, company_id, account_expired, account_locked, credentials_expired, enabled, modified_at, create_at)
+INSERT INTO dream_shop.user (username, password, company_id, modified_at, create_at)
   VALUES ('bohan', '123456', 1, NOW(), NOW());
 
 

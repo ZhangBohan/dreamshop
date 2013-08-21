@@ -60,6 +60,16 @@ public class UserDao extends JdbcDaoSupport implements BaseDao<User>{
         }
     }
 
+    public User get(String username) {
+        String sql = "SELECT * FROM user WHERE username=?";
+        try {
+            return super.getJdbcTemplate().queryForObject(sql, new Object[]{username}, new UserRowMapper());
+        } catch (DataAccessException e) {
+            // return null or many object will raise exception.
+            return null;
+        }
+    }
+
     class UserRowMapper implements RowMapper<User> {
 
         @Override

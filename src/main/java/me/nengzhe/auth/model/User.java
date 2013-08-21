@@ -1,5 +1,7 @@
 package me.nengzhe.auth.model;
 
+import me.nengzhe.base.model.BaseModel;
+
 import java.util.Date;
 
 /**
@@ -7,8 +9,7 @@ import java.util.Date;
  * Date: 8/21/13
  * Time: 11:16 PM
  */
-public class User {
-    private Integer id;
+public class User extends BaseModel{
     private String username;    // 用户
     private String password;    // 密码
     private Integer companyId;  // 公司ID
@@ -17,9 +18,6 @@ public class User {
     private boolean accountLocked; // 账号锁定
     private boolean credentialsExpired; // 密码过期
     private boolean enabled;    // 可用
-
-    private Date modifiedAt; // 修改时间
-    private Date createAt; // 创建时间
 
     public User() {
         init();
