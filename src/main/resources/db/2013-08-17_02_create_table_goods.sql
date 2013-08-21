@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS goods;
+DROP TABLE IF EXISTS dream_shop.goods;
 
-CREATE TABLE goods(
+CREATE TABLE dream_shop.goods(
   id  INT PRIMARY KEY AUTO_INCREMENT,
   bar_code VARCHAR(50) NOT NULL UNIQUE,
   name VARCHAR(255) NOT NULL,
@@ -12,4 +12,4 @@ CREATE TABLE goods(
   modified_at DATETIME,
   create_at DATETIME
 );
-CREATE INDEX goods_bar_code ON goods(bar_code(13));
+CREATE INDEX goods_bar_code ON dream_shop.goods(bar_code(13));
