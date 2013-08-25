@@ -12,7 +12,7 @@
     <context:component-scan base-package="me.nengzhe.goods.service" />
 
     <context:component-scan base-package="me.nengzhe.auth.dao"/>
-    <!--<context:component-scan base-package="me.nengzhe.auth.service" />-->
+    <context:component-scan base-package="me.nengzhe.auth.service" />
 
     <bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
         <property name="driverClass" value="com.mysql.jdbc.Driver" />

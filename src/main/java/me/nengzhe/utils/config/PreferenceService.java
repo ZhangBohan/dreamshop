@@ -24,11 +24,11 @@ public class PreferenceService {
 			configuration = new CompositeConfiguration();
 			
 			PropertiesConfiguration propertiesConfiguration;
-			
-			String proppath = getConfigBasePath() + SystemInfoParser.getHostName()
-					+ ".properties";
+
+            String localProperties = SystemInfoParser.getHostName() + ".properties";
+			String localPath = getConfigBasePath() + localProperties;
 			try {
-				propertiesConfiguration = new PropertiesConfiguration(proppath);
+				propertiesConfiguration = new PropertiesConfiguration(localPath);
 				for (Iterator<String> iterator = propertiesConfiguration.getKeys(); iterator.hasNext();) {
 					String key = iterator.next();
 					log.debug("Init property from: " + SystemInfoParser.getHostName()
@@ -38,13 +38,14 @@ public class PreferenceService {
 				}
 				configuration.addConfiguration(propertiesConfiguration);
 			} catch (ConfigurationException e) {
-				log.error(e.getMessage(), e);
+				log.warn("Can not found local config file: " + localProperties +
+                        ", if you want some special. add " + localProperties + " to config/ folder.");
 			}
-			
-			proppath = getConfigBasePath() + "common/common.properties";
+
+            String common = getConfigBasePath() + "common/common.properties";
 			
 			try {
-				propertiesConfiguration = new PropertiesConfiguration(proppath);
+				propertiesConfiguration = new PropertiesConfiguration(common);
 				for (Iterator<String> iterator = propertiesConfiguration.getKeys(); iterator.hasNext();) {
 					String key = iterator.next();
 					log.debug("Init property from common.properties : "
