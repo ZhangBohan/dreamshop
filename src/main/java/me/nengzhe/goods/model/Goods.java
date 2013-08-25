@@ -1,7 +1,9 @@
 package me.nengzhe.goods.model;
 
 import me.nengzhe.base.model.BaseModel;
+import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -13,25 +15,24 @@ import java.util.Date;
  * Time: 下午10:01
  */
 public class Goods extends BaseModel {
+    @Size(min = 4, max = 50, message = "商品条码不能为空，且长度在4至50个字符之间！")
     private String barCode;  // 条码
+    @NotEmpty(message = "商品名称不能为空！")
     private String name;    // 名称
     private BigDecimal price;   // 价格
     private BigDecimal cost;    // 成本
+    @NotEmpty(message = "商品规格不能为空！")
     private String specification;   // 规格
+    @NotEmpty(message = "商品单位不能为空！")
     private String unit;    // 单位
     private Integer companyId;  // 商户ID
 
     private Boolean deleted; // 是否被删除
 
-    public Goods() {
-        init();
-    }
-
     public void init() {
         this.deleted = false;
         this.modifiedAt = new Date();
         this.createAt = new Date();
-        this.cost = new BigDecimal(0);
     }
 
     @Override

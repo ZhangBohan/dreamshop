@@ -29,9 +29,10 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="#">收银</a></li>
-                <li class="active"><a href="#about">进货</a></li>
+                <li class="active"><a href="/goods/add">增加商品</a></li>
+                <li><a href="/goods">管理商品</a></li>
             </ul>
-            <p class="navbar-text pull-right">Signed in as <a href="#">Mark Otto</a></p>
+            <p class="navbar-text pull-right">Signed in as <a href="#">Bohan</a></p>
         </div><!--/.nav-collapse -->
     </div>
 </div>
@@ -55,13 +56,13 @@
         <div class="form-group">
             <label for="inputPrice" class="col-lg-2 control-label">价格</label>
             <div class="col-lg-4">
-                <input name="price" type="number" class="form-control" id="inputPrice" placeholder="商品价格">
+                <input name="price" class="form-control" id="inputPrice" placeholder="商品价格">
             </div>
         </div>
         <div class="form-group">
             <label for="inputCost" class="col-lg-2 control-label">成本</label>
             <div class="col-lg-4">
-                <input name="cost" type="number" class="form-control" id="inputCost"
+                <input name="cost" class="form-control" id="inputCost"
                        placeholder="商品成本" value="${goods.cost}">
             </div>
         </div>
@@ -79,7 +80,7 @@
         </div>
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-4">
-                <button type="submit" class="btn btn-default">进货</button>
+                <button type="submit" class="btn btn-primary btn-lg">进货</button>
             </div>
         </div>
     </form>

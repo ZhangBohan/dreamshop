@@ -1,7 +1,11 @@
 package me.nengzhe.goods.dao;
 
 import me.nengzhe.base.dao.BaseDao;
+import me.nengzhe.base.dao.PaginationDao;
+import me.nengzhe.base.exception.NotImplException;
+import me.nengzhe.goods.dto.GoodsSearch;
 import me.nengzhe.goods.model.Goods;
+import me.nengzhe.utils.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -12,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * User: Bohan
@@ -19,7 +24,7 @@ import java.sql.SQLException;
  * Time: 下午2:55
  */
 @Repository
-public class GoodsDao extends JdbcDaoSupport implements BaseDao<Goods> {
+public class GoodsDao extends JdbcDaoSupport implements PaginationDao<Goods, GoodsSearch> {
     @Autowired
     public GoodsDao(DataSource dataSource) {
         super.setDataSource(dataSource);
@@ -69,6 +74,24 @@ public class GoodsDao extends JdbcDaoSupport implements BaseDao<Goods> {
             // return null or many object will raise exception.
             return null;
         }
+    }
+
+    @Override
+    public List<Goods> getList(GoodsSearch search) throws NotImplException {
+        String sql = "SELECT * FROM goods";
+        return super.getJdbcTemplate().query(sql, new Object[]{}, new GoodsMapper());
+    }
+
+    @Override
+    public int getCount(GoodsSearch search) throws NotImplException {
+        String sql = "SELECT COUNT(*) FROM goods";
+        return super.getJdbcTemplate().queryForInt(sql, new Object[]{});
+    }
+
+    @Override
+    public List<Goods> getList(GoodsSearch search, Pager pager) throws NotImplException {
+        String sql = "SELECT * FROM goods LIMIT ?,?";
+        return super.getJdbcTemplate().query(sql, new Object[]{pager.getOffset(), pager.getSize()}, new GoodsMapper());
     }
 
     class GoodsMapper implements RowMapper<Goods> {
