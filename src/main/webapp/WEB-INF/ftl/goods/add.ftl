@@ -11,9 +11,6 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="navbar-static-top.css" rel="stylesheet">
 </head>
 
 <body>
@@ -41,31 +38,48 @@
 
 
 <div class="container">
-    <form class="form-horizontal" role="form">
+    <#include "/lib/alert.ftl">
+    <form class="form-horizontal" role="form" method="post">
         <div class="form-group">
-            <label for="inputEmail1" class="col-lg-2 control-label">条码</label>
+            <label for="inputBarCode" class="col-lg-2 control-label">条码</label>
             <div class="col-lg-4">
-                <input type="text" class="form-control" id="inputEmail1" placeholder="商品条码">
+                <input name="barCode" class="form-control" id="inputBarCode" placeholder="商品条码">
             </div>
         </div>
         <div class="form-group">
-            <label for="inputPassword1" class="col-lg-2 control-label">名称</label>
+            <label for="inputUsername" class="col-lg-2 control-label">名称</label>
             <div class="col-lg-4">
-                <input type="text" class="form-control" id="inputPassword1" placeholder="商品名称">
+                <input name="name" class="form-control" id="inputUsername" placeholder="商品名称">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPrice" class="col-lg-2 control-label">价格</label>
+            <div class="col-lg-4">
+                <input name="price" type="number" class="form-control" id="inputPrice" placeholder="商品价格">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputCost" class="col-lg-2 control-label">成本</label>
+            <div class="col-lg-4">
+                <input name="cost" type="number" class="form-control" id="inputCost"
+                       placeholder="商品成本" value="${goods.cost}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputUnit" class="col-lg-2 control-label">单位</label>
+            <div class="col-lg-4">
+                <input name="unit" class="form-control" id="inputUnit" placeholder="商品单位">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputSpecification" class="col-lg-2 control-label">规格</label>
+            <div class="col-lg-4">
+                <textarea name="specification" class="form-control" id="inputSpecification" placeholder="商品规格"></textarea>
             </div>
         </div>
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-4">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> Remember me
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-4">
-                <button type="submit" class="btn btn-default">Sign in</button>
+                <button type="submit" class="btn btn-default">进货</button>
             </div>
         </div>
     </form>

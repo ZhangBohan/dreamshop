@@ -1,5 +1,6 @@
 package me.nengzhe.goods.service;
 
+import me.nengzhe.auth.model.User;
 import me.nengzhe.goods.dao.GoodsDao;
 import me.nengzhe.goods.dto.GoodsSearch;
 import me.nengzhe.goods.model.Goods;
@@ -34,8 +35,9 @@ public class GoodsService {
         return goods;
     }
 
-    public void insert(Goods goods) {
+    public void add(Goods goods, User user) {
         goods.init();
+        goods.setCompanyId(user.getCompanyId());
         this.goodsDao.insert(goods);
     }
 
