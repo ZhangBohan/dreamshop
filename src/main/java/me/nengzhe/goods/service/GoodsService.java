@@ -21,11 +21,12 @@ public class GoodsService {
     private GoodsDao goodsDao;
 
     public List<Goods> getGoodsList(GoodsSearch search, Pager pager) {
-        List<Goods> list = this.goodsDao.getList(search, pager);
-        Integer count = this.goodsDao.getCount(search);
-        pager.setTotal(count);
-
-        return list;
+//        List<Goods> list = this.goodsDao.getList(search, pager);
+//        Integer count = this.goodsDao.getCount(search);
+//        pager.setTotal(count);
+//
+//        return list;
+        return null;
     }
 
     public Goods getGoods(String barCode) {

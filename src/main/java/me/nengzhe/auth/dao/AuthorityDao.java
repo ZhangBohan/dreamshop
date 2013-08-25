@@ -4,6 +4,7 @@ import me.nengzhe.auth.model.Authority;
 import me.nengzhe.base.dao.BaseDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -51,16 +52,16 @@ public class AuthorityDao extends JdbcDaoSupport implements BaseDao<Authority> {
         String sql = "SELECT * FROM authority WHERE id=?";
         try {
             return super.getJdbcTemplate().queryForObject(sql, new Object[]{id}, new AuthorityMapper());
-        } catch (DataAccessException e) {
+        } catch (EmptyResultDataAccessException e) {
             // return null or many object will raise exception.
             return null;
         }
     }
 
     public List<Authority> getListByUserId(Integer userId) {
-        String sql = "SELECT id, name, description, modified_at, create_at FROM authority auth, user_authority ua " +
+        String sql = "SELECT auth.id, name, description, modified_at, create_at FROM authority auth, user_authority ua " +
                 "WHERE auth.id = ua.user_id AND ua.user_id=?;";
-        return super.getJdbcTemplate().query(sql, new AuthorityMapper());
+        return super.getJdbcTemplate().query(sql, new Object[]{userId}, new AuthorityMapper());
     }
 
     class AuthorityMapper implements RowMapper<Authority> {

@@ -4,6 +4,7 @@ import me.nengzhe.base.dao.BaseDao;
 import me.nengzhe.goods.model.Goods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -28,7 +29,7 @@ public class GoodsDao extends JdbcDaoSupport implements BaseDao<Goods> {
         String sql = "SELECT * FROM goods WHERE bar_code=?";
         try {
             return super.getJdbcTemplate().queryForObject(sql, new Object[]{barCode}, new GoodsMapper());
-        } catch (DataAccessException e) {
+        } catch (EmptyResultDataAccessException e) {
             // return null or many object will raise exception.
             return null;
         }

@@ -4,6 +4,7 @@ import me.nengzhe.auth.model.Company;
 import me.nengzhe.base.dao.BaseDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -50,7 +51,7 @@ public class CompanyDao extends JdbcDaoSupport implements BaseDao<Company> {
         String sql = "SELECT * FROM goods WHERE id=?";
         try {
             return super.getJdbcTemplate().queryForObject(sql, new Object[]{id}, new CompanyMapper());
-        } catch (DataAccessException e) {
+        } catch (EmptyResultDataAccessException e) {
             // return null or many object will raise exception.
             return null;
         }

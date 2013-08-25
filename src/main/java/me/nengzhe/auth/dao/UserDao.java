@@ -4,6 +4,7 @@ import me.nengzhe.auth.model.User;
 import me.nengzhe.base.dao.BaseDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -64,7 +65,7 @@ public class UserDao extends JdbcDaoSupport implements BaseDao<User>{
         String sql = "SELECT * FROM user WHERE username=?";
         try {
             return super.getJdbcTemplate().queryForObject(sql, new Object[]{username}, new UserRowMapper());
-        } catch (DataAccessException e) {
+        } catch (EmptyResultDataAccessException e) {
             // return null or many object will raise exception.
             return null;
         }

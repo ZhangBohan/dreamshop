@@ -9,5 +9,5 @@ CREATE TABLE dream_shop.company(
   create_at DATETIME
 );
 
-INSERT INTO dream_shop.company(id, name,deleted,modified_at,create_at)
-  VALUES(1, "梦之店", false, NOW(), NOW());
+INSERT INTO dream_shop.company(id, name, description, deleted,modified_at,create_at)
+  VALUES(1, "梦之店", "梦想开始的地方", false, NOW(), NOW());
