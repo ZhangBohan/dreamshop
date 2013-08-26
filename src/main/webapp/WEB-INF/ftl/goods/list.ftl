@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="/img/ico/favicon.png">
 
-    <title>Static Top Navbar Example for Bootstrap</title>
+    <title>管理商品|梦之店</title>
 
     <link href="/css/bootstrap.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
@@ -50,19 +50,21 @@
                     <th>名称</th>
                     <th>价格</th>
                     <th>成本</th>
+                    <th>规格</th>
                     <th>操作</th>
                 </tr>
                 <#list list as goods>
                     <tr>
                         <td><input type="checkbox" name="ids" class='selectOne' value="${ goods.id }"/></td>
                         <td>${goods_index + 1}</td>
-                        <td><a href="/goods/${goods.id}">${goods.barCode}</a></td>
+                        <td><a href="/goods/${goods.id}/edit">${goods.barCode}</a></td>
                         <td>${goods.name}</td>
                         <td>${goods.price}</td>
                         <td>${goods.cost}</td>
+                        <td>${goods.specification}</td>
                         <td>
-                            <a href="#" class="btn btn-info">编辑</a>
-                            <a href="#" class="btn btn-danger">删除</a>
+                            <a href="/goods/${goods.id}/edit" class="btn btn-info">编辑</a>
+                            <a href="/goods/${goods.id}/delete" class="btn btn-danger">删除</a>
                         </td>
                     </tr>
                 </#list>

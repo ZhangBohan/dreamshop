@@ -15,7 +15,8 @@ import java.util.Date;
  * Time: 下午10:01
  */
 public class Goods extends BaseModel {
-    @Size(min = 4, max = 50, message = "商品条码不能为空，且长度在4至50个字符之间！")
+    @NotEmpty
+    @Size(min = 4, max = 50)
     private String barCode;  // 条码
     @NotEmpty(message = "商品名称不能为空！")
     private String name;    // 名称

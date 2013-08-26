@@ -35,13 +35,18 @@ public class GoodsService {
         return goods;
     }
 
+    public Goods getGoods(int id) {
+        Goods goods = this.goodsDao.get(id);
+        return goods;
+    }
+
     public void add(Goods goods, User user) {
         goods.init();
         goods.setCompanyId(user.getCompanyId());
         this.goodsDao.insert(goods);
     }
 
-    public void update(Goods goods) {
+    public void update(Goods goods, User user) {
         goods.setModifiedAt(new Date());
         this.goodsDao.update(goods);
     }

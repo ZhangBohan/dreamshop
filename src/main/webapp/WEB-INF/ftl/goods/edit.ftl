@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="/img/ico/favicon.png">
 
-    <title>进货|梦之店</title>
+    <title>编辑商品|梦之店</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
@@ -29,8 +29,8 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="#">收银</a></li>
-                <li class="active"><a href="/goods/add">增加商品</a></li>
-                <li><a href="/goods">管理商品</a></li>
+                <li><a href="/goods/add">增加商品</a></li>
+                <li class="active"><a href="/goods">管理商品</a></li>
             </ul>
             <p class="navbar-text pull-right">Signed in as <a href="#">Bohan</a></p>
         </div><!--/.nav-collapse -->
@@ -76,6 +76,18 @@
             <label for="inputSpecification" class="col-lg-2 control-label">规格</label>
             <div class="col-lg-4">
                 <textarea name="specification" class="form-control" id="inputSpecification" placeholder="商品规格">${goods.specification}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputSpecification" class="col-lg-2 control-label">修改时间</label>
+            <div class="col-lg-4">
+                <p class="form-control-static">${goods.modifiedAt}</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputSpecification" class="col-lg-2 control-label">创建时间</label>
+            <div class="col-lg-4">
+                <p class="form-control-static">${goods.createAt}</p>
             </div>
         </div>
         <div class="form-group">

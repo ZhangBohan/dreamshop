@@ -1,0 +1,2 @@
+NotEmpty.goods.barCode = 条形码不能为空！
+Size.goods.barCode = 商品条码不能为空，且长度在4至50个字符之间
