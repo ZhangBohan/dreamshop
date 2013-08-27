@@ -101,12 +101,12 @@
             d = parseInt(opts.pageNumber / 2),
             e = opts.pageNumber,
             f = "";
-            opts.panel.first_on && (f += b ==1 ? "<span class='disabled' title='1'>" + opts.panel.first + "</span>":"<a href='" + a + "' title='1'>" + opts.panel.first + "</a>"),
-            opts.panel.prev_on && (f += b == 1 ? '<span class="disabled" title="' + opts.panel.prev + '">' + opts.panel.prev + " </span>": "<a href='" + a + "' title='" + (b - 1) + "'>" + opts.panel.prev + " </a>");
+            opts.panel.first_on && (f += b ==1 ? "<li class='disabled'><span title='1'>" + opts.panel.first + "</span></li>":"<li><a href='" + a + "' title='1'>" + opts.panel.first + "</a></li>"),
+            opts.panel.prev_on && (f += b == 1 ? "<li class='disabled'><span title='" + opts.panel.prev + "'>" + opts.panel.prev + " </span></li>": "<li><a href='" + a + "' title='" + (b - 1) + "'>" + opts.panel.prev + " </a></li>");
             var g = lastPage = 1;
-            for (g = b - d > 0 ? g = b - d: 1, g + e > c ? (lastPage = c + 1, g = lastPage - e) : lastPage = g + e, 0 >= g && (g = 1), g; lastPage > g; g++) f += g == b ? '<span class="current" title="' + g + '">' + g + "</span>": "<a href='" + a + "' title='" + g + "'>" + g + "</a>";
-            opts.panel.next_on && (f += b == c ? '<span class="disabled" title="' + opts.panel.next + '">' + opts.panel.next + " </span>": "<a href='" + a + "' title='" + (b + 1) + "'>" + opts.panel.next + " </a>"),
-            opts.panel.last_on && (f += b == c ? '<span class="disabled" title="' + c + '">' + opts.panel.last + " </span>": "<a href='" + a + "' title='" + c + "'>" + opts.panel.last + "</a>"),
+            for (g = b - d > 0 ? g = b - d: 1, g + e > c ? (lastPage = c + 1, g = lastPage - e) : lastPage = g + e, 0 >= g && (g = 1), g; lastPage > g; g++) f += g == b ? '<li><span class="current" title="' + g + '">' + g + "</span></li>": "<li><a href='" + a + "' title='" + g + "'>" + g + "</a></li>";
+            opts.panel.next_on && (f += b == c ? "<li class='disabled'><span title='" + opts.panel.next + "'>" + opts.panel.next + " </span></li>": "<li><a href='" + a + "' title='" + (b + 1) + "'>" + opts.panel.next + " </a></li>"),
+            opts.panel.last_on && (f += b == c ? "<li class='disabled'><span title='" + c + "'>" + opts.panel.last + " </span></li>": "<li><a href='" + a + "' title='" + c + "'>" + opts.panel.last + "</a></li>"),
             f += getPanelTipInfo(), 
             debug(opts.id),
             debug("\u6700\u7ec8\u751f\u6210\u83dc\u5355\uff1a"),
@@ -213,5 +213,29 @@
     },
     $.fn.debug = function(a) {
         window.console && window.console.log && console.log(a)
+    },
+    $.pageList = function(pageDiv,formDiv,currPageDiv,totalDiv,sizeDiv){
+        var currPage = $(currPageDiv).val();
+        var total = $(totalDiv).val();
+        var pageSize = $(sizeDiv).val();
+        var pageCount = total % pageSize != 0 ? (total / pageSize + 1) : total / pageSize;
+        if(total > 0){
+            $(pageDiv).myPagination({
+                currPage: currPage,
+                pageCount: pageCount,
+                pageSize: pageSize,
+                cssStyle:'pagination',
+                ajax:{
+                    onClick:function(page){
+                        $(currPageDiv).val(page);
+                        $(sizeDiv).val(pageSize);
+                        $(formDiv).submit();
+                    }
+                }
+            });
+        }else{
+            var content = '<div class="alert alert-warning center"><span>没有符合条件的记录</span></div>';
+            $(pageDiv).parent().append(content);
+        }
     }
 })(jQuery)

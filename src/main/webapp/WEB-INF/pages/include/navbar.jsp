@@ -17,7 +17,7 @@
                 <li class="nav-add"><a href="/goods/add">增加商品</a></li>
                 <li class="nav-manage"><a href="/goods">管理商品</a></li>
             </ul>
-            <p class="navbar-text pull-right">Signed in as <a href="/user/detail"><security:authentication property="principal.username"/></a></p>
+            <p class="navbar-text pull-right">您好，<a href="/user/detail"><security:authentication property="principal.username"/></a></p>
         </div><!--/.nav-collapse -->
     </div>
 </div>

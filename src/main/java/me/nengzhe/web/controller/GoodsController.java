@@ -30,10 +30,23 @@ public class GoodsController {
     @Autowired
     private GoodsService goodsService;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping
     public String listGet(Model model) throws NotImplException {
-        List<Goods> list = this.goodsService.getGoodsList(new GoodsSearch(), new Pager());
+        Pager pager = new Pager();
+
+        List<Goods> list = this.goodsService.getGoodsList(new GoodsSearch(), pager);
         model.addAttribute("list", list);
+        model.addAttribute("pager", pager);
+        return "goods/list";
+    }
+
+    @RequestMapping(value = "/{pageSize}/{page}", method = RequestMethod.GET)
+    public String listWithPager(Model model, @PathVariable("pageSize") Integer pageSize, @PathVariable("page") Integer page) throws NotImplException {
+        Pager pager = new Pager(page, pageSize);
+
+        List<Goods> list = this.goodsService.getGoodsList(new GoodsSearch(), pager);
+        model.addAttribute("list", list);
+        model.addAttribute("pager", pager);
         return "goods/list";
     }
 

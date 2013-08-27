@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="/img/ico/favicon.png">
 
-    <title>进货|梦之店</title>
+    <title>增加商品|梦之店</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
@@ -21,7 +21,11 @@
 
 
 <div class="container">
-    <form:form method="post" commandName="goods" action="/goods/add">
+    <jsp:include page="../include/alert.jsp">
+        <jsp:param name="messages" value="${messages}" />
+    </jsp:include>
+
+    <form:form method="post" commandName="goods" action="">
         <form:errors path="*" cssClass="alert-danger" element="div" />
         <div class="form-group">
             <label for="inputBarCode" class="col-lg-2 control-label">条码</label>
@@ -67,7 +71,7 @@
         </div>
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-4">
-                <button type="submit" class="btn btn-primary btn-lg">进货</button>
+                <button type="submit" class="btn btn-primary btn-lg">增加商品</button>
             </div>
         </div>
     </form:form>

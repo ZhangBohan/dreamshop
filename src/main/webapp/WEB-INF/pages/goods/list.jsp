@@ -22,6 +22,10 @@
 
 
     <div class="container">
+        <jsp:include page="../include/alert.jsp">
+            <jsp:param name="messages" value="${messages}" />
+        </jsp:include>
+
         <div class="content-table">
             <table class="table table-hover table-bordered">
                 <tr>
@@ -31,6 +35,7 @@
                     <th>名称</th>
                     <th>价格</th>
                     <th>成本</th>
+                    <th>单位</th>
                     <th>规格</th>
                     <th>操作</th>
                 </tr>
@@ -42,6 +47,7 @@
                         <td>${goods.name}</td>
                         <td>${goods.price}</td>
                         <td>${goods.cost}</td>
+                        <td>${goods.unit}</td>
                         <td>${goods.specification}</td>
                         <td>
                             <a href="/goods/${goods.id}/edit" class="btn btn-info">编辑</a>
@@ -51,17 +57,14 @@
                 </c:forEach>
             </table>
         </div>
-        <div class="content-pagination">
-            <ul class="pagination">
-                <li class="disabled"><a href="#">«</a></li>
-                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">»</a></li>
-            </ul>
+
+        <!-- ===================== Pagination Start ===================== -->
+        <input type="hidden" id="pager_page" value="${pager.page}">
+        <input type="hidden" id="pager_total" value="${pager.total}">
+        <input type="hidden" id="pager_size" value="${pager.size}">
+        <div class="pagination" id="itemPage"></div>
         </div>
+        <!-- ===================== Pagination End ===================== -->
     </div> <!-- /container -->
 
     <!-- Bootstrap core JavaScript
@@ -70,11 +73,17 @@
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/jquery.myPagination.js"></script>
 
     <script>
         $(document).ready(function(){
             $(".nav-manage").addClass("active");
         });
+
+        var currPageDiv = "#pager_page";
+        var totalDiv = "#pager_total";
+        var sizeDiv = "#pager_size";
+        $.pageList(".pagination","#searchForm",currPageDiv,totalDiv,sizeDiv);
     </script>
   </body>
 </html>
