@@ -1,1 +1,0 @@
-<h1>Hei ${message}</h1>

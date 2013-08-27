@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +9,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="/img/ico/favicon.png">
 
-    <title>修改商品|梦之店</title>
+    <title>进货|梦之店</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
@@ -18,31 +17,11 @@
 
 <body>
 
-<!-- Static navbar -->
-<div class="navbar navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">梦之店</a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="#">收银</a></li>
-                <li><a href="/goods/add">增加商品</a></li>
-                <li class="active"><a href="/goods">管理商品</a></li>
-            </ul>
-            <p class="navbar-text pull-right">Signed in as <a href="/user/<security:authentication property="principal.username"/>"><security:authentication property="principal.username"/></a></p>
-        </div><!--/.nav-collapse -->
-    </div>
-</div>
+<jsp:include page="../include/navbar.jsp" />
 
 
 <div class="container">
-    <form:form method="post" commandName="goods" action="/goods/edit">
+    <form:form method="post" commandName="goods" action="/goods/add">
         <form:errors path="*" cssClass="alert-danger" element="div" />
         <div class="form-group">
             <label for="inputBarCode" class="col-lg-2 control-label">条码</label>
@@ -99,5 +78,10 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="/js/jquery.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $(".nav-manage").addClass("active");
+    });
+</script>
 </body>
 </html>

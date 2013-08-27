@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,31 +18,10 @@
 
   <body>
 
-  <!-- Static navbar -->
-  <div class="navbar navbar-static-top">
-      <div class="container">
-          <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">梦之店</a>
-          </div>
-          <div class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                  <li><a href="#">收银</a></li>
-                  <li><a href="/goods/add">增加商品</a></li>
-                  <li class="active"><a href="/goods">管理商品</a></li>
-              </ul>
-              <p class="navbar-text pull-right">Signed in as <a href="#">Bohan</a></p>
-          </div><!--/.nav-collapse -->
-      </div>
-  </div>
+    <jsp:include page="../include/navbar.jsp" />
 
 
     <div class="container">
-        <#include "/lib/alert.ftl">
         <div class="content-table">
             <table class="table table-hover table-bordered">
                 <tr>
@@ -53,10 +34,10 @@
                     <th>规格</th>
                     <th>操作</th>
                 </tr>
-                <#list list as goods>
+                <c:forEach items="${list}" var="goods" varStatus="status">
                     <tr>
                         <td><input type="checkbox" name="ids" class='selectOne' value="${ goods.id }"/></td>
-                        <td>${goods_index + 1}</td>
+                        <td>${status.index + 1}</td>
                         <td><a href="/goods/${goods.id}/edit">${goods.barCode}</a></td>
                         <td>${goods.name}</td>
                         <td>${goods.price}</td>
@@ -67,7 +48,7 @@
                             <a href="/goods/${goods.id}/delete" class="btn btn-danger">删除</a>
                         </td>
                     </tr>
-                </#list>
+                </c:forEach>
             </table>
         </div>
         <div class="content-pagination">
@@ -89,5 +70,11 @@
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $(".nav-manage").addClass("active");
+        });
+    </script>
   </body>
 </html>
