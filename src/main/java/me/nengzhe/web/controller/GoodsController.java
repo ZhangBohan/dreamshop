@@ -1,5 +1,6 @@
 package me.nengzhe.web.controller;
 
+import me.nengzhe.base.exception.LogicException;
 import me.nengzhe.base.exception.NotImplException;
 import me.nengzhe.goods.dto.GoodsSearch;
 import me.nengzhe.goods.model.Goods;
@@ -14,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -30,19 +32,11 @@ public class GoodsController {
     @Autowired
     private GoodsService goodsService;
 
-    @RequestMapping
-    public String listGet(Model model) throws NotImplException {
-        Pager pager = new Pager();
-
-        List<Goods> list = this.goodsService.getGoodsList(new GoodsSearch(), pager);
-        model.addAttribute("list", list);
-        model.addAttribute("pager", pager);
-        return "goods/list";
-    }
-
-    @RequestMapping(value = "/{pageSize}/{page}", method = RequestMethod.GET)
-    public String listWithPager(Model model, @PathVariable("pageSize") Integer pageSize, @PathVariable("page") Integer page) throws NotImplException {
-        Pager pager = new Pager(page, pageSize);
+    @RequestMapping(method = RequestMethod.GET)
+    public String listWithPager(Model model, @RequestParam(defaultValue = "2") Integer pageSize,
+                                @RequestParam(defaultValue = "1") Integer page,
+                                @RequestParam(defaultValue = "-1") Integer total) throws NotImplException {
+        Pager pager = new Pager(page, total, pageSize);
 
         List<Goods> list = this.goodsService.getGoodsList(new GoodsSearch(), pager);
         model.addAttribute("list", list);
@@ -66,7 +60,13 @@ public class GoodsController {
 
         Message message = new Message();
 
-        this.goodsService.add(goods, AuthUtils.getUser());
+        try {
+            this.goodsService.add(goods, AuthUtils.getUser());
+        } catch (LogicException e) {
+            message.error(e.getMessage());
+            message.addToRedirectAttributes(redirectAttributes);
+            return "goods/add";
+        }
 
         message.success("增加成功！");
 

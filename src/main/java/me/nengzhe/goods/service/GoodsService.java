@@ -1,12 +1,14 @@
 package me.nengzhe.goods.service;
 
 import me.nengzhe.auth.model.User;
+import me.nengzhe.base.exception.LogicException;
 import me.nengzhe.base.exception.NotImplException;
 import me.nengzhe.goods.dao.GoodsDao;
 import me.nengzhe.goods.dto.GoodsSearch;
 import me.nengzhe.goods.model.Goods;
 import me.nengzhe.utils.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -40,10 +42,14 @@ public class GoodsService {
         return goods;
     }
 
-    public void add(Goods goods, User user) {
+    public void add(Goods goods, User user) throws LogicException {
         goods.init();
         goods.setCompanyId(user.getCompanyId());
-        this.goodsDao.insert(goods);
+        try {
+            this.goodsDao.insert(goods);
+        } catch (DuplicateKeyException e) {
+            throw new LogicException("该条码已存在！");
+        }
     }
 
     public void update(Goods goods, User user) {

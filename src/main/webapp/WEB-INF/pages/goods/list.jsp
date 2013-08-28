@@ -25,6 +25,13 @@
         <jsp:include page="../include/alert.jsp">
             <jsp:param name="messages" value="${messages}" />
         </jsp:include>
+        <div class="search-form">
+            <form id="searchForm" class="form-format form-inline" role="form">
+                <input type="hidden" id="pager_page" value="${pager.page}">
+                <input type="hidden" id="pager_total" value="${pager.total}">
+                <input type="hidden" id="pager_size" value="${pager.size}">
+            </form>
+        </div>
 
         <div class="content-table">
             <table class="table table-hover table-bordered">
@@ -59,9 +66,6 @@
         </div>
 
         <!-- ===================== Pagination Start ===================== -->
-        <input type="hidden" id="pager_page" value="${pager.page}">
-        <input type="hidden" id="pager_total" value="${pager.total}">
-        <input type="hidden" id="pager_size" value="${pager.size}">
         <div class="pagination" id="itemPage"></div>
         </div>
         <!-- ===================== Pagination End ===================== -->
