@@ -1,6 +1,5 @@
 package me.nengzhe.goods.dao;
 
-import me.nengzhe.base.dao.BaseDao;
 import me.nengzhe.base.dao.PaginationDao;
 import me.nengzhe.base.exception.NotImplException;
 import me.nengzhe.goods.dto.GoodsSearch;
@@ -31,7 +30,7 @@ public class GoodsDao extends JdbcDaoSupport implements PaginationDao<Goods, Goo
     }
 
     public Goods get(String barCode) {
-        String sql = "SELECT * FROM goods WHERE bar_code=?";
+        String sql = "SELECT * FROM goods WHERE bar_code=? AND deleted=false";
         try {
             return super.getJdbcTemplate().queryForObject(sql, new Object[]{barCode}, new GoodsMapper());
         } catch (EmptyResultDataAccessException e) {
@@ -43,7 +42,7 @@ public class GoodsDao extends JdbcDaoSupport implements PaginationDao<Goods, Goo
     @Override
     public void insert(Goods entity) {
         String sql = "INSERT INTO goods(bar_code, name, price, cost, specification, unit, company_id, deleted, " +
-                "modified_at, create_at) VALUE (?,?,?,?,?,?,?,?,?,?);";
+                "modified_at, create_at) VALUES (?,?,?,?,?,?,?,?,?,?);";
         super.getJdbcTemplate().update(sql, entity.getBarCode(), entity.getName(), entity.getPrice(),
                 entity.getCost(), entity.getSpecification(), entity.getUnit(), entity.getCompanyId(), entity.getDeleted(),
                 entity.getModifiedAt(), entity.getCreateAt());
@@ -67,7 +66,7 @@ public class GoodsDao extends JdbcDaoSupport implements PaginationDao<Goods, Goo
 
     @Override
     public Goods get(Integer id) {
-        String sql = "SELECT * FROM goods WHERE id=?";
+        String sql = "SELECT * FROM goods WHERE id=? AND deleted=false";
         try {
             return super.getJdbcTemplate().queryForObject(sql, new Object[]{id}, new GoodsMapper());
         } catch (DataAccessException e) {
@@ -78,19 +77,19 @@ public class GoodsDao extends JdbcDaoSupport implements PaginationDao<Goods, Goo
 
     @Override
     public List<Goods> getList(GoodsSearch search) throws NotImplException {
-        String sql = "SELECT * FROM goods";
+        String sql = "SELECT * FROM goods WHERE deleted=false";
         return super.getJdbcTemplate().query(sql, new Object[]{}, new GoodsMapper());
     }
 
     @Override
     public int getCount(GoodsSearch search) throws NotImplException {
-        String sql = "SELECT COUNT(*) FROM goods";
+        String sql = "SELECT COUNT(*) FROM goods WHERE deleted=false";
         return super.getJdbcTemplate().queryForInt(sql, new Object[]{});
     }
 
     @Override
     public List<Goods> getList(GoodsSearch search, Pager pager) throws NotImplException {
-        String sql = "SELECT * FROM goods LIMIT ?,?";
+        String sql = "SELECT * FROM goods WHERE deleted=false LIMIT ?,?";
         return super.getJdbcTemplate().query(sql, new Object[]{pager.getOffset(), pager.getSize()}, new GoodsMapper());
     }
 

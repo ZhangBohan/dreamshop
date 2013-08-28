@@ -53,7 +53,8 @@ public class GoodsController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addPost(@Valid Goods goods, BindingResult result, RedirectAttributes redirectAttributes) {
+    public String addPost(@Valid Goods goods, BindingResult result,
+                          RedirectAttributes redirectAttributes, Model model) {
         if(result.hasErrors()) {
             return "goods/add";
         }
@@ -64,7 +65,7 @@ public class GoodsController {
             this.goodsService.add(goods, AuthUtils.getUser());
         } catch (LogicException e) {
             message.error(e.getMessage());
-            message.addToRedirectAttributes(redirectAttributes);
+            message.addToModel(model);
             return "goods/add";
         }
 
@@ -78,7 +79,7 @@ public class GoodsController {
     public String delete(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
         Message message = new Message();
 
-        this.goodsService.delete(id);
+        this.goodsService.delete(id, AuthUtils.getUser());
 
         message.success("删除成功！");
 

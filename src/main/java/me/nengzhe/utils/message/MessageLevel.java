@@ -9,7 +9,7 @@ public enum MessageLevel {
     success("success", "恭喜！"),
     information("info", "信息！"),
     warning("warning", "注意！"),
-    error("error", "错误！");
+    error("danger", "错误！");
 
     private String level;
     private String title;

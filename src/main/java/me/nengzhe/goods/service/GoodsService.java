@@ -57,7 +57,11 @@ public class GoodsService {
         this.goodsDao.update(goods);
     }
 
-    public void delete(Integer id) {
-        this.goodsDao.delete(id);
+    public void delete(Integer id, User user) {
+        Goods goods = this.getGoods(id);
+        goods.setDeleted(true);
+        goods.setModifiedAt(new Date());
+
+        this.update(goods, user);
     }
 }

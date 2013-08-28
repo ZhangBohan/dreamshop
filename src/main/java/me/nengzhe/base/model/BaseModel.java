@@ -12,6 +12,11 @@ public abstract class BaseModel {
     protected Date modifiedAt; // 修改时间
     protected Date createAt; // 创建时间
 
+    public void init() {
+        this.modifiedAt = new Date();
+        this.createAt = new Date();
+    }
+
     public Integer getId() {
         return id;
     }
