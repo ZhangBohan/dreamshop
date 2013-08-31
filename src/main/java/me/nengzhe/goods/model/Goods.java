@@ -1,6 +1,7 @@
 package me.nengzhe.goods.model;
 
 import me.nengzhe.base.model.BaseModel;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Size;
@@ -27,6 +28,7 @@ public class Goods extends BaseModel {
     private String unit;    // 单位
     private Integer companyId;  // 商户ID
 
+    @JsonIgnore
     private Boolean deleted; // 是否被删除
 
     public void init() {

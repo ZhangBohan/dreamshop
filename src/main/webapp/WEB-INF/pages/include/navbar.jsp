@@ -9,11 +9,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">梦之店</a>
+            <a class="navbar-brand" href="/">梦之店</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="nav-come"><a href="#">收银</a></li>
+                <li class="nav-sell"><a href="/sell">收银</a></li>
                 <li class="nav-add"><a href="/goods/add">增加商品</a></li>
                 <li class="nav-manage"><a href="/goods">管理商品</a></li>
             </ul>
