@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS dream_shop.user;
 CREATE TABLE dream_shop.user(
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   username VARCHAR(100) NOT NULL UNIQUE,
-  password VARCHAR(50) NOT NULL,
+  password VARCHAR(100) NOT NULL,
   company_id INT NOT NULL,
   account_expired BOOLEAN DEFAULT FALSE,
   account_locked BOOLEAN DEFAULT FALSE,

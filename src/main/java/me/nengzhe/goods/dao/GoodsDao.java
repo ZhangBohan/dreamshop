@@ -1,5 +1,6 @@
 package me.nengzhe.goods.dao;
 
+import me.nengzhe.auth.model.User;
 import me.nengzhe.base.dao.PaginationDao;
 import me.nengzhe.base.exception.NotImplException;
 import me.nengzhe.goods.dto.GoodsSearch;
@@ -82,15 +83,16 @@ public class GoodsDao extends JdbcDaoSupport implements PaginationDao<Goods, Goo
     }
 
     @Override
-    public int getCount(GoodsSearch search) throws NotImplException {
-        String sql = "SELECT COUNT(*) FROM goods WHERE deleted=false";
-        return super.getJdbcTemplate().queryForInt(sql, new Object[]{});
+    public int getCount(GoodsSearch search, User user) throws NotImplException {
+        String sql = "SELECT COUNT(*) FROM goods WHERE deleted=false AND company_id=?";
+        return super.getJdbcTemplate().queryForInt(sql, new Object[]{user.getCompanyId()});
     }
 
     @Override
-    public List<Goods> getList(GoodsSearch search, Pager pager) throws NotImplException {
-        String sql = "SELECT * FROM goods WHERE deleted=false LIMIT ?,?";
-        return super.getJdbcTemplate().query(sql, new Object[]{pager.getOffset(), pager.getSize()}, new GoodsMapper());
+    public List<Goods> getList(GoodsSearch search, Pager pager, User user) throws NotImplException {
+        String sql = "SELECT * FROM goods WHERE deleted=false AND company_id=? LIMIT ?,?";
+        return super.getJdbcTemplate().query(sql, new Object[]{user.getCompanyId(),
+                pager.getOffset(), pager.getSize()}, new GoodsMapper());
     }
 
     class GoodsMapper implements RowMapper<Goods> {

@@ -8,6 +8,8 @@
     <bean id="propertyConfigurer" class="me.nengzhe.utils.config.CommonPropertyPlaceholderConfigurer">
     </bean>
 
+    <bean id="md5PasswordEncoder" class="me.nengzhe.utils.Md5PasswordEncoder" />
+
     <context:component-scan base-package="me.nengzhe.goods.dao"/>
     <context:component-scan base-package="me.nengzhe.goods.service" />
 

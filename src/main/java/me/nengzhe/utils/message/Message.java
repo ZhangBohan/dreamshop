@@ -43,7 +43,7 @@ public class Message {
     }
 
     public void error(String message) {
-        this.add(MessageLevel.error, message);
+        this.add(MessageLevel.danger, message);
     }
 
     public void info(String message) {

@@ -1,5 +1,6 @@
 package me.nengzhe.base.dao;
 
+import me.nengzhe.auth.model.User;
 import me.nengzhe.base.exception.NotImplException;
 import me.nengzhe.utils.Pager;
 
@@ -11,7 +12,8 @@ import java.util.List;
  * Time: 下午2:45
  */
 public interface PaginationDao<T, K> extends BaseDao<T> {
+    List<T> getList(K search, Pager pager, User user) throws NotImplException;
+    int getCount(K search, User user) throws NotImplException;
+
     List<T> getList(K search) throws NotImplException;
-    int getCount(K search) throws NotImplException;
-    List<T> getList(K search, Pager pager) throws NotImplException;
 }

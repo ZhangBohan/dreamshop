@@ -3,15 +3,16 @@ package me.nengzhe.auth.dao;
 import me.nengzhe.auth.model.Company;
 import me.nengzhe.base.dao.BaseDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
  * User: bohan
@@ -28,9 +29,25 @@ public class CompanyDao extends JdbcDaoSupport implements BaseDao<Company> {
 
     @Override
     public void insert(Company entity) {
-        String sql = "INSERT INTO company (name, deleted, modified_at, create_at) VALUES (?,?,?,?)";
-        this.getJdbcTemplate().update(sql, entity.getName(), entity.getDeleted(), entity.getModifiedAt(),
-                entity.getCreateAt());
+        final String sql = "INSERT INTO company (name, description, deleted, modified_at, create_at) VALUES (?,?,?,?,?)";
+        final Company company = entity;
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        super.getJdbcTemplate().update(
+                new PreparedStatementCreator() {
+                    public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+                        PreparedStatement ps =
+                                connection.prepareStatement(sql, new String[]{"id"});
+                        int index = 0;
+                        ps.setString(++ index, company.getName());
+                        ps.setString(++ index, company.getDescription());
+                        ps.setBoolean(++ index, company.getDeleted());
+                        ps.setDate(++ index, new Date(company.getModifiedAt().getTime()));
+                        ps.setDate(++ index, new Date(company.getCreateAt().getTime()));
+                        return ps;
+                    }
+                },
+                keyHolder);
+        entity.setId(keyHolder.getKey().intValue());
     }
 
     @Override

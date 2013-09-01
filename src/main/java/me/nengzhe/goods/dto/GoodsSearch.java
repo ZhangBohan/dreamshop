@@ -6,4 +6,5 @@ package me.nengzhe.goods.dto;
  * Time: 下午10:34
  */
 public class GoodsSearch {
+
 }

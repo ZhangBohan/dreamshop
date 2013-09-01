@@ -10,15 +10,16 @@ import java.util.Date;
  * Time: 3:34 PM
  */
 public class Company extends BaseModel {
-    private String name;
-    private String description;
+    public static final String DEFAULT_NAME = "梦之店";
+    public static final String DEFAULT_DESCRIPTION = "梦想开始的地方";
 
-    private Boolean deleted; // 是否被删除
+    private String name = DEFAULT_NAME;
+    private String description = DEFAULT_DESCRIPTION;
+
+    private Boolean deleted = false; // 是否被删除
 
     public Company() {
-        this.deleted = false;
-        this.modifiedAt = new Date();
-        this.createAt = new Date();
+        super.init();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package me.nengzhe.auth.model;
 
+import me.nengzhe.auth.dto.Role;
 import me.nengzhe.base.model.BaseModel;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -11,6 +12,14 @@ import org.springframework.security.core.GrantedAuthority;
 public class Authority extends BaseModel implements GrantedAuthority {
     private String name;
     private String description;
+
+    public Authority() {
+    }
+
+    public Authority(Role role) {
+        this.name = role.getRole();
+        this.description = role.getDescription();
+    }
 
     public String getName() {
         return name;

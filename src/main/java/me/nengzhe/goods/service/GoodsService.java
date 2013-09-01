@@ -24,9 +24,10 @@ public class GoodsService {
     @Autowired
     private GoodsDao goodsDao;
 
-    public List<Goods> getGoodsList(GoodsSearch search, Pager pager) throws NotImplException {
-        List<Goods> list = this.goodsDao.getList(search, pager);
-        Integer count = this.goodsDao.getCount(search);
+    public List<Goods> getGoodsList(GoodsSearch search, Pager pager, User user)
+            throws NotImplException {
+        List<Goods> list = this.goodsDao.getList(search, pager, user);
+        Integer count = this.goodsDao.getCount(search, user);
         pager.setTotal(count);
 
         return list;

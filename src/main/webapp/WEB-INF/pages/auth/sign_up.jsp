@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: bohan
-  Date: 9/1/13
-  Time: 7:32 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -35,14 +28,12 @@
 
 <div class="container">
     <jsp:include page="../include/alert.jsp" />
-    <form class="form-signin" action="/j_spring_security_check" method="post">
-        <h2 class="form-signin-heading">请您登录</h2>
+    <form class="form-signin" action="/auth/signUp" method="post">
+        <h2 class="form-signin-heading">注册</h2>
         <input type="text" class="form-control" placeholder="用户名" autofocus name="username">
         <input type="password" class="form-control" placeholder="密码" name="password">
-        <label class="checkbox">
-            <input type="checkbox" value="remember-me" name="_spring_security_remember_me"> 记住我
-        </label>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+        <input type="password" class="form-control" placeholder="请再次输入一次您的密码" name="rePassword">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
     </form>
 
 </div> <!-- /container -->

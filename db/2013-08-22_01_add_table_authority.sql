@@ -17,9 +17,3 @@ CREATE TABLE dream_shop.user_authority(
   FOREIGN KEY(user_id) REFERENCES dream_shop.user(id),
   FOREIGN KEY(authority_id) REFERENCES dream_shop.authority(id)
 );
-
-
-
-INSERT INTO authority (id, name, description, modified_at, create_at)
-  VALUES (1, 'ROLE_USER', "init authority", NOW(), NOW());
-INSERT user_authority(user_id, authority_id) VALUES (1, 1);
