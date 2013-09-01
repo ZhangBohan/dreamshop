@@ -14,9 +14,3 @@ CREATE TABLE dream_shop.user(
   FOREIGN KEY (company_id) REFERENCES company(id)
 );
 CREATE INDEX user_username_index ON dream_shop.user(username(50));
-
-INSERT INTO dream_shop.user (username, password, company_id, enabled, modified_at, create_at)
-  VALUES ('bohan', 'e10adc3949ba59abbe56e057f20f883e', 1, true, NOW(), NOW());   # password is 123456 md5 value
-
-
-

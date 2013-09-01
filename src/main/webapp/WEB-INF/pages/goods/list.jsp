@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="/img/ico/favicon.png">
 
     <title>管理商品|梦之店</title>
-
+      <link href="/css//bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link href="/css/bootstrap.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
 

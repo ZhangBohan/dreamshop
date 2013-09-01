@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +14,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
-
+    <link href="/css/bootstrap-glyphicons.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="/css/signin.css" rel="stylesheet">
 
@@ -27,14 +28,36 @@
 <body>
 
 <div class="container">
+    <h2 class="form-signin-heading">注册</h2>
+
     <jsp:include page="../include/alert.jsp" />
-    <form class="form-signin" action="/auth/signUp" method="post">
-        <h2 class="form-signin-heading">注册</h2>
-        <input type="text" class="form-control" placeholder="用户名" autofocus name="username">
-        <input type="password" class="form-control" placeholder="密码" name="password">
-        <input type="password" class="form-control" placeholder="请再次输入一次您的密码" name="rePassword">
+    <form:form commandName="signUp" cssClass="form-signin" action="/auth/signUp" method="post">
+        <form:errors path="*" cssClass="alert-danger" element="div" />
+        <div class="form-group">
+            <label for="inputUsername" class="col-lg-2 control-label">用户名</label>
+            <div class="col-lg-10">
+                <form:input path="username" cssClass="form-control" id="inputUsername" placeholder="用户名" />
+                <span class="help-block"><form:errors path="username" cssClass="alert-danger" /></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword" class="col-lg-2 control-label">名称</label>
+            <div class="col-lg-10">
+                <form:password path="password" cssClass="form-control" id="inputPassword" placeholder="密码" />
+                <span class="help-block"><form:errors path="password" cssClass="alert-danger" /></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputRePassword" class="col-lg-2 control-label">名称</label>
+            <div class="col-lg-10">
+                <form:password path="rePassword" cssClass="form-control" id="inputRePassword"
+                               placeholder="请再次输入一次您的密码" />
+                <span class="help-block"><form:errors path="rePassword" cssClass="alert-danger" /></span>
+            </div>
+        </div>
+
         <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
-    </form>
+    </form:form>
 
 </div> <!-- /container -->
 

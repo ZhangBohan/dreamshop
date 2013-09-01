@@ -1,5 +1,6 @@
 package me.nengzhe.auth.dto;
 
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Size;
 
 /**
@@ -9,12 +10,17 @@ import javax.validation.constraints.Size;
  */
 public class SignUp {
     @Size(min = 4, max = 20)
+    // Not used
     private String username;
     @Size(min = 6, max = 20)
     private String password;
-
     @Size(min = 6, max = 20)
     private String rePassword;
+
+    @AssertTrue(message = "两次输入的密码不一致！")
+    private boolean isValid() {
+        return this.password.equals(this.rePassword);
+    }
 
     public String getUsername() {
         return username;

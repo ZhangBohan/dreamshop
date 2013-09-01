@@ -6,9 +6,11 @@ import me.nengzhe.utils.Md5PasswordEncoder;
 import me.nengzhe.utils.message.Message;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,15 +45,25 @@ public class AuthController {
     }
 
     @RequestMapping("/signUp")
-    public String signUpGet() {
+    public String signUpGet(Model model) {
+        model.addAttribute("signUp", new SignUp());
         return "auth/sign_up";
     }
 
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
     public String signUpPost(@Valid SignUp signUp, BindingResult result,
                              RedirectAttributes redirectAttributes) {
+
         if(result.hasErrors()) {
             return "auth/sign_up";
+        } else {
+            try {
+                this.userService.loadUserByUsername(signUp.getUsername());
+                result.addError(new ObjectError("signUp", "该用户名被占用，请重新输入用户名！"));
+                return "auth/sign_up";
+            } catch (UsernameNotFoundException e) {
+                // 没找到很正常
+            }
         }
         Message message = new Message();
 
