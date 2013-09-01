@@ -17,7 +17,17 @@
                 <li class="nav-add"><a href="/goods/add">增加商品</a></li>
                 <li class="nav-manage"><a href="/goods">管理商品</a></li>
             </ul>
-            <p class="navbar-text pull-right">您好，<a href="/user/detail"><security:authentication property="principal.username"/></a></p>
+            <ul class="nav pull-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <security:authentication property="principal.username"/>
+                        <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/manage/auth/reset">修改密码</a></li>
+                        <li><a href="/auth/logout">退出</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div><!--/.nav-collapse -->
     </div>
 </div>

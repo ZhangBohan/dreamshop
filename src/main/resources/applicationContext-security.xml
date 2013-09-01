@@ -10,6 +10,9 @@
     <http auto-config="true">
         <intercept-url pattern="/goods/**" access="ROLE_USER" />
         <remember-me key="dream_remember" user-service-ref="userService" />
+        <logout logout-url="/auth/logout"></logout>
+        <form-login login-page="/auth/login" username-parameter="username"
+                password-parameter="password" />
     </http>
 
     <authentication-manager>

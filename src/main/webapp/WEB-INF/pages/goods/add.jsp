@@ -29,48 +29,48 @@
         <form:errors path="*" cssClass="alert-danger" element="div" />
         <div class="form-group">
             <label for="inputBarCode" class="col-lg-2 control-label">条码</label>
-            <div class="col-lg-4">
+            <div class="col-lg-10">
                 <form:input path="barCode" cssClass="form-control" id="inputBarCode" placeholder="商品条码" />
                 <span class="help-block"><form:errors path="barCode" cssClass="alert-danger" /></span>
             </div>
         </div>
         <div class="form-group">
             <label for="inputUsername" class="col-lg-2 control-label">名称</label>
-            <div class="col-lg-4">
+            <div class="col-lg-10">
                 <form:input path="name" cssClass="form-control" id="inputUsername" placeholder="商品名称" />
                 <span class="help-block"><form:errors path="name" cssClass="alert-danger" /></span>
             </div>
         </div>
         <div class="form-group">
             <label for="inputPrice" class="col-lg-2 control-label">价格</label>
-            <div class="col-lg-4">
+            <div class="col-lg-10">
                 <form:input path="price" cssClass="form-control" id="inputPrice" placeholder="商品价格" />
                 <span class="help-block"><form:errors path="price" cssClass="alert-danger" /></span>
             </div>
         </div>
         <div class="form-group">
             <label for="inputCost" class="col-lg-2 control-label">成本</label>
-            <div class="col-lg-4">
+            <div class="col-lg-10">
                 <form:input path="cost" cssClass="form-control" id="inputCost" placeholder="商品成本" />
                 <span class="help-block"><form:errors path="cost" cssClass="alert-danger" /></span>
             </div>
         </div>
         <div class="form-group">
             <label for="inputUnit" class="col-lg-2 control-label">单位</label>
-            <div class="col-lg-4">
+            <div class="col-lg-10">
                 <form:input path="unit" cssClass="form-control" id="inputUnit" placeholder="商品单位" />
                 <span class="help-block"><form:errors path="unit" cssClass="alert-danger" /></span>
             </div>
         </div>
         <div class="form-group">
             <label for="inputSpecification" class="col-lg-2 control-label">规格</label>
-            <div class="col-lg-4">
+            <div class="col-lg-10">
                 <form:input path="specification" cssClass="form-control" id="inputSpecification" placeholder="商品规格" />
                 <span class="help-block"><form:errors path="specification" cssClass="alert-danger" /></span>
             </div>
         </div>
         <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-4">
+            <div class="col-lg-offset-2 col-lg-10">
                 <button type="submit" class="btn btn-primary btn-lg">增加商品</button>
             </div>
         </div>

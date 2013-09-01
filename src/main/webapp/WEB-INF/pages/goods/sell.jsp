@@ -29,7 +29,7 @@
         <form id="searchForm" class="form-format form-inline" role="form">
             <div class="input-group">
                 <span class="input-group-addon">录入框</span>
-                <input id="barCodeSearch" type="text" class="form-control" placeholder="请刷条码或输入搜索条件">
+                <input id="barCodeSearch" type="text" class="form-control" placeholder="请刷条码或输入搜索条件" autofocus="">
             </div>
         </form>
     </div>
@@ -50,17 +50,7 @@
             </thead>
             <tbody id="goods-list">
                 <tr class="empty-sell">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr class="empty-sell">
-                    <td></td>
+                    <td>1</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -70,7 +60,7 @@
                     <td></td>
                 </tr>
                 <tr class="empty-sell">
-                    <td></td>
+                    <td>2</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -80,7 +70,17 @@
                     <td></td>
                 </tr>
                 <tr class="empty-sell">
+                    <td>3</td>
                     <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="empty-sell">
+                    <td>4</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -116,7 +116,6 @@
 <script>
     $(document).ready(function(){
         $(".nav-sell").addClass("active");
-        $("#barCodeSearch").focus();
     });
 </script>
 </body>

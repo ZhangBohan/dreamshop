@@ -26,7 +26,7 @@
             <jsp:param name="messages" value="${messages}" />
         </jsp:include>
         <div class="search-form">
-            <form id="searchForm" class="form-format form-inline" role="form">
+            <form id="searchForm" action="" class="form-format form-inline" method="post" role="form">
                 <input type="hidden" id="pager_page" value="${pager.page}">
                 <input type="hidden" id="pager_total" value="${pager.total}">
                 <input type="hidden" id="pager_size" value="${pager.size}">

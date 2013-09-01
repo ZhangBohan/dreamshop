@@ -219,6 +219,10 @@
         var total = $(totalDiv).val();
         var pageSize = $(sizeDiv).val();
         var pageCount = total % pageSize != 0 ? (total / pageSize + 1) : total / pageSize;
+        console.log("currentPage:", currPage);
+        console.log("total:", total);
+        console.log("pageSize:", pageSize);
+        console.log("pageCount:", pageCount);
         if(total > 0){
             $(pageDiv).myPagination({
                 currPage: currPage,
@@ -229,6 +233,7 @@
                     onClick:function(page){
                         $(currPageDiv).val(page);
                         $(sizeDiv).val(pageSize);
+                        console.log("submit:", formDiv);
                         $(formDiv).submit();
                     }
                 }
