@@ -10,9 +10,9 @@
     <link rel="shortcut icon" href="/img/ico/favicon.png">
 
     <title>管理商品|梦之店</title>
-      <link href="<%=request.getContextPath()%>/css/bootstrap-glyphicons.css" rel="stylesheet">
-    <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
-    <link href="<%=request.getContextPath()%>/css/main.css" rel="stylesheet">
+      <link href="${pageContext.request.contextPath}/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
 
   </head>
 
@@ -74,10 +74,10 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="<%=request.getContextPath()%>/js/jquery.js"></script>
-    <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-    <script src="<%=request.getContextPath()%>/js/main.js"></script>
-    <script src="<%=request.getContextPath()%>/js/jquery.myPagination.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/main.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.myPagination.js"></script>
 
     <script>
         $(document).ready(function(){
