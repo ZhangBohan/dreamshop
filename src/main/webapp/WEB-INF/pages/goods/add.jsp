@@ -10,9 +10,9 @@
     <link rel="shortcut icon" href="/img/ico/favicon.png">
 
     <title>增加商品|梦之店</title>
-    <link href="/css/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/bootstrap-glyphicons.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
 </head>
 
 <body>
@@ -80,8 +80,8 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="/js/jquery.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function(){
         $(".nav-add").addClass("active");

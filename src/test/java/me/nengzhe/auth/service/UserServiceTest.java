@@ -24,6 +24,10 @@ public class UserServiceTest extends AbstractSpringTests {
         String username = "testUser";
         String password = "123456";
 
-        this.userService.add(username, new Md5PasswordEncoder().encode(password));
+        try {
+            this.userService.add(username, new Md5PasswordEncoder().encode(password));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

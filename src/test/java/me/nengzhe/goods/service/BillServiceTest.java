@@ -26,7 +26,7 @@ public class BillServiceTest extends AbstractSpringTests {
     @Before
     public void setUp() throws Exception {
         user = new User();
-        user.setId(1);
+        user.setId(3);
 
         billDetails = new ArrayList<BillDetail>();
         billDetails.add(new BillDetail("name1", 1, new BigDecimal(10), new BigDecimal(8)));

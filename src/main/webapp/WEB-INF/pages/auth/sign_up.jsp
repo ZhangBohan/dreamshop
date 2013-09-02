@@ -13,10 +13,10 @@
     <title>Signin Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
-    <link href="/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/bootstrap-glyphicons.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="/css/signin.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/signin.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -31,7 +31,7 @@
     <h2 class="form-signin-heading">注册</h2>
 
     <jsp:include page="../include/alert.jsp" />
-    <form:form commandName="signUp" cssClass="form-signin" action="/auth/signUp" method="post">
+    <form:form commandName="signUp" cssClass="form-signin" action="<%=request.getContextPath()%>/auth/signUp" method="post">
         <form:errors path="*" cssClass="alert-danger" element="div" />
         <div class="form-group">
             <label for="inputUsername" class="col-lg-2 control-label">用户名</label>

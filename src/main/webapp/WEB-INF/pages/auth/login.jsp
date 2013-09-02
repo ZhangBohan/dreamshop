@@ -19,10 +19,10 @@
     <title>Signin Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/css/signin.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/signin.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -35,7 +35,7 @@
 
 <div class="container">
     <jsp:include page="../include/alert.jsp" />
-    <form class="form-signin" action="/j_spring_security_check" method="post">
+    <form class="form-signin" action="<%=request.getContextPath()%>/j_spring_security_check" method="post">
         <h2 class="form-signin-heading">请您登录</h2>
         <input type="text" class="form-control" placeholder="用户名" autofocus name="username">
         <input type="password" class="form-control" placeholder="密码" name="password">

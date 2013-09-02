@@ -10,9 +10,9 @@
     <link rel="shortcut icon" href="/img/ico/favicon.png">
 
     <title>管理商品|梦之店</title>
-    <link href="/css/bootstrap-glyphicons.css" rel="stylesheet">
-    <link href="/css/bootstrap.css" rel="stylesheet">
-    <link href="/css/main.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/css/main.css" rel="stylesheet">
 
 </head>
 
@@ -81,9 +81,9 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="/js/jquery.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/main.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/main.js"></script>
 
 <script>
     $(document).ready(function(){

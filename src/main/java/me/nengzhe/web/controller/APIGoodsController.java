@@ -4,6 +4,7 @@ import me.nengzhe.base.exception.NotImplException;
 import me.nengzhe.goods.dto.GoodsSearch;
 import me.nengzhe.goods.model.Goods;
 import me.nengzhe.goods.service.GoodsService;
+import me.nengzhe.utils.AuthUtils;
 import me.nengzhe.utils.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +31,7 @@ public class APIGoodsController {
         List<Goods> list = null;
         Pager pager = new Pager();
 
-        list = this.goodsService.getGoodsList(new GoodsSearch(), pager);
+        list = this.goodsService.getGoodsList(new GoodsSearch(), pager, AuthUtils.getUser());
 
         return list;
     }

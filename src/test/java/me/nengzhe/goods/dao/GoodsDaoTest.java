@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 /**
  * User: bohan
@@ -23,7 +24,7 @@ public class GoodsDaoTest extends AbstractSpringTests {
     public void setUp() throws Exception {
         goods = new Goods();
         goods.setName("商品名称");
-        goods.setBarCode("test");
+        goods.setBarCode(UUID.randomUUID().toString());
         goods.setPrice(new BigDecimal(1));
         goods.setSpecification("商品规格");
     }

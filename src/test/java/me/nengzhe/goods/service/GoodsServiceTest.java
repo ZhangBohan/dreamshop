@@ -1,5 +1,6 @@
 package me.nengzhe.goods.service;
 
+import me.nengzhe.auth.model.User;
 import me.nengzhe.goods.dto.GoodsSearch;
 import me.nengzhe.goods.model.Goods;
 import me.nengzhe.utils.Pager;
@@ -19,7 +20,9 @@ public class GoodsServiceTest extends AbstractSpringTests {
     private GoodsService goodsService;
     @Test
     public void testGetGoodsList() throws Exception {
-        List<Goods> list =  this.goodsService.getGoodsList(new GoodsSearch(), new Pager());
+        User user = new User();
+        user.setId(1);
+        List<Goods> list =  this.goodsService.getGoodsList(new GoodsSearch(), new Pager(), user);
         System.out.println(list);
     }
 
