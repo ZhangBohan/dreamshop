@@ -32,7 +32,7 @@ public class GoodsController {
     @Autowired
     private GoodsService goodsService;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping
     public String listWithPager(Model model, @RequestParam(defaultValue = "2") Integer pageSize,
                                 @RequestParam(defaultValue = "1") Integer page,
                                 @RequestParam(defaultValue = "-1") Integer total) throws NotImplException {

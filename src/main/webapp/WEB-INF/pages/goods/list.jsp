@@ -27,9 +27,9 @@
         </jsp:include>
         <div class="search-form">
             <form id="searchForm" action="" class="form-format form-inline" method="post" role="form">
-                <input type="hidden" id="pager_page" value="${pager.page}">
-                <input type="hidden" id="pager_total" value="${pager.total}">
-                <input type="hidden" id="pager_size" value="${pager.size}">
+                <input type="hidden" name="page" id="pager_page" value="${pager.page}">
+                <input type="hidden" name="total" id="pager_total" value="${pager.total}">
+                <input type="hidden" name="pageSize" id="pager_size" value="${pager.size}">
             </form>
         </div>
 
@@ -78,6 +78,7 @@
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/main.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.myPagination.js"></script>
+    <script src="${pageContext.request.contextPath}/js/pager.js"></script>
 
     <script>
         $(document).ready(function(){
@@ -87,7 +88,7 @@
         var currPageDiv = "#pager_page";
         var totalDiv = "#pager_total";
         var sizeDiv = "#pager_size";
-        $.pageList(".pagination","#searchForm",currPageDiv,totalDiv,sizeDiv);
+        $.pager.pageList(".pagination","#searchForm",currPageDiv,totalDiv,sizeDiv);
     </script>
   </body>
 </html>
