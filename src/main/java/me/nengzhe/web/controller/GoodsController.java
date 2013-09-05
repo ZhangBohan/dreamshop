@@ -33,7 +33,19 @@ public class GoodsController {
     private GoodsService goodsService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String listWithPager(Model model, @RequestParam(defaultValue = "2") Integer pageSize,
+    public String listWithPagerGet(Model model, @RequestParam(defaultValue = "2") Integer pageSize,
+                                @RequestParam(defaultValue = "1") Integer page,
+                                @RequestParam(defaultValue = "-1") Integer total) throws NotImplException {
+        Pager pager = new Pager(page, total, pageSize);
+
+        List<Goods> list = this.goodsService.getGoodsList(new GoodsSearch(), pager, AuthUtils.getUser());
+        model.addAttribute("list", list);
+        model.addAttribute("pager", pager);
+        return "goods/list";
+    }
+    
+    @RequestMapping(method = RequestMethod.POST)
+    public String listWithPagerPost(Model model, @RequestParam(defaultValue = "2") Integer pageSize,
                                 @RequestParam(defaultValue = "1") Integer page,
                                 @RequestParam(defaultValue = "-1") Integer total) throws NotImplException {
         Pager pager = new Pager(page, total, pageSize);
