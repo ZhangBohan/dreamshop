@@ -7,6 +7,7 @@ This is a project for shop ERP online
 * [Spring Framework](http://projects.spring.io/spring-framework/)
 * [Spring Security](http://projects.spring.io/spring-security/)
 * [Bootstrap](http://getbootstrap.com/)
+* [Intellij IDEA](http://www.jetbrains.com/idea/)
 
 # TO DO
 
