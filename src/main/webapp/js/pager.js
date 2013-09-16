@@ -10,7 +10,7 @@
 				}else{
 					pageCount = total / pageSize;
 				}
-				console.log(currPage + ":" + total  +  ":"   +  pageSize + ":" + pageCount);
+				console.log(currPage + ":" + total  +  ":"   +  pageSize + ":" + pageCount　);
 				if(total > 0){
 					$(pageDiv).myPagination({
 				      currPage: currPage,

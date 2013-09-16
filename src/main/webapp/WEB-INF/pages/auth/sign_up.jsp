@@ -23,6 +23,9 @@
     <script src="/assets/js/html5shiv.js"></script>
     <script src="/assets/js/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+    .form-signin-heading{width:100px; margin: 0 auto;}
+    </style>
 </head>
 
 <body>
@@ -31,25 +34,25 @@
     <h2 class="form-signin-heading">注册</h2>
 
     <jsp:include page="../include/alert.jsp" />
-    <form:form commandName="signUp" cssClass="form-signin" action="${pageContext.request.contextPath}/auth/signUp" method="post">
+    <form:form commandName="signUp" cssClass="form-signin" class="form-horizontal" action="${pageContext.request.contextPath}/auth/signUp" method="post">
         <form:errors path="*" cssClass="alert-danger" element="div" />
-        <div class="form-group">
-            <label for="inputUsername" class="col-lg-2 control-label">用户名</label>
-            <div class="col-lg-10">
+        <div class="control-group">
+            <label for="inputUsername" class="control-label">用户名</label>
+            <div class="controls">
                 <form:input path="username" cssClass="form-control" id="inputUsername" placeholder="用户名" />
                 <span class="help-block"><form:errors path="username" cssClass="alert-danger" /></span>
             </div>
         </div>
-        <div class="form-group">
-            <label for="inputPassword" class="col-lg-2 control-label">名称</label>
-            <div class="col-lg-10">
+        <div class="control-group">
+            <label for="inputPassword" class="control-label">名称</label>
+            <div class="controls">
                 <form:password path="password" cssClass="form-control" id="inputPassword" placeholder="密码" />
                 <span class="help-block"><form:errors path="password" cssClass="alert-danger" /></span>
             </div>
         </div>
-        <div class="form-group">
-            <label for="inputRePassword" class="col-lg-2 control-label">名称</label>
-            <div class="col-lg-10">
+        <div class="control-group">
+            <label for="inputRePassword" class="control-label">名称</label>
+            <div class="controls">
                 <form:password path="rePassword" cssClass="form-control" id="inputRePassword"
                                placeholder="请再次输入一次您的密码" />
                 <span class="help-block"><form:errors path="rePassword" cssClass="alert-danger" /></span>

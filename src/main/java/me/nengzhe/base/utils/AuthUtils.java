@@ -1,4 +1,4 @@
-package me.nengzhe.utils;
+package me.nengzhe.base.utils;
 
 import me.nengzhe.auth.dto.UserWithDetails;
 import me.nengzhe.auth.model.User;
@@ -14,6 +14,9 @@ public class AuthUtils {
 	public static UserWithDetails getUserDetails() {
 		Object principal = SecurityContextHolder.getContext()
 				.getAuthentication().getPrincipal();
+        if(principal == null) {
+
+        }
         UserWithDetails userWithDetails = null;
 		if (principal instanceof UserDetails) {
             userWithDetails = ((UserWithDetails) principal);
