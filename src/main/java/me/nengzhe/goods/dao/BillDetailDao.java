@@ -28,15 +28,15 @@ public class BillDetailDao extends JdbcDaoSupport implements BaseDao<BillDetail>
 
     @Override
     public void insert(BillDetail entity) throws NotImplException {
-        String sql = "INSERT INTO bill_detail(order_id, name, count, price, cost) VALUES (?,?,?,?,?)";
-        super.getJdbcTemplate().update(sql, entity.getOrderId(), entity.getName(), entity.getCount(),
+        String sql = "INSERT INTO bill_detail(bill_id, name, count, price, cost) VALUES (?,?,?,?,?)";
+        super.getJdbcTemplate().update(sql, entity.getBillId(), entity.getName(), entity.getCount(),
                 entity.getPrice(), entity.getCost());
     }
 
     @Override
     public void update(BillDetail entity) throws NotImplException {
-        String sql = "UPDATE bill_detail SET order_id=?, name=?, count=?, price=?, cost=? WHERE id=?";
-        super.getJdbcTemplate().update(sql, entity.getOrderId(), entity.getName(), entity.getCount(),
+        String sql = "UPDATE bill_detail SET bill_id=?, name=?, count=?, price=?, cost=? WHERE id=?";
+        super.getJdbcTemplate().update(sql, entity.getBillId(), entity.getName(), entity.getCount(),
                 entity.getPrice(), entity.getCost(), entity.getId());
     }
 
@@ -58,7 +58,7 @@ public class BillDetailDao extends JdbcDaoSupport implements BaseDao<BillDetail>
     }
 
     public BillDetail getByOrderId(Integer orderId) throws NotImplException {
-        String sql = "SELECT * FROM bill_detail WHERE order_id=?";
+        String sql = "SELECT * FROM bill_detail WHERE bill_id=?";
         try {
             return super.getJdbcTemplate().queryForObject(sql, new Object[]{orderId}, new OrderDetailMapper());
         } catch (EmptyResultDataAccessException e) {
@@ -72,7 +72,7 @@ public class BillDetailDao extends JdbcDaoSupport implements BaseDao<BillDetail>
         public BillDetail mapRow(ResultSet rs, int rowNum) throws SQLException {
             BillDetail billDetail = new BillDetail();
             billDetail.setId(rs.getInt("id"));
-            billDetail.setOrderId(rs.getInt("order_id"));
+            billDetail.setBillId(rs.getInt("bill_id"));
             billDetail.setName(rs.getString("name"));
             billDetail.setCount(rs.getInt("count"));
             billDetail.setPrice(rs.getBigDecimal("price"));

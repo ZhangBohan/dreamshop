@@ -2,7 +2,7 @@ package me.nengzhe.base.dao;
 
 import me.nengzhe.auth.model.User;
 import me.nengzhe.base.exception.NotImplException;
-import me.nengzhe.utils.Pager;
+import me.nengzhe.base.utils.Pager;
 
 import java.util.List;
 

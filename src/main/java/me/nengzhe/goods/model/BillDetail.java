@@ -9,7 +9,7 @@ import java.math.BigDecimal;
  */
 public class BillDetail {
     private Integer id;
-    private Integer orderId;
+    private Integer billId;
     private String name;
     private Integer count;
     private BigDecimal price;
@@ -33,12 +33,12 @@ public class BillDetail {
         this.id = id;
     }
 
-    public Integer getOrderId() {
-        return orderId;
+    public Integer getBillId() {
+        return billId;
     }
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
+    public void setBillId(Integer billId) {
+        this.billId = billId;
     }
 
     public String getName() {

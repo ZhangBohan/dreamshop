@@ -30,7 +30,7 @@ public class BillDao extends JdbcDaoSupport implements BaseDao<Bill>{
 
     @Override
     public void insert(Bill entity) throws NotImplException {
-        final String sql = "INSERT INTO bill(user_id, modified_at, create_at) VALUES(?,?,?)";
+        final String sql = "INSERT INTO bill(user_id, total, modified_at, create_at) VALUES(?,?,?,?)";
 
         final Bill bill = entity;
         KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -41,6 +41,7 @@ public class BillDao extends JdbcDaoSupport implements BaseDao<Bill>{
                                 connection.prepareStatement(sql, new String[]{"id"});
                         int index = 0;
                         ps.setInt(++ index, bill.getUserId());
+                        ps.setBigDecimal(++ index, bill.getTotal());
                         ps.setDate(++index, new Date(bill.getModifiedAt().getTime()));
                         ps.setDate(++ index, new Date(bill.getCreateAt().getTime()));
                         return ps;
@@ -52,8 +53,8 @@ public class BillDao extends JdbcDaoSupport implements BaseDao<Bill>{
 
     @Override
     public void update(Bill entity) throws NotImplException {
-        String sql = "UPDATE bill SET user_id=?, modified_at=?, create_at=? WHERE id=?";
-        super.getJdbcTemplate().update(sql, entity.getUserId(), entity.getModifiedAt(),
+        String sql = "UPDATE bill SET user_id=?, total, modified_at=?, create_at=? WHERE id=?";
+        super.getJdbcTemplate().update(sql, entity.getUserId(), entity.getTotal(), entity.getModifiedAt(),
                 entity.getCreateAt(), entity.getId());
     }
 
@@ -80,6 +81,7 @@ public class BillDao extends JdbcDaoSupport implements BaseDao<Bill>{
             Bill bill = new Bill();
             bill.setId(rs.getInt("id"));
             bill.setUserId(rs.getInt("user_id"));
+            bill.setTotal(rs.getBigDecimal("total"));
             bill.setModifiedAt(rs.getDate("modified_at"));
             bill.setCreateAt(rs.getDate("create_at"));
             return bill;

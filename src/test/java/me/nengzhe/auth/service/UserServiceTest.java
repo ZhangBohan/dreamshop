@@ -1,6 +1,6 @@
 package me.nengzhe.auth.service;
 
-import me.nengzhe.utils.Md5PasswordEncoder;
+import me.nengzhe.base.utils.Md5PasswordEncoder;
 import nengzhe.AbstractSpringTests;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

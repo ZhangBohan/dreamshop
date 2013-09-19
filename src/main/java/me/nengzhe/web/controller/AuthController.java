@@ -2,8 +2,8 @@ package me.nengzhe.web.controller;
 
 import me.nengzhe.auth.dto.SignUp;
 import me.nengzhe.auth.service.UserService;
-import me.nengzhe.utils.Md5PasswordEncoder;
-import me.nengzhe.utils.message.Message;
+import me.nengzhe.base.utils.Md5PasswordEncoder;
+import me.nengzhe.base.utils.message.Message;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

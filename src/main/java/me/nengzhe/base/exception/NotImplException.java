@@ -5,7 +5,7 @@ package me.nengzhe.base.exception;
  * Date: 8/22/13
  * Time: 2:09 AM
  */
-public class NotImplException extends LogicException {
+public class NotImplException extends RuntimeException {
 
     public NotImplException() {
     }

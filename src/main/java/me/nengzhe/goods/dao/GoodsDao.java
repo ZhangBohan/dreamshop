@@ -5,7 +5,7 @@ import me.nengzhe.base.dao.PaginationDao;
 import me.nengzhe.base.exception.NotImplException;
 import me.nengzhe.goods.dto.GoodsSearch;
 import me.nengzhe.goods.model.Goods;
-import me.nengzhe.utils.Pager;
+import me.nengzhe.base.utils.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
