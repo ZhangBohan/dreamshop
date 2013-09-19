@@ -85,6 +85,17 @@
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
 
+<script src="${pageContext.request.contextPath}/js/ember/libs/handlebars-1.0.0.js"></script>
+<script src="${pageContext.request.contextPath}/js/ember/libs/ember.js"></script>
+<script src="${pageContext.request.contextPath}/js/ember/libs/ember-data.js"></script>
+<script src="${pageContext.request.contextPath}/js/ember/libs/local_storage_adapter.js"></script>
+<script src="${pageContext.request.contextPath}/js/ember/application.js"></script>
+<script src="${pageContext.request.contextPath}/js/ember/router.js"></script>
+<script src="${pageContext.request.contextPath}/js/ember/models/todo.js"></script>
+<script src="${pageContext.request.contextPath}/js/ember/controllers/todos_controller.js"></script>
+<script src="${pageContext.request.contextPath}/js/ember/controllers/todo_controller.js"></script>
+<script src="${pageContext.request.contextPath}/js/ember/views/edit_todo_view.js"></script>
+
 <script>
     $(document).ready(function(){
         $(".nav-sell").addClass("active");
