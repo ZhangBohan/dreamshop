@@ -1,40 +1,53 @@
-Todos.Router.map(function () {
-	this.resource('todos', { path: '/' }, function() {
-        this.route('active');
-        this.route('completed');
+Details.Router.map(function () {
+    this.resource('details', { path: '/' }, function() {
     })
 });
 
-Todos.TodosRoute = Ember.Route.extend({
-	model: function () {
-		return this.store.find('todo');
-	}
-});
-
-Todos.TodosIndexRoute = Ember.Route.extend({
-    model: function () {
-        return this.modelFor('todos');
-    }
-});
-
-Todos.TodosActiveRoute = Ember.Route.extend({
+Details.DetailsRoute = Ember.Route.extend({
     model: function() {
-        return this.store.filter('todo', function(todo) {
-            return !todo.get('isCompleted');
-        });
-    },
-    renderTemplate: function(controller){
-        this.render('todos/index', {controller: controller});
+        return this.store.find('bill-detail');
     }
 });
 
-Todos.TodosCompletedRoute = Ember.Route.extend({
-    model: function() {
-        return this.store.filter('todo', function(todo) {
-            return todo.get('isCompleted');
-        });
-    },
-    renderTemplate: function(controller){
-        this.render('todos/index', {controller: controller});
-    }
-});
+// --------------------------------------------
+
+//Todos.Router.map(function () {
+//	this.resource('todos', { path: '/' }, function() {
+//        this.route('active');
+//        this.route('completed');
+//    })
+//});
+//
+//Todos.TodosRoute = Ember.Route.extend({
+//	model: function () {
+//		return this.store.find('todo');
+//	}
+//});
+//
+//Todos.TodosIndexRoute = Ember.Route.extend({
+//    model: function () {
+//        return this.modelFor('todos');
+//    }
+//});
+//
+//Todos.TodosActiveRoute = Ember.Route.extend({
+//    model: function() {
+//        return this.store.filter('todo', function(todo) {
+//            return !todo.get('isCompleted');
+//        });
+//    },
+//    renderTemplate: function(controller){
+//        this.render('todos/index', {controller: controller});
+//    }
+//});
+//
+//Todos.TodosCompletedRoute = Ember.Route.extend({
+//    model: function() {
+//        return this.store.filter('todo', function(todo) {
+//            return todo.get('isCompleted');
+//        });
+//    },
+//    renderTemplate: function(controller){
+//        this.render('todos/index', {controller: controller});
+//    }
+//});
