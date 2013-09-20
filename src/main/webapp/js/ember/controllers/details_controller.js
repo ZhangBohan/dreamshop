@@ -7,13 +7,13 @@ Details.DetailsController = Ember.ArrayController.extend({
 
     totalSum: function() {
         var totalSum = 0;
-        var sums = this.filterBy('sum')
-        if(sums) {
-            for(var i = 0; i < sums.length; i++) {
-                var sum = sums[i];
-                totalSum += sum.get('sum');
+        var billDetails = this.filterBy('id');
+        if(billDetails) {
+            for(var i = 0; i < billDetails.length; i++) {
+                var billDetail = billDetails[i];
+                totalSum += billDetail.get('sum');
             }
         }
         return totalSum;
-    }.property('@each.sum')
+    }.property('@each.id')
 });
