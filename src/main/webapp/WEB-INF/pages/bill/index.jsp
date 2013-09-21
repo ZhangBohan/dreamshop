@@ -1,3 +1,4 @@
+<%@ page import="java.util.Date" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -48,7 +49,7 @@
                         <th>金额（¥）</th>
                     </tr>
                 </thead>
-                <tbody id="goods-list">
+                <tbody>
                     {{#each}}
                         <tr>
                             <td>{{_view.contentIndex}}</td>
@@ -59,16 +60,14 @@
                             <td>{{sum}}</td>
                         </tr>
                     {{else}}
-                        <c:forEach begin="0" end="4" var="index">
-                            <tr class="empty-sell">
-                                <td>${index}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </c:forEach>
+                        <tr class="empty-sell">
+                            <td>0</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
                     {{/each}}
                 </tbody>
                 <tfoot>
@@ -85,11 +84,54 @@
                 {{input id="sum-input" type="text" class="form-control col-lg-4" placeholder="收款金额"
                     action="settlement" value=money}}
                 <span class="input-group-btn">
-                    <button class="btn btn-success" {{action "settlement"}}><span class="glyphicon glyphicon-shopping-cart"></span>结算</button>
+                    <button class="btn btn-success" {{action "settlement"}}>
+                        <span class="glyphicon glyphicon-shopping-cart"></span>结账</button>
                 </span>
             </div>
         </div>
-
+        <div id="settlement-modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">梦之店结账单</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                            <tr>
+                                <th>名称</th>
+                                <th>价格（¥）</th>
+                                <th>数量</th>
+                                <th>金额（¥）</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{#each}}
+                            <tr>
+                                <td>{{name}}</td>
+                                <td>{{price}}</td>
+                                <td>{{count}}（{{unit}}）</td>
+                                <td>{{sum}}</td>
+                            </tr>
+                            {{/each}}
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="3" class="warning">合计</td>
+                                <td class="success">{{totalSum}}</td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <%--<button type="button" class="btn btn-primary btn-success">保存并打印</button>--%>
+                        <button type="button" id="saveSettlement" class="btn btn-primary" {{action "createBill"}}>保存</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
     </script>
 </div> <!-- /container -->
 <!-- Bootstrap core JavaScript
@@ -97,6 +139,8 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/modal.js"></script>
+<script src="${pageContext.request.contextPath}/js/alert.js"></script>
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
 
 
@@ -111,5 +155,11 @@
 <script src="${pageContext.request.contextPath}/js/ember/models/goods.js"></script>
 <script src="${pageContext.request.contextPath}/js/ember/models/bill.js"></script>
 <script src="${pageContext.request.contextPath}/js/ember/controllers/details_controller.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $(".nav-sell").addClass("active");
+    });
+</script>
 </body>
 </html>

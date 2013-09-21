@@ -45,13 +45,28 @@ Details.DetailsController = Ember.ArrayController.extend({
 
         settlement: function() {
             var money = this.get('money');
-            var billDetails = this.filterBy('id');
-            if(billDetails) {
-                for(var i = 0; i < billDetails.length; i++) {
-                    money -= billDetails[i].get('sum');
-                }
+            var totalSum = this.get('totalSum');
+            if(totalSum == 0) {
+                // here should be alert user
+                return;
             }
-            this.set('money', money);
+
+//            this.set('money', money);
+            $("#settlement-modal").modal('toggle');
+        },
+
+        createBill: function() {
+            var totalSum = this.get('totalSum');
+            var billDetails = this.filterBy('id');
+            var bill = this.store.createRecord('bill', {
+                total: totalSum,
+                details: billDetails
+            });
+            bill.save();
+
+            $("#settlement-modal").modal('toggle');
+            billDetails.invoke('deleteRecord');
+            billDetails.invoke('save');
         }
     },
 
