@@ -1,5 +1,5 @@
 window.Details = Ember.Application.create();
-Details.ApplicationAdapter = DS.FixtureAdapter.extend();
-//Details.ApplicationAdapter = DS.LSAdapter.extend({
-//    namespace: 'bill-details'
-//});
+//Details.ApplicationAdapter = DS.FixtureAdapter.extend();
+Details.ApplicationAdapter = DS.LSAdapter.extend({
+    namespace: 'details'
+});

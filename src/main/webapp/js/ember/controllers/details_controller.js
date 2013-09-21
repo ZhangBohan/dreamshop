@@ -24,7 +24,7 @@ Details.DetailsController = Ember.ArrayController.extend({
 
             if(!flag) {
                 var goodsList = Details.Goods.FIXTURES.filterBy('barCode', searchText);
-                if(goodsList) { // 有结果，直接填加到订单列表中
+                if(goodsList && goodsList.length > 0) { // 有结果，直接填加到订单列表中
                     var goods = goodsList[0];   // 直接取第一个，不存在同条码的情况
                     var billDetail = this.store.createRecord('bill-detail', {
                         barCode: goods.barCode,
@@ -58,15 +58,20 @@ Details.DetailsController = Ember.ArrayController.extend({
         createBill: function() {
             var totalSum = this.get('totalSum');
             var billDetails = this.filterBy('id');
+            var details = [];
+            for(var i = 0; i < billDetails.length; i++) {
+                details[i] = billDetails[i]._data;
+            }
             var bill = this.store.createRecord('bill', {
                 total: totalSum,
-                details: billDetails
+                details: details
             });
             bill.save();
 
             $("#settlement-modal").modal('toggle');
             billDetails.invoke('deleteRecord');
             billDetails.invoke('save');
+            this.set('totalSum', 0);
         }
     },
 

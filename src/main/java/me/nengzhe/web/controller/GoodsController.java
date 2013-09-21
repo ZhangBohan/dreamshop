@@ -34,7 +34,7 @@ public class GoodsController {
     private GoodsService goodsService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String listWithPagerGet(Model model, @RequestParam(defaultValue = "2") Integer pageSize,
+    public String listWithPagerGet(Model model, @RequestParam(defaultValue = "30") Integer pageSize,
                                 @RequestParam(defaultValue = "1") Integer page,
                                 @RequestParam(defaultValue = "-1") Integer total) throws NotImplException, NotLoginException {
         Pager pager = new Pager(page, total, pageSize);
@@ -85,7 +85,7 @@ public class GoodsController {
         message.success("增加成功！");
 
         message.addToRedirectAttributes(redirectAttributes);
-        return "redirect:/goods";
+        return "redirect:/goods/add";
     }
 
     @RequestMapping(value = "/{id}/delete")

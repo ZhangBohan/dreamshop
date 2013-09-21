@@ -26,6 +26,7 @@ public class Goods extends BaseModel {
     private String specification;   // 规格
     @NotEmpty(message = "商品单位不能为空！")
     private String unit;    // 单位
+    @JsonIgnore
     private Integer companyId;  // 商户ID
 
     @JsonIgnore

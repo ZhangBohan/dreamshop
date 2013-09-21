@@ -1,4 +1,3 @@
-<%@ page import="java.util.Date" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -138,9 +137,11 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/js/mousetrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/modal.js"></script>
 <script src="${pageContext.request.contextPath}/js/alert.js"></script>
+<script src="${pageContext.request.contextPath}/js/api.js"></script>
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
 
 
@@ -159,6 +160,7 @@
 <script>
     $(document).ready(function(){
         $(".nav-sell").addClass("active");
+        $.API.opts.root = "${pageContext.request.contextPath}";
     });
 </script>
 </body>

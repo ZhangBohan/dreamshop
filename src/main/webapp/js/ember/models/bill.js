@@ -13,19 +13,5 @@ Details.BillDetail = DS.Model.extend({
 
 Details.Bill = DS.Model.extend({
     total: DS.attr('number'),
-    details: DS.hasMany('bill-detail')
+    details: DS.attr()
 });
-
-Details.Bill.FIXTURES = []
-
-Details.BillDetail.FIXTURES= [
-    {
-        id: 1,
-        name: '商品1',
-        count: 1,
-        price: 10,
-        cost: 8,
-        unit: '单位',
-        barCode: 'test1'
-    }
-]
