@@ -27,23 +27,23 @@
     </jsp:include>
     <script type="text/x-handlebars" data-template-name="details">
         <div class="search-form">
-            <form id="searchForm" class="form-format form-inline" role="form">
-                <div class="input-group">
-                    <span class="input-group-addon">录入框</span>
-                    <input id="barCodeSearch" type="text" class="form-control" placeholder="请刷条码或输入搜索条件" autofocus="">
-                </div>
-            </form>
+            <div class="input-group">
+                {{input id="barCodeSearch" type="text" class="form-control"
+                    placeholder="请刷条码或输入搜索条件" autofocus="" action="searchResult" value=searchText}}
+                <span class="input-group-btn">
+                    <button class="btn btn-info"><span class="glyphicon glyphicon-search"></span>搜索</button>
+                </span>
+            </div>
         </div>
 
         <div class="content-table">
             <table class="table table-hover table-bordered">
                 <thead>
-                    <tr>
+                    <tr class="warning">
                         <th></th>
                         <th>条码</th>
                         <th>名称</th>
-                        <th>价格</th>
-                        <th>单位</th>
+                        <th>价格（¥）</th>
                         <th>数量</th>
                         <th>金额（¥）</th>
                     </tr>
@@ -55,13 +55,11 @@
                             <td>{{barCode}}</td>
                             <td>{{name}}</td>
                             <td>{{price}}</td>
-                            <td>{{unit}}</td>
-                            <td>{{count}}</td>
+                            <td>{{count}}（{{unit}}）</td>
                             <td>{{sum}}</td>
                         </tr>
-                    {{/each}}
-                    {{#if isNotDeal}}
-                        <c:forEach begin="1" end="5" var="index">
+                    {{else}}
+                        <c:forEach begin="0" end="4" var="index">
                             <tr class="empty-sell">
                                 <td>${index}</td>
                                 <td></td>
@@ -69,29 +67,27 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
                             </tr>
                         </c:forEach>
-                    {{/if}}
+                    {{/each}}
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="6">合计</td>
-                        <td>{{totalSum}}</td>
+                        <td colspan="5" class="warning">合计</td>
+                        <td class="success">{{totalSum}}</td>
                     </tr>
                 </tfoot>
             </table>
         </div>
         <div class="search-form">
-            <form id="sumForm" class="form-format form-inline" role="form">
-                <div class="input-group">
-                    <span class="input-group-addon">结算框</span>
-                    <input id="sum-input" type="text" class="form-control col-lg-4" placeholder="收款金额">
-                    <span class="input-group-btn">
-                        <input type="submit" class="btn btn-primary" value="结算">
-                    </span>
-                </div>
-            </form>
+            <div class="input-group">
+                <span class="input-group-addon">结算框</span>
+                {{input id="sum-input" type="text" class="form-control col-lg-4" placeholder="收款金额"
+                    action="settlement" value=money}}
+                <span class="input-group-btn">
+                    <button class="btn btn-success" {{action "settlement"}}><span class="glyphicon glyphicon-shopping-cart"></span>结算</button>
+                </span>
+            </div>
         </div>
 
     </script>

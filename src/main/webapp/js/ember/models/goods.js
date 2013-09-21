@@ -41,7 +41,16 @@ Details.Goods.FIXTURES = [
         price: 2,
         cost: 1,
         barCode: "test4",
-        unit: "单位",
+        unit: "个",
+        specification: "规格"
+    },
+    {
+        id: 5,
+        name: '商品4',
+        price: 100,
+        cost: 1,
+        barCode: "test5",
+        unit: "潘",
         specification: "规格"
     }
 ]
