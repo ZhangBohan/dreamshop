@@ -15,7 +15,9 @@ Details.DetailsController = Ember.ArrayController.extend({
                         billDetail.set('count', billDetail.get('count') + 1);
                         billDetail.save();
                         // 重新计算总金额
-                        this.set('totalSum', this.get('totalSum') + billDetail.get('price'));
+                        var totalSum = parseFloat(this.get('totalSum', 'number')) + billDetail.get('price');
+                        totalSum = parseFloat(totalSum, 10).toFixed(2);
+                        this.set('totalSum', totalSum);
                         flag = true;
                         break;
                     }
@@ -34,7 +36,9 @@ Details.DetailsController = Ember.ArrayController.extend({
                         count: 1
                     });
                     // 重新计算总金额
-                    this.set('totalSum', this.get('totalSum') + billDetail.get('price'));
+                    var totalSum = parseFloat(this.get('totalSum', 'number')) + billDetail.get('price');
+                    totalSum = parseFloat(totalSum, 10).toFixed(2);
+                    this.set('totalSum', totalSum);
                     billDetail.save();
                     flag = true;
                 }
@@ -79,11 +83,11 @@ Details.DetailsController = Ember.ArrayController.extend({
         var totalSum = 0;
         var billDetails = this.filterBy('id');
         if(billDetails) {
-            for(var i = 0; i < billDetails.length; i++) {
-                var billDetail = billDetails[i];
+            billDetails.forEach(function(billDetail) {
                 totalSum += billDetail.get('price') * billDetail.get('count');
-            }
+            });
         }
+        totalSum = parseFloat(totalSum, 10).toFixed(2);
         return totalSum;
     }.property('@each.id')
 });

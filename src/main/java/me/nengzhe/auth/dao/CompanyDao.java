@@ -82,8 +82,8 @@ public class CompanyDao extends JdbcDaoSupport implements BaseDao<Company> {
             company.setId(rs.getInt("id"));
             company.setName(rs.getString("name"));
             company.setDeleted(rs.getBoolean("deleted"));
-            company.setModifiedAt(rs.getDate("modified_at"));
-            company.setCreateAt(rs.getDate("create_at"));
+            company.setModifiedAt(rs.getTimestamp("modified_at"));
+            company.setCreateAt(rs.getTimestamp("create_at"));
 
             return company;
         }

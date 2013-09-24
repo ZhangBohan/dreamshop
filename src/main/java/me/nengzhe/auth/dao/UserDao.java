@@ -86,8 +86,8 @@ public class UserDao extends JdbcDaoSupport implements BaseDao<User>{
             user.setCredentialsExpired(rs.getBoolean("credentials_expired"));
             user.setEnabled(rs.getBoolean("enabled"));
 
-            user.setModifiedAt(rs.getDate("modified_at"));
-            user.setCreateAt(rs.getDate("create_at"));
+            user.setModifiedAt(rs.getTimestamp("modified_at"));
+            user.setCreateAt(rs.getTimestamp("create_at"));
 
             return user;
         }

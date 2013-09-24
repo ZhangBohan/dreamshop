@@ -107,8 +107,8 @@ public class GoodsDao extends JdbcDaoSupport implements PaginationDao<Goods, Goo
             goods.setSpecification(rs.getString("specification"));
             goods.setDeleted(rs.getBoolean("deleted"));
             goods.setUnit(rs.getString("unit"));
-            goods.setModifiedAt(rs.getDate("modified_at"));
-            goods.setCreateAt(rs.getDate("create_at"));
+            goods.setModifiedAt(rs.getTimestamp("modified_at"));
+            goods.setCreateAt(rs.getTimestamp("create_at"));
             goods.setCompanyId(rs.getInt("company_id"));
             return goods;
         }

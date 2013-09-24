@@ -7,7 +7,9 @@ Details.BillDetail = DS.Model.extend({
     barCode: DS.attr('string'),
 
     sum: function() {
-        return this.get('price') * this.get('count');
+        var sum = this.get('price') * this.get('count');
+        sum = parseFloat(sum, 10).toFixed(2);
+        return sum;
     }.property('count', 'price')
 });
 

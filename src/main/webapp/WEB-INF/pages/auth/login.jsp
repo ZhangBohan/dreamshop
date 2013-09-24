@@ -40,7 +40,7 @@
         <input type="text" class="form-control" placeholder="用户名" autofocus name="username">
         <input type="password" class="form-control" placeholder="密码" name="password">
         <label class="checkbox">
-            <input type="checkbox" value="remember-me" name="_spring_security_remember_me"> 记住我
+            <input type="checkbox" checked="" name="_spring_security_remember_me"> 记住我
         </label>
         <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
     </form>

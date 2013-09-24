@@ -54,6 +54,10 @@ public class GoodsService {
     }
 
     public void update(Goods goods, User user) {
+        Goods originGoods = this.goodsDao.get(goods.getId());
+        goods.setCreateAt(originGoods.getCreateAt());
+        goods.setDeleted(originGoods.getDeleted());
+        goods.setCompanyId(originGoods.getCompanyId());
         goods.setModifiedAt(new Date());
         this.goodsDao.update(goods);
     }

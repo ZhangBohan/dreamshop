@@ -3,7 +3,6 @@ package me.nengzhe.auth.dao;
 import me.nengzhe.auth.model.Authority;
 import me.nengzhe.base.dao.BaseDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
@@ -72,8 +71,8 @@ public class AuthorityDao extends JdbcDaoSupport implements BaseDao<Authority> {
             authority.setId(rs.getInt("id"));
             authority.setName(rs.getString("name"));
             authority.setDescription(rs.getString("description"));
-            authority.setModifiedAt(rs.getDate("modified_at"));
-            authority.setCreateAt(rs.getDate("create_at"));
+            authority.setModifiedAt(rs.getTimestamp("modified_at"));
+            authority.setCreateAt(rs.getTimestamp("create_at"));
 
             return authority;
         }

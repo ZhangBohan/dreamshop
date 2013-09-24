@@ -82,8 +82,8 @@ public class BillDao extends JdbcDaoSupport implements BaseDao<Bill>{
             bill.setId(rs.getInt("id"));
             bill.setUserId(rs.getInt("user_id"));
             bill.setTotal(rs.getBigDecimal("total"));
-            bill.setModifiedAt(rs.getDate("modified_at"));
-            bill.setCreateAt(rs.getDate("create_at"));
+            bill.setModifiedAt(rs.getTimestamp("modified_at"));
+            bill.setCreateAt(rs.getTimestamp("create_at"));
             return bill;
         }
     }
