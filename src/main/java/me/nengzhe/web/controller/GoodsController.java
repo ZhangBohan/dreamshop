@@ -121,6 +121,6 @@ public class GoodsController {
         message.success("修改成功！");
 
         message.addToRedirectAttributes(redirectAttributes);
-        return "redirect:/goods";
+        return "goods/edit";
     }
 }

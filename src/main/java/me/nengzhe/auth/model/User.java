@@ -23,6 +23,19 @@ public class User extends BaseModel{
         init();
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", companyId=" + companyId +
+                ", accountExpired=" + accountExpired +
+                ", accountLocked=" + accountLocked +
+                ", credentialsExpired=" + credentialsExpired +
+                ", enabled=" + enabled +
+                '}';
+    }
+
     public void init() {
         accountExpired = false;
         accountLocked = false;
