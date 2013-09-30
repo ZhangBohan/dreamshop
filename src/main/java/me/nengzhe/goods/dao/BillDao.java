@@ -29,7 +29,7 @@ public class BillDao extends JdbcDaoSupport implements BaseDao<Bill>{
     }
 
     @Override
-    public void insert(Bill entity) throws NotImplException {
+    public Integer insert(Bill entity) throws NotImplException {
         final String sql = "INSERT INTO bill(user_id, total, modified_at, create_at) VALUES(?,?,?,?)";
 
         final Bill bill = entity;
@@ -49,19 +49,20 @@ public class BillDao extends JdbcDaoSupport implements BaseDao<Bill>{
                 },
                 keyHolder);
         entity.setId(keyHolder.getKey().intValue());
+        return 1;   // One column success
     }
 
     @Override
-    public void update(Bill entity) throws NotImplException {
+    public Integer update(Bill entity) throws NotImplException {
         String sql = "UPDATE bill SET user_id=?, total, modified_at=?, create_at=? WHERE id=?";
-        super.getJdbcTemplate().update(sql, entity.getUserId(), entity.getTotal(), entity.getModifiedAt(),
+        return super.getJdbcTemplate().update(sql, entity.getUserId(), entity.getTotal(), entity.getModifiedAt(),
                 entity.getCreateAt(), entity.getId());
     }
 
     @Override
-    public void delete(Integer id) throws NotImplException {
+    public Integer delete(Integer id) throws NotImplException {
         String sql = "DELETE FROM bill WHERE id=?";
-        super.getJdbcTemplate().update(sql, id);
+        return super.getJdbcTemplate().update(sql, id);
     }
 
     @Override

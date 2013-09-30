@@ -1,6 +1,8 @@
 package me.nengzhe.base.exception;
 
 /**
+ * 未实现异常
+ *
  * User: bohan
  * Date: 8/22/13
  * Time: 2:09 AM

@@ -27,27 +27,27 @@ public class UserDao extends JdbcDaoSupport implements BaseDao<User>{
     }
 
     @Override
-    public void insert(User user) {
+    public Integer insert(User user) {
         String sql = "INSERT INTO dream_shop.user (username, password, company_id, account_expired, account_locked, " +
                 "credentials_expired, enabled, modified_at, create_at) VALUES (?,?,?,?,?,?,?,?,?);";
-        super.getJdbcTemplate().update(sql, user.getUsername(), user.getPassword(), user.getCompanyId(),
+        return super.getJdbcTemplate().update(sql, user.getUsername(), user.getPassword(), user.getCompanyId(),
                 user.isAccountExpired(), user.isAccountLocked(), user.isCredentialsExpired(), user.isEnabled(),
                 user.getModifiedAt(), user.getCreateAt());
     }
 
     @Override
-    public void update(User user) {
+    public Integer update(User user) {
         String sql = "UPDATE user SET username=?, password=?, company_id=?, account_expired=?, account_locked=?, " +
                 "credentials_expired=?, enabled=?, modified_at=?, create_at=? WHERE id=?;";
-        super.getJdbcTemplate().update(sql, user.getUsername(), user.getPassword(), user.getCompanyId(),
+        return super.getJdbcTemplate().update(sql, user.getUsername(), user.getPassword(), user.getCompanyId(),
                 user.isAccountExpired(), user.isAccountLocked(), user.isCredentialsExpired(), user.isEnabled(),
                 user.getModifiedAt(), user.getCreateAt(), user.getId());
     }
 
     @Override
-    public void delete(Integer id) {
+    public Integer delete(Integer id) {
         String sql = "DELETE FROM user WHERE id=?";
-        super.getJdbcTemplate().update(sql, id);
+        return super.getJdbcTemplate().update(sql, id);
     }
 
     @Override

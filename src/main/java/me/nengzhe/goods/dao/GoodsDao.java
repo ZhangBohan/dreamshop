@@ -41,28 +41,28 @@ public class GoodsDao extends JdbcDaoSupport implements PaginationDao<Goods, Goo
     }
 
     @Override
-    public void insert(Goods entity) {
+    public Integer insert(Goods entity) {
         String sql = "INSERT INTO goods(bar_code, name, price, cost, specification, unit, company_id, deleted, " +
                 "modified_at, create_at) VALUES (?,?,?,?,?,?,?,?,?,?);";
-        super.getJdbcTemplate().update(sql, entity.getBarCode(), entity.getName(), entity.getPrice(),
+        return super.getJdbcTemplate().update(sql, entity.getBarCode(), entity.getName(), entity.getPrice(),
                 entity.getCost(), entity.getSpecification(), entity.getUnit(), entity.getCompanyId(), entity.getDeleted(),
                 entity.getModifiedAt(), entity.getCreateAt());
     }
 
     @Override
-    public void update(Goods entity) {
+    public Integer update(Goods entity) {
         String sql = "UPDATE goods SET bar_code=?, name=?, price=?, cost=?, specification=?, " +
                 "unit=?, company_id=?, deleted=?, modified_at=?, create_at=? WHERE id=?;";
 
-        super.getJdbcTemplate().update(sql, entity.getBarCode(), entity.getName(), entity.getPrice(), entity.getCost(),
+        return super.getJdbcTemplate().update(sql, entity.getBarCode(), entity.getName(), entity.getPrice(), entity.getCost(),
                 entity.getSpecification(), entity.getUnit(), entity.getCompanyId(), entity.getDeleted(),
                 entity.getModifiedAt(), entity.getCreateAt(), entity.getId());
     }
 
     @Override
-    public void delete(Integer id) {
+    public Integer delete(Integer id) {
         String sql = "DELETE FROM goods WHERE id=?";
-        super.getJdbcTemplate().update(sql, id);
+        return super.getJdbcTemplate().update(sql, id);
     }
 
     @Override

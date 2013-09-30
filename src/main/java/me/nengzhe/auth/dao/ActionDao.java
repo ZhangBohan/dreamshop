@@ -23,19 +23,19 @@ public class ActionDao extends JdbcDaoSupport implements BaseDao<Action> {
     }
 
     @Override
-    public void insert(Action entity) throws NotImplException {
+    public Integer insert(Action entity) throws NotImplException {
         String sql = "INSERT INTO user_action(user_id,name,description,success_count,created_at) VALUES(?,?,?,?,?)";
-        super.getJdbcTemplate().update(sql, entity.getUserId(), entity.getName(), entity.getDescription(),
+        return super.getJdbcTemplate().update(sql, entity.getUserId(), entity.getName(), entity.getDescription(),
                 entity.getSuccessCount(), entity.getCreatedAt());
     }
 
     @Override
-    public void update(Action entity) throws NotImplException {
+    public Integer update(Action entity) throws NotImplException {
         throw new NotImplException();
     }
 
     @Override
-    public void delete(Integer id) throws NotImplException {
+    public Integer delete(Integer id) throws NotImplException {
         throw new NotImplException();
     }
 

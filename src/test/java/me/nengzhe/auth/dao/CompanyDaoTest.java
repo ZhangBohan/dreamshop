@@ -21,7 +21,8 @@ public class CompanyDaoTest extends AbstractSpringTests {
     public void testInsert() throws Exception {
         Company company = new Company();
         company.setName("test company");
-        this.companyDao.insert(company);
+        int count = this.companyDao.insert(company);
+        System.out.println("Success count: " + count);
     }
 
     @Test
@@ -45,6 +46,7 @@ public class CompanyDaoTest extends AbstractSpringTests {
         Company company = new Company();
         company.setName("test company");
         this.testInsert();
-        this.companyDao.delete(company.getId());
+        int count = this.companyDao.delete(company.getId());
+        System.out.println("Delete count: " + count);
     }
 }

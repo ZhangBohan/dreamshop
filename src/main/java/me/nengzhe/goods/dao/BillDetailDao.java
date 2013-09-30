@@ -27,23 +27,23 @@ public class BillDetailDao extends JdbcDaoSupport implements BaseDao<BillDetail>
     }
 
     @Override
-    public void insert(BillDetail entity) throws NotImplException {
+    public Integer insert(BillDetail entity) throws NotImplException {
         String sql = "INSERT INTO bill_detail(bill_id, name, count, price, cost) VALUES (?,?,?,?,?)";
-        super.getJdbcTemplate().update(sql, entity.getBillId(), entity.getName(), entity.getCount(),
+        return super.getJdbcTemplate().update(sql, entity.getBillId(), entity.getName(), entity.getCount(),
                 entity.getPrice(), entity.getCost());
     }
 
     @Override
-    public void update(BillDetail entity) throws NotImplException {
+    public Integer update(BillDetail entity) throws NotImplException {
         String sql = "UPDATE bill_detail SET bill_id=?, name=?, count=?, price=?, cost=? WHERE id=?";
-        super.getJdbcTemplate().update(sql, entity.getBillId(), entity.getName(), entity.getCount(),
+        return super.getJdbcTemplate().update(sql, entity.getBillId(), entity.getName(), entity.getCount(),
                 entity.getPrice(), entity.getCost(), entity.getId());
     }
 
     @Override
-    public void delete(Integer id) throws NotImplException {
+    public Integer delete(Integer id) throws NotImplException {
         String sql = "DELETE FROM bill_detail WHERE id=?";
-        super.getJdbcTemplate().update(sql, id);
+        return super.getJdbcTemplate().update(sql, id);
     }
 
     @Override

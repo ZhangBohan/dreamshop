@@ -27,23 +27,23 @@ public class AuthorityDao extends JdbcDaoSupport implements BaseDao<Authority> {
     }
 
     @Override
-    public void insert(Authority entity) {
+    public Integer insert(Authority entity) {
         String sql = "INSERT INTO authority (name, description, modified_at, create_at) VALUES (?,?,?,?)";
-        this.getJdbcTemplate().update(sql, entity.getName(), entity.getDescription(), entity.getModifiedAt(),
+        return this.getJdbcTemplate().update(sql, entity.getName(), entity.getDescription(), entity.getModifiedAt(),
                 entity.getCreateAt());
     }
 
     @Override
-    public void update(Authority entity) {
+    public Integer update(Authority entity) {
         String sql = "UPDATE company SET name=?, deleted=?, modified_at=?, create_at=? WHERE id=?";
-        this.getJdbcTemplate().update(sql, entity.getName(), entity.getDescription(), entity.getModifiedAt(),
+        return this.getJdbcTemplate().update(sql, entity.getName(), entity.getDescription(), entity.getModifiedAt(),
                 entity.getCreateAt(), entity.getId());
     }
 
     @Override
-    public void delete(Integer id) {
+    public Integer delete(Integer id) {
         String sql = "DELETE FROM authority WHERE id=?";
-        super.getJdbcTemplate().update(sql, id);
+        return super.getJdbcTemplate().update(sql, id);
     }
 
     @Override
