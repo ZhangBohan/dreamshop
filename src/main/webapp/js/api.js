@@ -1,6 +1,6 @@
 $.API = {
     opts: {
-        root: ""
+        root: "/dreamshop"
     },
 
     get: function(url, data){

@@ -52,6 +52,7 @@ Details.DetailsController = Ember.ArrayController.extend({
             var totalSum = this.get('totalSum');
             if(totalSum == 0) {
                 // here should be alert user
+                $("#barCodeSearch").focus();
                 return;
             }
 
@@ -76,6 +77,7 @@ Details.DetailsController = Ember.ArrayController.extend({
             billDetails.invoke('deleteRecord');
             billDetails.invoke('save');
             this.set('totalSum', 0);
+            $("#barCodeSearch").focus();
         }
     },
 

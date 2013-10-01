@@ -25,7 +25,7 @@
         <jsp:param name="messages" value="${messages}" />
     </jsp:include>
 
-    <form:form method="post" commandName="goods" action="">
+    <form:form method="post" id="edit_goods_form" commandName="goods" action="">
         <form:errors path="*" cssClass="alert-danger" element="div" />
         <div class="form-group">
             <label for="inputBarCode" class="col-lg-2 control-label">条码</label>
@@ -35,9 +35,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="inputUsername" class="col-lg-2 control-label">名称</label>
+            <label for="inputName" class="col-lg-2 control-label">名称</label>
             <div class="col-lg-10">
-                <form:input path="name" cssClass="form-control" id="inputUsername" placeholder="商品名称" />
+                <form:input path="name" cssClass="form-control" id="inputName" placeholder="商品名称" />
                 <span class="help-block"><form:errors path="name" cssClass="alert-danger" /></span>
             </div>
         </div>
@@ -97,6 +97,7 @@
 <script>
     $(document).ready(function(){
         $(".nav-manage").addClass("active");
+        $("#inputBarCode").focus();
     });
 </script>
 </body>

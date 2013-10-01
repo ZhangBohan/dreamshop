@@ -50,15 +50,15 @@
                     <tr>
                         <td><input type="checkbox" name="ids" class='selectOne' value="${ goods.id }"/></td>
                         <td>${status.index + 1}</td>
-                        <td><a href="/goods/${goods.id}/edit">${goods.barCode}</a></td>
+                        <td><a href="${pageContext.request.contextPath}/goods/${goods.id}/edit">${goods.barCode}</a></td>
                         <td>${goods.name}</td>
                         <td>${goods.price}</td>
                         <td>${goods.cost}</td>
                         <td>${goods.unit}</td>
                         <td>${goods.specification}</td>
                         <td>
-                            <a href="/goods/${goods.id}/edit" class="btn btn-info">编辑</a>
-                            <a href="/goods/${goods.id}/delete" class="btn btn-danger">删除</a>
+                            <a href="${pageContext.request.contextPath}/goods/${goods.id}/edit" class="btn btn-info">编辑</a>
+                            <a href="${pageContext.request.contextPath}/goods/${goods.id}/delete" class="btn btn-danger">删除</a>
                         </td>
                     </tr>
                 </c:forEach>

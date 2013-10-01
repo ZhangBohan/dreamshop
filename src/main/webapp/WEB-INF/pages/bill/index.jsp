@@ -160,7 +160,7 @@
 <script>
     $(document).ready(function(){
         $(".nav-sell").addClass("active");
-        $.API.opts.root = "${pageContext.request.contextPath}";
+        $("#barCodeSearch").focus();
     });
 </script>
 </body>
