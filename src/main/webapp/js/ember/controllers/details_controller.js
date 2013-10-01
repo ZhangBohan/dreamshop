@@ -69,6 +69,7 @@ Details.DetailsController = Ember.ArrayController.extend({
             }
             var bill = this.store.createRecord('bill', {
                 total: totalSum,
+                createdAt: new Date(),
                 details: details
             });
             bill.save();

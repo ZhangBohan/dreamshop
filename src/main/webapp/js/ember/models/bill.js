@@ -15,5 +15,6 @@ Details.BillDetail = DS.Model.extend({
 
 Details.Bill = DS.Model.extend({
     total: DS.attr('number'),
+    createdAt: DS.attr('date'),
     details: DS.attr()
 });
