@@ -1,5 +1,6 @@
 package me.nengzhe.web.controller;
 
+import me.nengzhe.auth.service.ActionService;
 import me.nengzhe.base.exception.LogicException;
 import me.nengzhe.base.exception.NotImplException;
 import me.nengzhe.base.exception.NotLoginException;
@@ -32,6 +33,8 @@ import java.util.List;
 public class GoodsController {
     @Autowired
     private GoodsService goodsService;
+    @Autowired
+    private ActionService actionService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String listWithPagerGet(Model model, @RequestParam(defaultValue = "30") Integer pageSize,
@@ -97,6 +100,7 @@ public class GoodsController {
         message.success("删除成功！");
 
         message.addToRedirectAttributes(redirectAttributes);
+        this.actionService.add("删除商品", "ID:" + id, AuthUtils.getUser());
         return "redirect:/goods";
     }
 

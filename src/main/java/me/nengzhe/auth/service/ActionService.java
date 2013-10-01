@@ -20,4 +20,8 @@ public class ActionService {
         Action action = new Action(user.getId(), name, description, successCount);
         this.actionDao.insert(action);
     }
+
+    public void add(String name, String description, User user) {
+        this.add(name, description, 0, user);
+    }
 }
