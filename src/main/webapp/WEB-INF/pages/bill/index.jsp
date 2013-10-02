@@ -25,7 +25,7 @@
     <jsp:include page="../include/alert.jsp">
         <jsp:param name="messages" value="${messages}" />
     </jsp:include>
-    <script type="text/x-handlebars" data-template-name="details">
+    <script type="text/x-handlebars" data-template-name="bill">
         <div class="search-form">
             <div class="input-group">
                 {{input id="barCodeSearch" type="text" class="form-control"

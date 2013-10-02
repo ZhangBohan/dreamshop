@@ -1,4 +1,4 @@
-Details.DetailsController = Ember.ArrayController.extend({
+Details.BillController = Ember.ArrayController.extend({
     actions: {
         searchResult: function() {
             var flag = false;   // 记录是成功处理
@@ -25,7 +25,7 @@ Details.DetailsController = Ember.ArrayController.extend({
             }
 
             if(!flag) {
-                var goodsList = Details.Goods.FIXTURES.filterBy('barCode', searchText);
+                var goodsList = this.store.find('goods').filterBy('barCode', searchText);
                 if(goodsList && goodsList.length > 0) { // 有结果，直接填加到订单列表中
                     var goods = goodsList[0];   // 直接取第一个，不存在同条码的情况
                     var billDetail = this.store.createRecord('bill-detail', {

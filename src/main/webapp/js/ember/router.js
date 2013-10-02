@@ -1,10 +1,18 @@
 Details.Router.map(function () {
-    this.resource('details', { path: '/' }, function() {
+    this.resource('bill', { path: '/' }, function() {
     })
 });
 
-Details.DetailsRoute = Ember.Route.extend({
+Details.ApplicationRoute = Ember.Route.extend({
     model: function() {
-        return this.store.find('bill-detail');
+        var store = this.get('store');
+        store.pushMany('goods', $.API.getGoodsList());
+    }
+});
+
+Details.BillRoute = Ember.Route.extend({
+    model: function(params) {
+        var store = this.get('store');
+        return store.find('bill', params.bill_id);
     }
 });

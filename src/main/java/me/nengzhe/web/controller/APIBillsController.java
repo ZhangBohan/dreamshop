@@ -20,8 +20,8 @@ import java.io.IOException;
  * Time: 11:09 PM
  */
 @Controller
-@RequestMapping("/api/bill")
-public class APIBillController {
+@RequestMapping("/api/bills")
+public class APIBillsController {
     @Autowired
     private BillService billService;
 
