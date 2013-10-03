@@ -8,6 +8,8 @@ import me.nengzhe.goods.model.BillDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 /**
  * User: bohan
  * Date: 8/28/13
@@ -27,6 +29,9 @@ public class BillService {
 
         for(BillDetail billDetail : bill.getDetails()) {
             billDetail.setBillId(bill.getId());
+            if(billDetail.getCost() == null){
+                billDetail.setCost(new BigDecimal(-1));
+            }
             this.billDetailDao.insert(billDetail);
         }
     }

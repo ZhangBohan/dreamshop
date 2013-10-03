@@ -47,5 +47,15 @@ $.API = {
             localStorage.goodsListStr = JSON.stringify(goodsList);
         }
         return goodsList;
+    },
+
+    addBill: function(bill) {
+        var url = this.opts.root + '/api/bill/add'
+        var param = {
+            data: JSON.stringify(bill)
+        }
+        var resultData = this.get(url, param);
+        console.log("Add bill result:", resultData);
+        return resultData;
     }
 }

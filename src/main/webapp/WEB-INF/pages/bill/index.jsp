@@ -29,9 +29,9 @@
         <div class="search-form">
             <div class="input-group">
                 {{input id="barCodeSearch" type="text" class="form-control"
-                    placeholder="请刷条码或输入搜索条件" autofocus="" action="searchResult" value=searchText}}
+                    placeholder="请刷条码或输入搜索条件，技巧：以“+”开始代表临时记录商品；以“-”开始代表结算。回车键提交当前内容" action="searchResult" value=searchText}}
                 <span class="input-group-btn">
-                    <button class="btn btn-info"><span class="glyphicon glyphicon-search"></span>搜索</button>
+                    <button class="btn btn-info" {{action "settlement"}}><span class="glyphicon glyphicon-search"></span>搜索</button>
                 </span>
             </div>
         </div>
@@ -77,17 +77,6 @@
                 </tfoot>
             </table>
         </div>
-        <div class="search-form">
-            <div class="input-group">
-                <span class="input-group-addon">结算框</span>
-                {{input id="sum-input" type="text" class="form-control col-lg-4" placeholder="收款金额"
-                    action="settlement" value=money}}
-                <span class="input-group-btn">
-                    <button class="btn btn-success" {{action "settlement"}}>
-                        <span class="glyphicon glyphicon-shopping-cart"></span>结账</button>
-                </span>
-            </div>
-        </div>
         <div id="settlement-modal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -122,10 +111,15 @@
                             </tr>
                             </tfoot>
                         </table>
+                        <h3>
+                            <span class="label label-info">{{moneyGet}} 元</span> -
+                            <span class="label label-info">{{totalSum}} 元</span> =
+                            找零：<span class="label label-success">{{change}} 元</span>
+                        </h3>
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" {{action "clearBill"}}>清除当前数据</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <%--<button type="button" class="btn btn-primary btn-success">保存并打印</button>--%>
                         <button type="button" id="saveSettlement" class="btn btn-primary" {{action "createBill"}}>保存</button>
                     </div>
                 </div><!-- /.modal-content -->
@@ -156,6 +150,7 @@
 <script src="${pageContext.request.contextPath}/js/ember/models/goods.js"></script>
 <script src="${pageContext.request.contextPath}/js/ember/models/bill.js"></script>
 <script src="${pageContext.request.contextPath}/js/ember/controllers/details_controller.js"></script>
+<script src="${pageContext.request.contextPath}/js/ember/views/details_view.js"></script>
 
 <script>
     $(document).ready(function(){

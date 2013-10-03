@@ -27,7 +27,7 @@ public class APIBillController {
 
     @RequestMapping("/add")
     @ResponseBody
-    public JsonResult<Object> bill(@RequestParam String result, ObjectMapper mapper) throws NotLoginException, IOException {
+    public JsonResult<Object> bill(@RequestParam("data") String result, ObjectMapper mapper) throws NotLoginException, IOException {
 
         Bill bill = mapper.readValue(result, Bill.class);
         this.billService.add(bill, AuthUtils.getUser());

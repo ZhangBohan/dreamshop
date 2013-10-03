@@ -1,5 +1,8 @@
 package me.nengzhe.goods.model;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.math.BigDecimal;
 
 /**
@@ -7,7 +10,9 @@ import java.math.BigDecimal;
  * Date: 8/28/13
  * Time: 10:26 PM
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class BillDetail {
+    @JsonIgnore
     private Integer id;
     private Integer billId;
     private String name;

@@ -3,6 +3,8 @@ package me.nengzhe.goods.service;
 import me.nengzhe.auth.model.User;
 import me.nengzhe.base.exception.LogicException;
 import me.nengzhe.base.exception.NotImplException;
+import me.nengzhe.base.exception.ResourceNotFoundException;
+import me.nengzhe.base.exception.UnauthorizedException;
 import me.nengzhe.goods.dao.GoodsDao;
 import me.nengzhe.goods.dto.GoodsSearch;
 import me.nengzhe.goods.model.Goods;
@@ -38,8 +40,12 @@ public class GoodsService {
         return goods;
     }
 
-    public Goods getGoods(int id) {
+    public Goods getGoods(int id, User user) {
         Goods goods = this.goodsDao.get(id);
+        if(goods == null || !user.getCompanyId().equals(goods.getCompanyId())) {
+            // 非法操作
+            throw new ResourceNotFoundException();
+        }
         return goods;
     }
 
@@ -55,6 +61,10 @@ public class GoodsService {
 
     public void update(Goods goods, User user) {
         Goods originGoods = this.goodsDao.get(goods.getId());
+        if(!user.getCompanyId().equals(originGoods.getCompanyId())) {
+            // 非法操作
+            throw new ResourceNotFoundException();
+        }
         goods.setCreateAt(originGoods.getCreateAt());
         goods.setDeleted(originGoods.getDeleted());
         goods.setCompanyId(originGoods.getCompanyId());
@@ -63,7 +73,7 @@ public class GoodsService {
     }
 
     public void delete(Integer id, User user) {
-        Goods goods = this.getGoods(id);
+        Goods goods = this.getGoods(id, user);
         goods.setDeleted(true);
         goods.setModifiedAt(new Date());
 
