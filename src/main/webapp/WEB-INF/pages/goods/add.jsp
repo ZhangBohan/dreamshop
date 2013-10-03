@@ -81,17 +81,26 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/js/api.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function(check){
         $(".nav-add").addClass("active");
         $("#inputBarCode").focus();
         $('#add_goods_form').find('#inputBarCode').keypress(function(e){
-            console.log("key", e);
             if ( e.which == 13 ) // Enter key = keycode 13
             {
                 $("#inputName").focus();  //Use whatever selector necessary to focus the 'next' input
                 return false;
+            }
+        });
+
+        $("#inputBarCode").change(function() {
+            var barCode = $("#inputBarCode").val();
+            var goods = $.API.getGoods(barCode);
+            console.log('goods:', goods);
+            if(goods) {
+                alert("该条码商品已存在，无需再次添加！");
             }
         });
     });

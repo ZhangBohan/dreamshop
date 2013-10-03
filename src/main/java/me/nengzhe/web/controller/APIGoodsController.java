@@ -1,6 +1,7 @@
 package me.nengzhe.web.controller;
 
 import me.nengzhe.base.exception.NotLoginException;
+import me.nengzhe.base.exception.ResourceNotFoundException;
 import me.nengzhe.goods.dto.GoodsSearch;
 import me.nengzhe.goods.model.Goods;
 import me.nengzhe.goods.service.GoodsService;
@@ -42,5 +43,17 @@ public class APIGoodsController {
         map.put("list", list);
         map.put("pager", pager);
         return new JsonResult<Map<String, Object>>(map);
+    }
+
+    @RequestMapping("/get")
+    @ResponseBody
+    public JsonResult<Goods> get(@RequestParam String barCode) throws NotLoginException {
+        Goods goods = null;
+        try {
+            goods = this.goodsService.getGoods(barCode, AuthUtils.getUser());
+        } catch (ResourceNotFoundException e) {
+            goods = null;
+        }
+        return new JsonResult<Goods>(goods);
     }
 }

@@ -35,6 +35,15 @@ $.API = {
         return resultData.list;
     },
 
+    getGoods: function(barCode) {
+        var url = this.opts.root + '/api/goods/get'
+        var param = {
+            barCode: barCode
+        }
+        var resultData = this.get(url, param);
+        return resultData;
+    },
+
     getGoodsListByLocalStorage: function() {
         var goodsList = [];
 

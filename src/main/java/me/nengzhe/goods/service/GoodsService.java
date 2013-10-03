@@ -4,11 +4,10 @@ import me.nengzhe.auth.model.User;
 import me.nengzhe.base.exception.LogicException;
 import me.nengzhe.base.exception.NotImplException;
 import me.nengzhe.base.exception.ResourceNotFoundException;
-import me.nengzhe.base.exception.UnauthorizedException;
+import me.nengzhe.base.utils.Pager;
 import me.nengzhe.goods.dao.GoodsDao;
 import me.nengzhe.goods.dto.GoodsSearch;
 import me.nengzhe.goods.model.Goods;
-import me.nengzhe.base.utils.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
@@ -35,8 +34,12 @@ public class GoodsService {
         return list;
     }
 
-    public Goods getGoods(String barCode) {
+    public Goods getGoods(String barCode, User user) {
         Goods goods = this.goodsDao.get(barCode);
+        if(goods == null || !user.getCompanyId().equals(goods.getCompanyId())) {
+            // 非法操作
+            throw new ResourceNotFoundException();
+        }
         return goods;
     }
 
@@ -65,11 +68,15 @@ public class GoodsService {
             // 非法操作
             throw new ResourceNotFoundException();
         }
-        goods.setCreateAt(originGoods.getCreateAt());
-        goods.setDeleted(originGoods.getDeleted());
-        goods.setCompanyId(originGoods.getCompanyId());
-        goods.setModifiedAt(new Date());
-        this.goodsDao.update(goods);
+        originGoods.setName(goods.getName());
+        originGoods.setPrice(goods.getPrice());
+        originGoods.setCost(goods.getCost());
+        originGoods.setUnit(goods.getUnit());
+        originGoods.setSpecification(goods.getSpecification());
+        if(goods.getDeleted() != null) {
+            originGoods.setDeleted(goods.getDeleted());
+        }
+        this.goodsDao.update(originGoods);
     }
 
     public void delete(Integer id, User user) {

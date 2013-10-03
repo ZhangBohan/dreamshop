@@ -70,7 +70,7 @@ public class GoodsController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addPost(@Valid Goods goods, BindingResult result,
-                          RedirectAttributes redirectAttributes, Model model) {
+                          RedirectAttributes redirectAttributes, Model model) throws NotLoginException {
         if (result.hasErrors()) {
             return "goods/add";
         }
@@ -88,6 +88,7 @@ public class GoodsController {
         message.success("增加成功！");
 
         message.addToRedirectAttributes(redirectAttributes);
+        this.actionService.add("增加商品", "增加成功！", AuthUtils.getUser());
         return "redirect:/goods/add";
     }
 
@@ -127,6 +128,7 @@ public class GoodsController {
         message.success("修改成功！");
 
         message.addToRedirectAttributes(redirectAttributes);
+        this.actionService.add("修改商品", "修改成功！", AuthUtils.getUser());
         return "goods/edit";
     }
 }
