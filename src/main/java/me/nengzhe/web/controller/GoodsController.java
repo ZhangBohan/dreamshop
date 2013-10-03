@@ -49,14 +49,15 @@ public class GoodsController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String listWithPagerPost(Model model, @RequestParam(defaultValue = "2") Integer pageSize,
+    public String listWithPagerPost(GoodsSearch search, Model model, @RequestParam(defaultValue = "2") Integer pageSize,
                                     @RequestParam(defaultValue = "1") Integer page,
                                     @RequestParam(defaultValue = "-1") Integer total) throws NotImplException, NotLoginException {
         Pager pager = new Pager(page, total, pageSize);
 
-        List<Goods> list = this.goodsService.getGoodsList(new GoodsSearch(), pager, AuthUtils.getUser());
+        List<Goods> list = this.goodsService.getGoodsList(search, pager, AuthUtils.getUser());
         model.addAttribute("list", list);
         model.addAttribute("pager", pager);
+        model.addAttribute("search", search);
         return "goods/list";
     }
 

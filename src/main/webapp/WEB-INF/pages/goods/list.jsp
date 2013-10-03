@@ -27,6 +27,13 @@
         </jsp:include>
         <div class="search-form">
             <form id="searchForm" action="" class="form-format form-inline" method="post" role="form">
+                <div class="input-group">
+                    <input id="text" name="text" class="form-control" autofocus=""
+                    placeholder="请刷条码或输入搜索条件" action="searchResult" value="${search.text}">
+                <span class="input-group-btn">
+                    <button class="btn btn-info"><span class="glyphicon glyphicon-search"></span>搜索</button>
+                </span>
+                </div>
                 <input type="hidden" name="page" id="pager_page" value="${pager.page}">
                 <input type="hidden" name="total" id="pager_total" value="${pager.total}">
                 <input type="hidden" name="pageSize" id="pager_size" value="${pager.size}">

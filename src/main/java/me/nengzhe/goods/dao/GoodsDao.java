@@ -6,6 +6,7 @@ import me.nengzhe.base.exception.NotImplException;
 import me.nengzhe.goods.dto.GoodsSearch;
 import me.nengzhe.goods.model.Goods;
 import me.nengzhe.base.utils.Pager;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -84,15 +86,29 @@ public class GoodsDao extends JdbcDaoSupport implements PaginationDao<Goods, Goo
 
     @Override
     public int getCount(GoodsSearch search, User user) throws NotImplException {
+        List<Object> paramList = new ArrayList<Object>();
         String sql = "SELECT COUNT(*) FROM goods WHERE deleted=false AND company_id=?";
-        return super.getJdbcTemplate().queryForInt(sql, new Object[]{user.getCompanyId()});
+        paramList.add(user.getCompanyId());
+        if(StringUtils.isNotBlank(search.getText())) {
+            sql += " AND name LIKE ? ";
+            paramList.add("%" + search.getText() + "%");
+        }
+        return super.getJdbcTemplate().queryForInt(sql, paramList.toArray());
     }
 
     @Override
     public List<Goods> getList(GoodsSearch search, Pager pager, User user) throws NotImplException {
-        String sql = "SELECT * FROM goods WHERE deleted=false AND company_id=? LIMIT ?,?";
-        return super.getJdbcTemplate().query(sql, new Object[]{user.getCompanyId(),
-                pager.getOffset(), pager.getSize()}, new GoodsMapper());
+        List<Object> paramList = new ArrayList<Object>();
+        String sql = "SELECT * FROM goods WHERE deleted=false AND company_id=? ";
+        paramList.add(user.getCompanyId());
+        if(StringUtils.isNotBlank(search.getText())) {
+            sql += "AND name LIKE ? ";
+            paramList.add("%" + search.getText() + "%");
+        }
+        sql += "LIMIT ?,?";
+        paramList.add(pager.getOffset());
+        paramList.add(pager.getSize());
+        return super.getJdbcTemplate().query(sql, paramList.toArray(), new GoodsMapper());
     }
 
     class GoodsMapper implements RowMapper<Goods> {

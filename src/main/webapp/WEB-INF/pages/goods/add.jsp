@@ -96,11 +96,14 @@
         });
 
         $("#inputBarCode").change(function() {
-            var barCode = $("#inputBarCode").val();
+            var inputBarCode = $("#inputBarCode");
+            var barCode = inputBarCode.val();
             var goods = $.API.getGoods(barCode);
             console.log('goods:', goods);
             if(goods) {
                 alert("该条码商品已存在，无需再次添加！");
+                inputBarCode.val("");
+                inputBarCode.focus();
             }
         });
     });

@@ -8,10 +8,12 @@ import me.nengzhe.base.utils.Pager;
 import me.nengzhe.goods.dao.GoodsDao;
 import me.nengzhe.goods.dto.GoodsSearch;
 import me.nengzhe.goods.model.Goods;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,6 +29,20 @@ public class GoodsService {
 
     public List<Goods> getGoodsList(GoodsSearch search, Pager pager, User user)
             throws NotImplException {
+        String text = search.getText();
+        if(StringUtils.isNotBlank(text)) {
+            String barCode = text;  // treated as barCode first
+            try {
+                Goods goods = this.getGoods(barCode, user);
+                List<Goods> list = new ArrayList<Goods>();
+                list.add(goods);
+                pager.setTotal(1);
+                return list;
+            } catch (ResourceNotFoundException e) {
+                // do nothing
+            }
+
+        }
         List<Goods> list = this.goodsDao.getList(search, pager, user);
         Integer count = this.goodsDao.getCount(search, user);
         pager.setTotal(count);
