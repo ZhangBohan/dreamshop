@@ -16,6 +16,7 @@
                 <li class="nav-sell"><a href="${pageContext.request.contextPath}/sell">收银</a></li>
                 <li class="nav-add"><a href="${pageContext.request.contextPath}/goods/add">增加商品</a></li>
                 <li class="nav-manage"><a href="${pageContext.request.contextPath}/goods">管理商品</a></li>
+                <li class="nav-in"><a href="${pageContext.request.contextPath}/goods">收入统计</a></li>
             </ul>
             <ul class="nav pull-right">
                 <li class="dropdown">

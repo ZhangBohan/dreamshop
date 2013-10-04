@@ -11,16 +11,25 @@ import java.util.List;
  * Time: 10:28 PM
  */
 public class Bill extends BaseModel {
-    private Integer userId;
+    private Integer companyId;
     private BigDecimal total;
     private List<BillDetail> details;
 
-    public List<BillDetail> getDetails() {
-        return details;
+    @Override
+    public String toString() {
+        return "Bill{" +
+                "companyId=" + companyId +
+                ", total=" + total +
+                ", details=" + details +
+                '}';
     }
 
-    public void setDetails(List<BillDetail> details) {
-        this.details = details;
+    public Integer getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Integer companyId) {
+        this.companyId = companyId;
     }
 
     public BigDecimal getTotal() {
@@ -31,11 +40,11 @@ public class Bill extends BaseModel {
         this.total = total;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public List<BillDetail> getDetails() {
+        return details;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setDetails(List<BillDetail> details) {
+        this.details = details;
     }
 }

@@ -7,7 +7,10 @@ Details.DetailsController = Ember.ArrayController.extend({
 
             // 判断是否是以负号开始的，负号表示结算
             if(searchText.indexOf('-') == 0) {
-                var money = parseFloat(searchText.substring(1));
+                var money = 0;
+                if(searchText.length > 1) {
+                    money = parseFloat(searchText.substring(1));
+                }
                 var totalSum = this.get('totalSum');
                 if(totalSum == 0) {
                     // here should be alert user

@@ -24,7 +24,7 @@ public class BillService {
 
     public void add(Bill bill, User user){
         bill.init();
-        bill.setUserId(user.getId());
+        bill.setCompanyId(user.getCompanyId());
         this.billDao.insert(bill);
 
         for(BillDetail billDetail : bill.getDetails()) {
@@ -35,4 +35,6 @@ public class BillService {
             this.billDetailDao.insert(billDetail);
         }
     }
+
+
 }
