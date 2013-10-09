@@ -24,6 +24,8 @@ import java.util.List;
  */
 @Service
 public class GoodsService {
+    private static boolean modified = true;
+
     @Autowired
     private GoodsDao goodsDao;
 
@@ -47,6 +49,7 @@ public class GoodsService {
         Integer count = this.goodsDao.getCount(search, user);
         pager.setTotal(count);
 
+        modified = false;
         return list;
     }
 
@@ -76,9 +79,10 @@ public class GoodsService {
         } catch (DuplicateKeyException e) {
             throw new LogicException("该条码已存在！");
         }
+        modified = true;
     }
 
-    public void update(Goods goods, User user) {
+    public Goods update(Goods goods, User user) {
         Goods originGoods = this.goodsDao.get(goods.getId());
         if(!user.getCompanyId().equals(originGoods.getCompanyId())) {
             // 非法操作
@@ -92,7 +96,11 @@ public class GoodsService {
         if(goods.getDeleted() != null) {
             originGoods.setDeleted(goods.getDeleted());
         }
+        originGoods.setModifiedAt(new Date());
         this.goodsDao.update(originGoods);
+
+        modified = true;
+        return originGoods;
     }
 
     public void delete(Integer id, User user) {
@@ -101,5 +109,10 @@ public class GoodsService {
         goods.setModifiedAt(new Date());
 
         this.update(goods, user);
+        modified = true;
+    }
+
+    public boolean hasModified() {
+        return modified;
     }
 }

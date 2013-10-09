@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,13 +73,17 @@
         <div class="form-group">
             <label for="inputSpecification" class="col-lg-2 control-label">修改时间</label>
             <div class="col-lg-10">
-                <p class="form-control-static">${goods.modifiedAt}</p>
+                <p class="form-control-static" title="<fmt:formatDate value="${goods.modifiedAt}" pattern="yyyy年MM月dd日HH点mm分ss秒" />">
+                    <fmt:formatDate value="${goods.modifiedAt}" pattern="MM月dd日HH点mm分" />
+                </p>
             </div>
         </div>
         <div class="form-group">
             <label for="inputSpecification" class="col-lg-2 control-label">创建时间</label>
             <div class="col-lg-10">
-                <p class="form-control-static">${goods.createAt}</p>
+                <p class="form-control-static" title="<fmt:formatDate value="${goods.createAt}" pattern="yyyy年MM月dd日HH点mm分ss秒" />">
+                    <fmt:formatDate value="${goods.createAt}" pattern="MM月dd日HH点mm分" />
+                </p>
             </div>
         </div>
         <div class="form-group">

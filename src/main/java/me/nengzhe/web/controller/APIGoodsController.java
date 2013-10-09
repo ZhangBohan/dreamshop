@@ -56,4 +56,11 @@ public class APIGoodsController {
         }
         return new JsonResult<Goods>(goods);
     }
+
+    @RequestMapping("/hasModified")
+    @ResponseBody
+    public JsonResult<Boolean> modified() {
+        Boolean modified = this.goodsService.hasModified();
+        return new JsonResult<Boolean>(modified);
+    }
 }

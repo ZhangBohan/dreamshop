@@ -116,7 +116,7 @@ public class GoodsController {
     }
 
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.POST)
-    public String editPost(@Valid Goods goods, BindingResult result, RedirectAttributes redirectAttributes)
+    public String editPost(@Valid Goods goods, BindingResult result, Model model)
             throws NotLoginException {
         if (result.hasErrors()) {
             return "goods/edit";
@@ -124,11 +124,12 @@ public class GoodsController {
 
         Message message = new Message();
 
-        this.goodsService.update(goods, AuthUtils.getUser());
+        goods = this.goodsService.update(goods, AuthUtils.getUser());
 
         message.success("修改成功！");
 
-        message.addToRedirectAttributes(redirectAttributes);
+        message.addToModel(model);
+        model.addAttribute("goods", goods);
         this.actionService.add("修改商品", "修改成功！", AuthUtils.getUser());
         return "goods/edit";
     }

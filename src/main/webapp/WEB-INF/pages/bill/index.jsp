@@ -156,6 +156,14 @@
     $(document).ready(function(){
         $(".nav-sell").addClass("active");
         $("#barCodeSearch").focus();
+
+        if($.API.hasModified()) {
+            console.log("Goods data has modified.");
+            var goodsList = $.API.getGoodsList();
+            localStorage.goodsListStr = JSON.stringify(goodsList);
+            Details.Goods.FIXTURES = goodsList;
+            console.log("Goods data has auto sync.");
+        }
     });
 </script>
 </body>

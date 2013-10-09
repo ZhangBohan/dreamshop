@@ -44,6 +44,13 @@ $.API = {
         return resultData;
     },
 
+    hasModified: function() {
+        var url = this.opts.root + '/api/goods/hasModified'
+
+        var hasModified = this.get(url, {});
+        return hasModified;
+    },
+
     getGoodsListByLocalStorage: function() {
         var goodsList = [];
 

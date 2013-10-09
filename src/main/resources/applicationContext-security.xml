@@ -10,6 +10,7 @@
     <global-method-security pre-post-annotations="enabled" />
     <http auto-config="true">
         <intercept-url pattern="/goods/**" access="ROLE_USER" />
+        <intercept-url pattern="/sell/**" access="ROLE_USER" />
         <logout logout-url="/auth/logout"></logout>
         <form-login login-page="/auth/login" username-parameter="username"
                 password-parameter="password"
