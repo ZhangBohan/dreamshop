@@ -41,13 +41,8 @@ public class AuthController {
             message.addToModel(model);
         }
 
-        return "auth/login";
-    }
-
-    @RequestMapping("/signUp")
-    public String signUpGet(Model model) {
         model.addAttribute("signUp", new SignUp());
-        return "auth/sign_up";
+        return "auth/login";
     }
 
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
@@ -55,7 +50,7 @@ public class AuthController {
                              RedirectAttributes redirectAttributes) {
 
         if(result.hasErrors()) {
-            return "auth/sign_up";
+            return "auth/login";
         } else {
             try {
                 this.userService.loadUserByUsername(signUp.getUsername());

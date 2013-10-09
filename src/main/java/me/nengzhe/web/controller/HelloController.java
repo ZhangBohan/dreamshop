@@ -14,8 +14,7 @@ public class HelloController {
     private GoodsService goodsService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String printWelcome(ModelMap model) {
-		model.addAttribute("message", "你好，世界!");
-		return "hello";
+	public String printWelcome() {
+		return "redirect:/sell";
 	}
 }
