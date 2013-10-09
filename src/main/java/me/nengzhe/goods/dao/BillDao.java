@@ -82,7 +82,9 @@ public class BillDao extends JdbcDaoSupport implements PaginationDao<Bill, BillS
 
     @Override
     public List<Bill> getList(BillSearch search, Pager pager, User user) throws NotImplException {
-        throw new NotImplException();
+        String sql = "SELECT * FROM bill WHERE company_id=? LIMIT ?,?";
+        return super.getJdbcTemplate().query(sql, new Object[]{user.getCompanyId(),
+                pager.getOffset(), pager.getSize()}, new OrderMapper());
     }
 
     @Override

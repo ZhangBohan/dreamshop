@@ -3,7 +3,9 @@ Details.DetailsController = Ember.ArrayController.extend({
         searchResult: function() {
             var flag = false;   // 记录是成功处理
             var searchText = this.get('searchText');
-            if(searchText && !searchText.trim()) {return;}
+            if(searchText === undefined || !searchText || !searchText.trim()) {
+                searchText = "-";
+            }
 
             // 判断是否是以负号开始的，负号表示结算
             if(searchText.indexOf('-') == 0) {

@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="/img/ico/favicon.png">
 
-    <title>增加商品|梦之店</title>
+    <title>增加商品 | 梦之店</title>
     <link href="${pageContext.request.contextPath}/css/bootstrap-glyphicons.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">

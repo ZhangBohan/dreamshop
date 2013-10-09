@@ -7,4 +7,4 @@ Details.Goods = DS.Model.extend({
     specification: DS.attr('string')
 });
 
-Details.Goods.FIXTURES = $.API.getGoodsList();
+Details.Goods.FIXTURES = $.API.getGoodsListByLocalStorage();

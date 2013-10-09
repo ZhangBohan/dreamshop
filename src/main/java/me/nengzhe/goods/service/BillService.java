@@ -3,12 +3,14 @@ package me.nengzhe.goods.service;
 import me.nengzhe.auth.model.User;
 import me.nengzhe.goods.dao.BillDao;
 import me.nengzhe.goods.dao.BillDetailDao;
+import me.nengzhe.goods.dto.BillSearch;
 import me.nengzhe.goods.model.Bill;
 import me.nengzhe.goods.model.BillDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * User: bohan
@@ -36,5 +38,7 @@ public class BillService {
         }
     }
 
-
+    public List<Bill> getBills(BillSearch search) {
+        return this.billDao.getList(search);
+    }
 }
