@@ -135,7 +135,7 @@
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/modal.js"></script>
 <script src="${pageContext.request.contextPath}/js/alert.js"></script>
-<script src="${pageContext.request.contextPath}/js/api.js"></script>
+<script src="${pageContext.request.contextPath}/js/api.js?v=2"></script>
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
 
 
