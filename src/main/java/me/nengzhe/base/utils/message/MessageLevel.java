@@ -1,4 +1,4 @@
-package me.nengzhe.utils.message;
+package me.nengzhe.base.utils.message;
 
 /**
  * User: bohan

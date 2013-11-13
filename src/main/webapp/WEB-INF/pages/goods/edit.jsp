@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="/img/ico/favicon.png">
 
-    <title>修改商品|梦之店</title>
+    <title>修改商品 | 梦之店</title>
     <link href="${pageContext.request.contextPath}/css/bootstrap-glyphicons.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
@@ -25,7 +26,7 @@
         <jsp:param name="messages" value="${messages}" />
     </jsp:include>
 
-    <form:form method="post" commandName="goods" action="">
+    <form:form method="post" id="edit_goods_form" commandName="goods" action="">
         <form:errors path="*" cssClass="alert-danger" element="div" />
         <div class="form-group">
             <label for="inputBarCode" class="col-lg-2 control-label">条码</label>
@@ -35,9 +36,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="inputUsername" class="col-lg-2 control-label">名称</label>
+            <label for="inputName" class="col-lg-2 control-label">名称</label>
             <div class="col-lg-10">
-                <form:input path="name" cssClass="form-control" id="inputUsername" placeholder="商品名称" />
+                <form:input path="name" cssClass="form-control" id="inputName" placeholder="商品名称" />
                 <span class="help-block"><form:errors path="name" cssClass="alert-danger" /></span>
             </div>
         </div>
@@ -72,13 +73,17 @@
         <div class="form-group">
             <label for="inputSpecification" class="col-lg-2 control-label">修改时间</label>
             <div class="col-lg-10">
-                <p class="form-control-static">${goods.modifiedAt}</p>
+                <p class="form-control-static" title="<fmt:formatDate value="${goods.modifiedAt}" pattern="yyyy年MM月dd日HH点mm分ss秒" />">
+                    <fmt:formatDate value="${goods.modifiedAt}" pattern="MM月dd日HH点mm分" />
+                </p>
             </div>
         </div>
         <div class="form-group">
             <label for="inputSpecification" class="col-lg-2 control-label">创建时间</label>
             <div class="col-lg-10">
-                <p class="form-control-static">${goods.createAt}</p>
+                <p class="form-control-static" title="<fmt:formatDate value="${goods.createAt}" pattern="yyyy年MM月dd日HH点mm分ss秒" />">
+                    <fmt:formatDate value="${goods.createAt}" pattern="MM月dd日HH点mm分" />
+                </p>
             </div>
         </div>
         <div class="form-group">
@@ -97,6 +102,7 @@
 <script>
     $(document).ready(function(){
         $(".nav-manage").addClass("active");
+        $("#inputBarCode").focus();
     });
 </script>
 </body>

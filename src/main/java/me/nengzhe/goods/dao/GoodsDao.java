@@ -5,7 +5,8 @@ import me.nengzhe.base.dao.PaginationDao;
 import me.nengzhe.base.exception.NotImplException;
 import me.nengzhe.goods.dto.GoodsSearch;
 import me.nengzhe.goods.model.Goods;
-import me.nengzhe.utils.Pager;
+import me.nengzhe.base.utils.Pager;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,28 +43,28 @@ public class GoodsDao extends JdbcDaoSupport implements PaginationDao<Goods, Goo
     }
 
     @Override
-    public void insert(Goods entity) {
+    public Integer insert(Goods entity) {
         String sql = "INSERT INTO goods(bar_code, name, price, cost, specification, unit, company_id, deleted, " +
                 "modified_at, create_at) VALUES (?,?,?,?,?,?,?,?,?,?);";
-        super.getJdbcTemplate().update(sql, entity.getBarCode(), entity.getName(), entity.getPrice(),
+        return super.getJdbcTemplate().update(sql, entity.getBarCode(), entity.getName(), entity.getPrice(),
                 entity.getCost(), entity.getSpecification(), entity.getUnit(), entity.getCompanyId(), entity.getDeleted(),
                 entity.getModifiedAt(), entity.getCreateAt());
     }
 
     @Override
-    public void update(Goods entity) {
+    public Integer update(Goods entity) {
         String sql = "UPDATE goods SET bar_code=?, name=?, price=?, cost=?, specification=?, " +
                 "unit=?, company_id=?, deleted=?, modified_at=?, create_at=? WHERE id=?;";
 
-        super.getJdbcTemplate().update(sql, entity.getBarCode(), entity.getName(), entity.getPrice(), entity.getCost(),
+        return super.getJdbcTemplate().update(sql, entity.getBarCode(), entity.getName(), entity.getPrice(), entity.getCost(),
                 entity.getSpecification(), entity.getUnit(), entity.getCompanyId(), entity.getDeleted(),
                 entity.getModifiedAt(), entity.getCreateAt(), entity.getId());
     }
 
     @Override
-    public void delete(Integer id) {
+    public Integer delete(Integer id) {
         String sql = "DELETE FROM goods WHERE id=?";
-        super.getJdbcTemplate().update(sql, id);
+        return super.getJdbcTemplate().update(sql, id);
     }
 
     @Override
@@ -84,15 +86,29 @@ public class GoodsDao extends JdbcDaoSupport implements PaginationDao<Goods, Goo
 
     @Override
     public int getCount(GoodsSearch search, User user) throws NotImplException {
+        List<Object> paramList = new ArrayList<Object>();
         String sql = "SELECT COUNT(*) FROM goods WHERE deleted=false AND company_id=?";
-        return super.getJdbcTemplate().queryForInt(sql, new Object[]{user.getCompanyId()});
+        paramList.add(user.getCompanyId());
+        if(StringUtils.isNotBlank(search.getText())) {
+            sql += " AND name LIKE ? ";
+            paramList.add("%" + search.getText() + "%");
+        }
+        return super.getJdbcTemplate().queryForInt(sql, paramList.toArray());
     }
 
     @Override
     public List<Goods> getList(GoodsSearch search, Pager pager, User user) throws NotImplException {
-        String sql = "SELECT * FROM goods WHERE deleted=false AND company_id=? LIMIT ?,?";
-        return super.getJdbcTemplate().query(sql, new Object[]{user.getCompanyId(),
-                pager.getOffset(), pager.getSize()}, new GoodsMapper());
+        List<Object> paramList = new ArrayList<Object>();
+        String sql = "SELECT * FROM goods WHERE deleted=false AND company_id=? ";
+        paramList.add(user.getCompanyId());
+        if(StringUtils.isNotBlank(search.getText())) {
+            sql += "AND name LIKE ? ";
+            paramList.add("%" + search.getText() + "%");
+        }
+        sql += "LIMIT ?,?";
+        paramList.add(pager.getOffset());
+        paramList.add(pager.getSize());
+        return super.getJdbcTemplate().query(sql, paramList.toArray(), new GoodsMapper());
     }
 
     class GoodsMapper implements RowMapper<Goods> {
@@ -107,8 +123,8 @@ public class GoodsDao extends JdbcDaoSupport implements PaginationDao<Goods, Goo
             goods.setSpecification(rs.getString("specification"));
             goods.setDeleted(rs.getBoolean("deleted"));
             goods.setUnit(rs.getString("unit"));
-            goods.setModifiedAt(rs.getDate("modified_at"));
-            goods.setCreateAt(rs.getDate("create_at"));
+            goods.setModifiedAt(rs.getTimestamp("modified_at"));
+            goods.setCreateAt(rs.getTimestamp("create_at"));
             goods.setCompanyId(rs.getInt("company_id"));
             return goods;
         }

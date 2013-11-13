@@ -1,4 +1,4 @@
-package me.nengzhe.utils.message;
+package me.nengzhe.base.utils.message;
 
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;

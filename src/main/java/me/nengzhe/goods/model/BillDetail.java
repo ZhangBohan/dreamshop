@@ -1,5 +1,8 @@
 package me.nengzhe.goods.model;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.math.BigDecimal;
 
 /**
@@ -7,9 +10,11 @@ import java.math.BigDecimal;
  * Date: 8/28/13
  * Time: 10:26 PM
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class BillDetail {
+    @JsonIgnore
     private Integer id;
-    private Integer orderId;
+    private Integer billId;
     private String name;
     private Integer count;
     private BigDecimal price;
@@ -33,12 +38,12 @@ public class BillDetail {
         this.id = id;
     }
 
-    public Integer getOrderId() {
-        return orderId;
+    public Integer getBillId() {
+        return billId;
     }
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
+    public void setBillId(Integer billId) {
+        this.billId = billId;
     }
 
     public String getName() {

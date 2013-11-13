@@ -28,7 +28,7 @@ public class CompanyDao extends JdbcDaoSupport implements BaseDao<Company> {
     }
 
     @Override
-    public void insert(Company entity) {
+    public Integer insert(Company entity) {
         final String sql = "INSERT INTO company (name, description, deleted, modified_at, create_at) VALUES (?,?,?,?,?)";
         final Company company = entity;
         KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -48,19 +48,20 @@ public class CompanyDao extends JdbcDaoSupport implements BaseDao<Company> {
                 },
                 keyHolder);
         entity.setId(keyHolder.getKey().intValue());
+        return 1;
     }
 
     @Override
-    public void update(Company entity) {
+    public Integer update(Company entity) {
         String sql = "UPDATE company SET name=?, deleted=?, modified_at=?, create_at=? WHERE id=?";
-        this.getJdbcTemplate().update(sql, entity.getName(), entity.getDeleted(), entity.getModifiedAt(),
+        return this.getJdbcTemplate().update(sql, entity.getName(), entity.getDeleted(), entity.getModifiedAt(),
                 entity.getCreateAt(), entity.getId());
     }
 
     @Override
-    public void delete(Integer id) {
+    public Integer delete(Integer id) {
         String sql = "DELETE FROM goods WHERE id=?";
-        super.getJdbcTemplate().update(sql, id);
+        return super.getJdbcTemplate().update(sql, id);
     }
 
     @Override
@@ -82,8 +83,8 @@ public class CompanyDao extends JdbcDaoSupport implements BaseDao<Company> {
             company.setId(rs.getInt("id"));
             company.setName(rs.getString("name"));
             company.setDeleted(rs.getBoolean("deleted"));
-            company.setModifiedAt(rs.getDate("modified_at"));
-            company.setCreateAt(rs.getDate("create_at"));
+            company.setModifiedAt(rs.getTimestamp("modified_at"));
+            company.setCreateAt(rs.getTimestamp("create_at"));
 
             return company;
         }

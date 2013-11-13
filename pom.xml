@@ -245,7 +245,7 @@
                             <port>8010</port>
                         </connector>
                     </connectors>
-                    <contextPath>/</contextPath>
+                    <!--<contextPath>/</contextPath>-->
                     <scanIntervalSeconds>10</scanIntervalSeconds>
                 </configuration>
             </plugin>

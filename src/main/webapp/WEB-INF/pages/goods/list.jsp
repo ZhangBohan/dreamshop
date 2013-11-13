@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="/img/ico/favicon.png">
 
-    <title>管理商品|梦之店</title>
+    <title>管理商品 | 梦之店</title>
       <link href="${pageContext.request.contextPath}/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
@@ -27,6 +27,13 @@
         </jsp:include>
         <div class="search-form">
             <form id="searchForm" action="" class="form-format form-inline" method="post" role="form">
+                <div class="input-group">
+                    <input id="text" name="text" class="form-control" autofocus=""
+                    placeholder="请刷条码或输入搜索条件" action="searchResult" value="${search.text}">
+                <span class="input-group-btn">
+                    <button class="btn btn-info"><span class="glyphicon glyphicon-search"></span>搜索</button>
+                </span>
+                </div>
                 <input type="hidden" name="page" id="pager_page" value="${pager.page}">
                 <input type="hidden" name="total" id="pager_total" value="${pager.total}">
                 <input type="hidden" name="pageSize" id="pager_size" value="${pager.size}">
@@ -50,15 +57,15 @@
                     <tr>
                         <td><input type="checkbox" name="ids" class='selectOne' value="${ goods.id }"/></td>
                         <td>${status.index + 1}</td>
-                        <td><a href="/goods/${goods.id}/edit">${goods.barCode}</a></td>
+                        <td><a href="${pageContext.request.contextPath}/goods/${goods.id}/edit">${goods.barCode}</a></td>
                         <td>${goods.name}</td>
                         <td>${goods.price}</td>
                         <td>${goods.cost}</td>
                         <td>${goods.unit}</td>
                         <td>${goods.specification}</td>
                         <td>
-                            <a href="/goods/${goods.id}/edit" class="btn btn-info">编辑</a>
-                            <a href="/goods/${goods.id}/delete" class="btn btn-danger">删除</a>
+                            <a href="${pageContext.request.contextPath}/goods/${goods.id}/edit" class="btn btn-info">编辑</a>
+                            <a href="${pageContext.request.contextPath}/goods/${goods.id}/delete" class="btn btn-danger">删除</a>
                         </td>
                     </tr>
                 </c:forEach>

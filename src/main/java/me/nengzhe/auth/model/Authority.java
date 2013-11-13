@@ -21,6 +21,14 @@ public class Authority extends BaseModel implements GrantedAuthority {
         this.description = role.getDescription();
     }
 
+    @Override
+    public String toString() {
+        return "Authority{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
     public String getName() {
         return name;
     }

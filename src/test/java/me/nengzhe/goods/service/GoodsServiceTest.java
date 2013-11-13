@@ -3,7 +3,7 @@ package me.nengzhe.goods.service;
 import me.nengzhe.auth.model.User;
 import me.nengzhe.goods.dto.GoodsSearch;
 import me.nengzhe.goods.model.Goods;
-import me.nengzhe.utils.Pager;
+import me.nengzhe.base.utils.Pager;
 import nengzhe.AbstractSpringTests;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

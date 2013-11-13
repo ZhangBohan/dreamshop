@@ -1,13 +1,15 @@
 package me.nengzhe.web.controller;
 
+import me.nengzhe.auth.service.ActionService;
 import me.nengzhe.base.exception.LogicException;
 import me.nengzhe.base.exception.NotImplException;
+import me.nengzhe.base.exception.NotLoginException;
+import me.nengzhe.base.utils.AuthUtils;
+import me.nengzhe.base.utils.Pager;
+import me.nengzhe.base.utils.message.Message;
 import me.nengzhe.goods.dto.GoodsSearch;
 import me.nengzhe.goods.model.Goods;
 import me.nengzhe.goods.service.GoodsService;
-import me.nengzhe.utils.AuthUtils;
-import me.nengzhe.utils.Pager;
-import me.nengzhe.utils.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,11 +33,13 @@ import java.util.List;
 public class GoodsController {
     @Autowired
     private GoodsService goodsService;
+    @Autowired
+    private ActionService actionService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String listWithPagerGet(Model model, @RequestParam(defaultValue = "2") Integer pageSize,
-                                @RequestParam(defaultValue = "1") Integer page,
-                                @RequestParam(defaultValue = "-1") Integer total) throws NotImplException {
+    public String listWithPagerGet(Model model, @RequestParam(defaultValue = "30") Integer pageSize,
+                                   @RequestParam(defaultValue = "1") Integer page,
+                                   @RequestParam(defaultValue = "-1") Integer total) throws NotImplException, NotLoginException {
         Pager pager = new Pager(page, total, pageSize);
 
         List<Goods> list = this.goodsService.getGoodsList(new GoodsSearch(), pager, AuthUtils.getUser());
@@ -43,16 +47,17 @@ public class GoodsController {
         model.addAttribute("pager", pager);
         return "goods/list";
     }
-    
+
     @RequestMapping(method = RequestMethod.POST)
-    public String listWithPagerPost(Model model, @RequestParam(defaultValue = "2") Integer pageSize,
-                                @RequestParam(defaultValue = "1") Integer page,
-                                @RequestParam(defaultValue = "-1") Integer total) throws NotImplException {
+    public String listWithPagerPost(GoodsSearch search, Model model, @RequestParam(defaultValue = "2") Integer pageSize,
+                                    @RequestParam(defaultValue = "1") Integer page,
+                                    @RequestParam(defaultValue = "-1") Integer total) throws NotImplException, NotLoginException {
         Pager pager = new Pager(page, total, pageSize);
 
-        List<Goods> list = this.goodsService.getGoodsList(new GoodsSearch(), pager, AuthUtils.getUser());
+        List<Goods> list = this.goodsService.getGoodsList(search, pager, AuthUtils.getUser());
         model.addAttribute("list", list);
         model.addAttribute("pager", pager);
+        model.addAttribute("search", search);
         return "goods/list";
     }
 
@@ -66,8 +71,8 @@ public class GoodsController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addPost(@Valid Goods goods, BindingResult result,
-                          RedirectAttributes redirectAttributes, Model model) {
-        if(result.hasErrors()) {
+                          RedirectAttributes redirectAttributes, Model model) throws NotLoginException {
+        if (result.hasErrors()) {
             return "goods/add";
         }
 
@@ -84,11 +89,13 @@ public class GoodsController {
         message.success("增加成功！");
 
         message.addToRedirectAttributes(redirectAttributes);
-        return "redirect:/goods";
+        this.actionService.add("增加商品", "增加成功！", AuthUtils.getUser());
+        return "redirect:/goods/add";
     }
 
     @RequestMapping(value = "/{id}/delete")
-    public String delete(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
+    public String delete(@PathVariable("id") int id, RedirectAttributes redirectAttributes)
+            throws NotLoginException {
         Message message = new Message();
 
         this.goodsService.delete(id, AuthUtils.getUser());
@@ -96,30 +103,34 @@ public class GoodsController {
         message.success("删除成功！");
 
         message.addToRedirectAttributes(redirectAttributes);
+        this.actionService.add("删除商品", "ID:" + id, AuthUtils.getUser());
         return "redirect:/goods";
     }
 
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
-    public String editGet(Model model, @PathVariable("id") int id) {
-        Goods goods = this.goodsService.getGoods(id);
+    public String editGet(Model model, @PathVariable("id") int id) throws NotLoginException {
+        Goods goods = this.goodsService.getGoods(id, AuthUtils.getUser());
         model.addAttribute("goods", goods);
 
         return "goods/edit";
     }
 
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.POST)
-    public String editPost(@Valid Goods goods, BindingResult result, RedirectAttributes redirectAttributes) {
-        if(result.hasErrors()) {
+    public String editPost(@Valid Goods goods, BindingResult result, Model model)
+            throws NotLoginException {
+        if (result.hasErrors()) {
             return "goods/edit";
         }
 
         Message message = new Message();
 
-        this.goodsService.update(goods, AuthUtils.getUser());
+        goods = this.goodsService.update(goods, AuthUtils.getUser());
 
         message.success("修改成功！");
 
-        message.addToRedirectAttributes(redirectAttributes);
-        return "redirect:/goods";
+        message.addToModel(model);
+        model.addAttribute("goods", goods);
+        this.actionService.add("修改商品", "修改成功！", AuthUtils.getUser());
+        return "goods/edit";
     }
 }

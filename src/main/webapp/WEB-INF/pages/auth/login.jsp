@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: bohan
@@ -35,15 +36,49 @@
 
 <div class="container">
     <jsp:include page="../include/alert.jsp" />
-    <form class="form-signin" action="${pageContext.request.contextPath}/j_spring_security_check" method="post">
-        <h2 class="form-signin-heading">请您登录</h2>
-        <input type="text" class="form-control" placeholder="用户名" autofocus name="username">
-        <input type="password" class="form-control" placeholder="密码" name="password">
-        <label class="checkbox">
-            <input type="checkbox" value="remember-me" name="_spring_security_remember_me"> 记住我
-        </label>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
-    </form>
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="form-signin-heading">已有账号？请登录</h2>
+            <form class="form-signin" action="${pageContext.request.contextPath}/j_spring_security_check" method="post">
+                <input type="text" class="form-control" placeholder="用户名" autofocus name="username">
+                <input type="password" class="form-control" placeholder="密码" name="password">
+                <label class="checkbox">
+                    <input type="checkbox" checked="" name="_spring_security_remember_me"> 记住我
+                </label>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h2 class="form-signin-heading">还没有账号？请注册</h2>
+            <form:form commandName="signUp" cssClass="form-signin" class="form-horizontal" action="${pageContext.request.contextPath}/auth/signUp" method="post">
+                <form:errors path="*" cssClass="alert-danger" element="div" />
+                <div class="control-group">
+                    <label for="suUsername" class="control-label">用户名</label>
+                    <div class="controls">
+                        <form:input path="username" cssClass="form-control" id="suUsername" placeholder="用户名" />
+                        <span class="help-block"><form:errors path="username" cssClass="alert-danger" /></span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="suPassword" class="control-label">密码</label>
+                    <div class="controls">
+                        <form:password path="password" cssClass="form-control" id="suPassword" placeholder="密码" />
+                        <span class="help-block"><form:errors path="password" cssClass="alert-danger" /></span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="suRePassword" class="control-label">再次输入密码</label>
+                    <div class="controls">
+                        <form:password path="rePassword" cssClass="form-control" id="suRePassword"
+                                       placeholder="请再次输入一次您的密码" />
+                        <span class="help-block"><form:errors path="rePassword" cssClass="alert-danger" /></span>
+                    </div>
+                </div>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+            </form:form>
+        </div>
+    </div>
 
 </div> <!-- /container -->
 

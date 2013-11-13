@@ -13,6 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BillController {
     @RequestMapping
     public String sell() {
-        return "goods/sell";
+        return "bill/index";
     }
 }

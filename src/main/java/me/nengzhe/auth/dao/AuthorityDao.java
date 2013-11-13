@@ -3,7 +3,6 @@ package me.nengzhe.auth.dao;
 import me.nengzhe.auth.model.Authority;
 import me.nengzhe.base.dao.BaseDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
@@ -28,23 +27,23 @@ public class AuthorityDao extends JdbcDaoSupport implements BaseDao<Authority> {
     }
 
     @Override
-    public void insert(Authority entity) {
+    public Integer insert(Authority entity) {
         String sql = "INSERT INTO authority (name, description, modified_at, create_at) VALUES (?,?,?,?)";
-        this.getJdbcTemplate().update(sql, entity.getName(), entity.getDescription(), entity.getModifiedAt(),
+        return this.getJdbcTemplate().update(sql, entity.getName(), entity.getDescription(), entity.getModifiedAt(),
                 entity.getCreateAt());
     }
 
     @Override
-    public void update(Authority entity) {
+    public Integer update(Authority entity) {
         String sql = "UPDATE company SET name=?, deleted=?, modified_at=?, create_at=? WHERE id=?";
-        this.getJdbcTemplate().update(sql, entity.getName(), entity.getDescription(), entity.getModifiedAt(),
+        return this.getJdbcTemplate().update(sql, entity.getName(), entity.getDescription(), entity.getModifiedAt(),
                 entity.getCreateAt(), entity.getId());
     }
 
     @Override
-    public void delete(Integer id) {
+    public Integer delete(Integer id) {
         String sql = "DELETE FROM authority WHERE id=?";
-        super.getJdbcTemplate().update(sql, id);
+        return super.getJdbcTemplate().update(sql, id);
     }
 
     @Override
@@ -72,8 +71,8 @@ public class AuthorityDao extends JdbcDaoSupport implements BaseDao<Authority> {
             authority.setId(rs.getInt("id"));
             authority.setName(rs.getString("name"));
             authority.setDescription(rs.getString("description"));
-            authority.setModifiedAt(rs.getDate("modified_at"));
-            authority.setCreateAt(rs.getDate("create_at"));
+            authority.setModifiedAt(rs.getTimestamp("modified_at"));
+            authority.setCreateAt(rs.getTimestamp("create_at"));
 
             return authority;
         }

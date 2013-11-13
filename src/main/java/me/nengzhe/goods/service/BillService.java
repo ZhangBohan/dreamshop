@@ -1,14 +1,15 @@
 package me.nengzhe.goods.service;
 
 import me.nengzhe.auth.model.User;
-import me.nengzhe.base.exception.NotImplException;
 import me.nengzhe.goods.dao.BillDao;
 import me.nengzhe.goods.dao.BillDetailDao;
+import me.nengzhe.goods.dto.BillSearch;
 import me.nengzhe.goods.model.Bill;
 import me.nengzhe.goods.model.BillDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -18,20 +19,27 @@ import java.util.List;
  */
 @Service
 public class BillService {
+
     @Autowired
     private BillDao billDao;
     @Autowired
     private BillDetailDao billDetailDao;
 
-    public void add(List<BillDetail> billDetails, User user) throws NotImplException {
-        Bill bill = new Bill();
+    public void add(Bill bill, User user){
         bill.init();
-        bill.setUserId(user.getId());
+        bill.setCompanyId(user.getCompanyId());
         this.billDao.insert(bill);
 
-        for(BillDetail billDetail : billDetails) {
-            billDetail.setOrderId(bill.getId());
+        for(BillDetail billDetail : bill.getDetails()) {
+            billDetail.setBillId(bill.getId());
+            if(billDetail.getCost() == null){
+                billDetail.setCost(new BigDecimal(-1));
+            }
             this.billDetailDao.insert(billDetail);
         }
+    }
+
+    public List<Bill> getBills(BillSearch search) {
+        return this.billDao.getList(search);
     }
 }

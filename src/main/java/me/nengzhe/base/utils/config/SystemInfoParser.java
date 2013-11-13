@@ -1,4 +1,4 @@
-package me.nengzhe.utils.config;
+package me.nengzhe.base.utils.config;
 
 import org.apache.commons.lang.SystemUtils;
 import org.apache.commons.logging.Log;

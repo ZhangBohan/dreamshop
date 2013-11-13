@@ -13,10 +13,4 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class GoodsServiceTests extends AbstractSpringTests {
     @Autowired
     private GoodsService goodsService;
-
-    @Test
-    public void testGetGoods() {
-        String barCode = "0000";
-        this.goodsService.getGoods(barCode);
-    }
 }
